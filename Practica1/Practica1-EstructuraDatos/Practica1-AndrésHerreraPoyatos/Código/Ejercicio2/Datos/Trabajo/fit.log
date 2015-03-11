@@ -1,0 +1,48 @@
+
+*******************************************************************************
+Mon Oct  6 16:39:05 2014
+
+
+FIT:    data read from "./Datos/tiempo_burbuja.dat"
+        format = z
+        #datapoints = 61
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.02989e+19       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.3722e+08
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 12 iterations the fit converged.
+final sum of squares of residuals : 0.0111421
+rel. change during last iteration : -4.94962e-11
+
+degrees of freedom    (FIT_NDF)                        : 58
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0138602
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000192106
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 3.25395e-09      +/- 2.561e-11    (0.7871%)
+b               = 3.72561e-06      +/- 7.993e-07    (21.45%)
+c               = -0.00778268      +/- 0.005222     (67.1%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b              -0.968  1.000 
+c               0.738 -0.861  1.000 

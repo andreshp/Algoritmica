@@ -7,4 +7,4 @@ Prácticas de la asignatura de Algorítmica en la UGR.
 
 ## Contenido
 
-- **Practica 1**
+- **Practica 1** : Practica con un estudio teórico y empírico de varios algoritmos.
