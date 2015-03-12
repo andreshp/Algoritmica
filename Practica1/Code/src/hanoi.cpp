@@ -8,6 +8,9 @@ using namespace std;
 #include <ctime>
 #include <cstdlib>
 
+# include <sys/time.h>  // gettimeofday(), struct timeval
+# include <stdio.h>     // printf()
+
 
 
 /**
@@ -34,7 +37,7 @@ void hanoi (int M, int i, int j)
   if (M > 0)
     {
       hanoi(M-1, i, 6-i-j);
-      cout << i << " -> " << j << endl;
+      //cout << i << " -> " << j << endl;
       hanoi (M-1, 6-i-j, j);
   }
 }
@@ -50,7 +53,19 @@ int main(int argc, char * argv[])
 
   int M = atoi(argv[1]);
 
+  // Variables para medir el tiempo
+    struct timeval tv1, tv2; // gettimeofday() secs-usecs
+    double           tv_usecs; // y sus cuentas
+    
+    //----------- Ejecución del algoritmo -----------//
+    gettimeofday(&tv1,NULL);
+
   hanoi(M, 1, 2);
+
+  gettimeofday(&tv2,NULL);
+
+  tv_usecs= ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
+    cout << tv_usecs << endl;
 
   return 0;
 }

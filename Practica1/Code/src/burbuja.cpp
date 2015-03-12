@@ -11,6 +11,7 @@ using namespace std;
 #include <cassert>
 
 # include <sys/time.h>  // gettimeofday(), struct timeval
+# include <stdio.h>     // printf()
 
 
 

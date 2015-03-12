@@ -11,6 +11,9 @@ using namespace std;
 #include <cassert>
 #include <cmath>
 
+# include <sys/time.h>  // gettimeofday(), struct timeval
+# include <stdio.h>     // printf()
+
 
 static int const MAX_LONG  = 10;
             
@@ -161,7 +164,19 @@ int main (int argc, char **argv)
 			
   // Empieza el algoritmo de floyd
 //  tantes = clock();
+// Variables para medir el tiempo
+    struct timeval tv1, tv2; // gettimeofday() secs-usecs
+    double           tv_usecs; // y sus cuentas
+    
+    //----------- Ejecución del algoritmo -----------//
+    gettimeofday(&tv1,NULL);
+
   Floyd(M,dim);
+
+  gettimeofday(&tv2,NULL);
+
+  tv_usecs= ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
+    cout << tv_usecs << endl;
 //  tdespues = clock();
 //  cout << "Tiempo: " << ((double)(tdespues-tantes))/CLOCKS_PER_SEC << " s" << endl;
   LiberaMatriz(M,dim);
