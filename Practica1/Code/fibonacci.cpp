@@ -7,6 +7,9 @@
 using namespace std;
 #include <ctime>
 
+# include <sys/time.h>  // gettimeofday(), struct timeval
+# include <stdio.h>     // printf()
+
 
 /**
    @brief Calcula el término n-ésimo de la sucesión de Fibonacci.
@@ -33,9 +36,19 @@ int main()
   cout << "¿Número del término: ";
   cin >> n;
 
+// Variables para medir el tiempo
+    struct timeval tv1, tv2; // gettimeofday() secs-usecs
+    double           tv_usecs; // y sus cuentas
+    
+    //----------- Ejecución del algoritmo -----------//
+    gettimeofday(&tv1,NULL);
+
   f = fibo(n);
 
-  cout << "El término " << n << "-ésimo es: " << f << endl;
+  gettimeofday(&tv2,NULL);
+
+  tv_usecs= ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
+    cout << tv_usecs << endl;
 
   return 0;
 }
