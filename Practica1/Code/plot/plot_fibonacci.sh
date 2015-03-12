@@ -8,12 +8,12 @@
 # Script de bash para crear una imagen .png con GNU-PLOT
 
 #Variables:
-OUTPUT=../Imagenes/fibonacci.png
+OUTPUT=./Imagenes/fibonacci.png
 TITULO="Algoritmo de Fibonacci"
 XLABEL="Indice del elemento de la sucesion"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Fibonacci"
-FICHERO_DATOS1="../Datos/tiempo_fibonacci.dat"
+FICHERO_DATOS1="./Datos/tiempo_fibonacci.dat"
 
 gnuplot<<FIN
 # Terminal para png:

@@ -8,12 +8,12 @@
 # Script de bash para crear una imagen .png con GNU-PLOT
 
 #Variables:
-OUTPUT=../Imagenes/hanoi.png
+OUTPUT=./Imagenes/hanoi.png
 TITULO="Algoritmo de las torres de Hanoi"
 XLABEL="Numero de discos"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Hanoi"
-FICHERO_DATOS1="../Datos/tiempo_hanoi.dat"
+FICHERO_DATOS1="./Datos/tiempo_hanoi.dat"
 
 gnuplot<<FIN
 # Terminal para png:

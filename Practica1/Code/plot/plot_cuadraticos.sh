@@ -8,16 +8,16 @@
 # Script de bash para crear una imagen .png con GNU-PLOT
 
 #Variables:
-OUTPUT=../Imagenes/cuadraticos.png
+OUTPUT=./Imagenes/cuadraticos.png
 TITULO="Comparación de diferentes algoritmos O(n^2)"
 XLABEL="Longitud del Vector"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Burbuja"
 LEYENDA2="Seleccion"
 LEYENDA3="Insercion"
-FICHERO_DATOS1="../Datos/tiempo_burbuja.dat"
-FICHERO_DATOS2="../Datos/tiempo_seleccion.dat"
-FICHERO_DATOS3="../Datos/tiempo_insercion.dat"
+FICHERO_DATOS1="./Datos/tiempo_burbuja.dat"
+FICHERO_DATOS2="./Datos/tiempo_seleccion.dat"
+FICHERO_DATOS3="./Datos/tiempo_insercion.dat"
 
 gnuplot<<FIN
 # Terminal para png:

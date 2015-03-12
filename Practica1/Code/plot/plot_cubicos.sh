@@ -8,12 +8,12 @@
 # Script de bash para crear una imagen .png con GNU-PLOT
 
 #Variables:
-OUTPUT=../Imagenes/cubicos.png
+OUTPUT=./Imagenes/cubicos.png
 TITULO="Algoritmo de Floyd O(n^3)"
 XLABEL="Nodos del Grafo"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Floyd"
-FICHERO_DATOS1="../Datos/tiempo_floyd.dat"
+FICHERO_DATOS1="./Datos/tiempo_floyd.dat"
 
 gnuplot<<FIN
 # Terminal para png:

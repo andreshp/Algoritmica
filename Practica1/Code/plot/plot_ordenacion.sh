@@ -8,7 +8,7 @@
 # Script de bash para crear una imagen .png con GNU-PLOT
 
 #Variables:
-OUTPUT=../Imagenes/ordenacion.png
+OUTPUT=./Imagenes/ordenacion.png
 TITULO="Comparación de diferentes algoritmos"
 XLABEL="Longitud del Vector"
 YLABEL="Tiempo (segundos)"
@@ -17,11 +17,11 @@ LEYENDA2="Seleccion"
 LEYENDA3="Insercion"
 LEYENDA4="MergeSort"
 LEYENDA5="QuickSort"
-FICHERO_DATOS1="../Datos/tiempo_burbuja.dat"
-FICHERO_DATOS2="../Datos/tiempo_seleccion.dat"
-FICHERO_DATOS3="../Datos/tiempo_insercion.dat"
-FICHERO_DATOS4="../Datos/tiempo_mergesort.dat"
-FICHERO_DATOS5="../Datos/tiempo_quicksort.dat"
+FICHERO_DATOS1="./Datos/tiempo_burbuja.dat"
+FICHERO_DATOS2="./Datos/tiempo_seleccion.dat"
+FICHERO_DATOS3="./Datos/tiempo_insercion.dat"
+FICHERO_DATOS4="./Datos/tiempo_mergesort.dat"
+FICHERO_DATOS5="./Datos/tiempo_quicksort.dat"
 
 gnuplot<<FIN
 # Terminal para png:

@@ -10,7 +10,7 @@
 
 # Variables:
 PROGRAMA=$1
-SALIDA=./Datos/tiempo_$1.dat
+SALIDA=./Datos/tiempo_$1_1.dat
 MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
@@ -20,9 +20,9 @@ g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
 echo "$MENSAJE_INICIO"
 
 # Variables:
-INICIO=1000
-FIN=25000
-INCREMENTO=1000
+INICIO=40000
+FIN=1000000
+INCREMENTO=40000
 
 i=$INICIO
 printf "" > $SALIDA

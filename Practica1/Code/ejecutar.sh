@@ -10,6 +10,7 @@ chmod a+x ./sh/medirFibonacci.sh
 chmod a+x ./sh/medirHanoi.sh
 chmod a+x ./sh/medirFloyd.sh
 chmod a+x ./sh/medirOrdenacion.sh
+chmod a+x ./sh/medirOrdenacionLog.sh
 
 chmod a+x ./plot/plot_cuadraticos.sh
 chmod a+x ./plot/plot_nlogn.sh
@@ -37,6 +38,8 @@ TEMPORAL4=temp4.txt
 ./sh/medirOrdenacion.sh insercion
 ./sh/medirOrdenacion.sh quicksort
 ./sh/medirOrdenacion.sh mergesort
+./sh/medirOrdenacionLog.sh quicksort
+./sh/medirOrdenacionLog.sh mergesort
 
 # Medir otros
 ./sh/medirFloyd.sh
@@ -72,11 +75,11 @@ echo "| Tamaño del Vector | Mergesort | Quicksort |" >> ./Tablas/nlogn.md
 echo "|-------------------|-----------|-----------|" >> ./Tablas/nlogn.md
 
 echo > $TEMPORAL1
-cat ./Datos/tiempo_mergesort.dat | cut -d' ' -f1 > $TEMPORAL2
+cat ./Datos/tiempo_mergesort_1.dat | cut -d' ' -f1 > $TEMPORAL2
 paste -d'|' $TEMPORAL1 $TEMPORAL2 > $TEMPORAL4
-cat ./Datos/tiempo_mergesort.dat | cut -d' ' -f2 > $TEMPORAL2
+cat ./Datos/tiempo_mergesort_1.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
-cat ./Datos/tiempo_quicksort.dat | cut -d' ' -f2 > $TEMPORAL2
+cat ./Datos/tiempo_quicksort_1.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 paste -d'|' $TEMPORAL4 $TEMPORAL1 > $TEMPORAL3
 cat $TEMPORAL3 >> ./Tablas/nlogn.md
