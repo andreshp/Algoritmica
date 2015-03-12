@@ -6,10 +6,17 @@
 ###############################################################
 
 # Permisos
-chmod a+x medirFibonacci.sh
-chmod a+x medirHanoi.sh
-chmod a+x medirFloyd.sh
-chmod a+x medirOrdenacion.sh
+chmod a+x ./sh/medirFibonacci.sh
+chmod a+x ./sh/medirHanoi.sh
+chmod a+x ./sh/medirFloyd.sh
+chmod a+x ./sh/medirOrdenacion.sh
+
+chmod a+x ./plot/plot_cuadraticos.sh
+chmod a+x ./plot/plot_nlogn.sh
+chmod a+x ./plot/plot_cubicos.sh
+chmod a+x ./plot/plot_fibonacci.sh
+chmod a+x ./plot/plot_hanoi.sh
+chmod a+x ./plot/plot_ordenacion.sh
 
 # Directorios
 mkdir -p Datos
@@ -25,16 +32,16 @@ TEMPORAL4=temp4.txt
 #------------- OBTENER DATOS -------------#
 
 # Medir para ordenacion
-./medirOrdenacion.sh burbuja
-./medirOrdenacion.sh seleccion
-./medirOrdenacion.sh insercion
-./medirOrdenacion.sh quicksort
-./medirOrdenacion.sh mergesort
+./sh/medirOrdenacion.sh burbuja
+./sh/medirOrdenacion.sh seleccion
+./sh/medirOrdenacion.sh insercion
+./sh/medirOrdenacion.sh quicksort
+./sh/medirOrdenacion.sh mergesort
 
 # Medir otros
-./medirFloyd.sh
-./medirHanoi.sh
-./medirFibonacci.sh
+./sh/medirFloyd.sh
+./sh/medirHanoi.sh
+./sh/medirFibonacci.sh
 
 #------------- OBTENER TABLAS -------------#
 
@@ -144,7 +151,12 @@ cat $TEMPORAL4 >> ./Tablas/ordenacion.md
 
 #------------- OBTENER GRAFICAS -------------#
 
-
+./plot/plot_cuadraticos.sh
+./plot/plot_nlogn.sh
+./plot/plot_cubicos.sh
+./plot/plot_fibonacci.sh
+./plot/plot_hanoi.sh
+./plot/plot_ordenacion.sh
 
 rm $TEMPORAL1
 rm $TEMPORAL2

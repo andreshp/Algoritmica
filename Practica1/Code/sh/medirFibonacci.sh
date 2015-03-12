@@ -14,7 +14,7 @@ MENSAJE_INICIO="Se inicia la ejecución del algoritmo fibonacci:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
 # Se genera el ejecutable con el algoritmo de ordenación fibonacci:
-g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
+g++ -o $PROGRAMA ../src/$PROGRAMA.cpp
 
 echo "$MENSAJE_INICIO"
 
