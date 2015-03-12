@@ -10,9 +10,8 @@ using namespace std;
 #include <climits>
 #include <cassert>
 
-#include <chrono>
-using namespace std::chrono;
-
+# include <sys/time.h>  // gettimeofday(), struct timeval
+# include <stdio.h>     // printf()
 
 
 
@@ -89,9 +88,6 @@ int main(int argc, char * argv[])
         return -1;
     }
 
-    high_resolution_clock::time_point tantes, tdespues;
-    duration<double> transcurrido;
-    
     int n = atoi(argv[1]);
   
     int * T = new int[n];
@@ -103,17 +99,22 @@ int main(int argc, char * argv[])
     {
         T[i] = random();
     }
+
+    // Variables para medir el tiempo
+    struct timeval tv1, tv2; // gettimeofday() secs-usecs
+    double           tv_usecs; // y sus cuentas
     
     //----------- Ejecución del algoritmo -----------//
-    antes = high_resolution_clock::now();
+    gettimeofday(&tv1,NULL);
     
     burbuja(T, n);
     
-    tdespues = high_resolution_clock::now();
-    transcurrido = duration_cast<duration<double>>(tdespues - tantes);
+    gettimeofday(&tv2,NULL);
+
     // Se imprime el tiempo transcurrido
-    cout << transcurrido << endl;
-  
+    tv_usecs= ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
+    cout << tv_usecs << endl;
+    
     delete [] T;
   
     return 0;
