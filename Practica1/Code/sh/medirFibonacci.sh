@@ -24,7 +24,7 @@ FIN=40
 INCREMENTO=1
 
 i=$INICIO
-echo > $SALIDA
+printf "" > $SALIDA
 while [ $i -le $FIN ]
 do
     echo Ejecución tam = $i

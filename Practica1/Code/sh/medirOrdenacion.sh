@@ -25,7 +25,7 @@ FIN=25000
 INCREMENTO=1000
 
 i=$INICIO
-echo > $SALIDA
+printf "" > $SALIDA
 while [ $i -le $FIN ]
 do
     echo Ejecución tam = $i
