@@ -1,19 +1,20 @@
 #!/bin/bash
 
-#################################################
+###############################################################
 # Algoritmica, Practica 1
-# Medir el tiempo del algoritmo insercion.
-#################################################
+# Medir el tiempo del algoritmo de un algoritmo de ordenación.
+###############################################################
 
-# Script de bash que obtiene los datos para el algoritmo insercion.
+# Script de bash que obtiene los datos para el algoritmo 
+# de ordenación dado como parámetro.
 
 # Variables:
-PROGRAMA=insercion
-SALIDA=./Datos/tiempo_insercion.dat
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo insercion:"
+PROGRAMA=$1
+SALIDA=./Datos/tiempo_$1.dat
+MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
-# Se genera el ejecutable con el algoritmo de ordenación insercion:
+# Se genera el ejecutable con el algoritmo de ordenación:
 g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
 
 echo "$MENSAJE_INICIO"

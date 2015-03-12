@@ -2,26 +2,26 @@
 
 #################################################
 # Algoritmica, Practica 1
-# Medir el tiempo del algoritmo burbuja.
+# Medir el tiempo del algoritmo hanoi.
 #################################################
 
-# Script de bash que obtiene los datos para el algoritmo burbuja.
+# Script de bash que obtiene los datos para el algoritmo hanoi.
 
 # Variables:
-PROGRAMA=burbuja
-SALIDA=./Datos/tiempo_burbuja.dat
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo burbuja:"
+PROGRAMA=hanoi
+SALIDA=./Datos/tiempo_hanoi.dat
+MENSAJE_INICIO="Se inicia la ejecución del algoritmo hanoi:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
-# Se genera el ejecutable con el algoritmo de ordenación burbuja:
+# Se genera el ejecutable con el algoritmo de ordenación hanoi:
 g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
 
 echo "$MENSAJE_INICIO"
 
 # Variables:
-INICIO=1000
-FIN=25000
-INCREMENTO=1000
+INICIO=5
+FIN=30
+INCREMENTO=1
 
 i=$INICIO
 echo > $SALIDA
@@ -31,8 +31,6 @@ do
     echo "$i `./$PROGRAMA $i`" >> $SALIDA
     i=$((i+$INCREMENTO))
 done
-
-./plot.sh
 
 # Se elimina el ejecutable:
 rm $PROGRAMA

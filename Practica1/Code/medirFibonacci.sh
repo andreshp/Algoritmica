@@ -19,8 +19,8 @@ g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
 echo "$MENSAJE_INICIO"
 
 # Variables:
-INICIO=1
-FIN=15
+INICIO=15
+FIN=40
 INCREMENTO=1
 
 i=$INICIO
