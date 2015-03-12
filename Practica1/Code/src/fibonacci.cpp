@@ -6,6 +6,7 @@
 #include <iostream>
 using namespace std;
 #include <ctime>
+#include <cstdlib>
 
 
 /**
@@ -24,18 +25,20 @@ int fibo(int n)
 }
 
 
-int main()
+int main(int argc, char * argv[])
 {
 
-  int n;
+  if (argc != 2)
+  {
+    cerr << "Formato " << argv[0] << " <índice>" << endl;
+    return -1;
+  }
+
+  int n = atoi(argv[1]);
+
   int f;
  
-  cout << "¿Número del término: ";
-  cin >> n;
-
   f = fibo(n);
-
-  cout << "El término " << n << "-ésimo es: " << f << endl;
 
   return 0;
 }

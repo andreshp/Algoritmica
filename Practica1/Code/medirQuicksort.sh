@@ -2,18 +2,18 @@
 
 #################################################
 # Algoritmica, Practica 1
-# Medir el tiempo del algoritmo burbuja.
+# Medir el tiempo del algoritmo quicksort.
 #################################################
 
-# Script de bash que obtiene los datos para el algoritmo burbuja.
+# Script de bash que obtiene los datos para el algoritmo quicksort.
 
 # Variables:
-PROGRAMA=burbuja
-SALIDA=./Datos/tiempo_burbuja.dat
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo burbuja:"
+PROGRAMA=quicksort
+SALIDA=./Datos/tiempo_quicksort.dat
+MENSAJE_INICIO="Se inicia la ejecución del algoritmo quicksort:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
-# Se genera el ejecutable con el algoritmo de ordenación burbuja:
+# Se genera el ejecutable con el algoritmo de ordenación quicksort:
 g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
 
 echo "$MENSAJE_INICIO"
@@ -31,8 +31,6 @@ do
     echo "$i `./$PROGRAMA $i`" >> $SALIDA
     i=$((i+$INCREMENTO))
 done
-
-./plot.sh
 
 # Se elimina el ejecutable:
 rm $PROGRAMA
