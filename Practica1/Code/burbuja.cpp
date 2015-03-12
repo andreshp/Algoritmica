@@ -10,7 +10,8 @@ using namespace std;
 #include <climits>
 #include <cassert>
 
-
+#include <chrono>
+using namespace std::chrono;
 
 
 
@@ -79,34 +80,42 @@ static void burbuja_lims(int T[], int inicial, int final)
 	}
 }
 
-
-
-
 int main(int argc, char * argv[])
 {
   
     if (argc != 2)
     {
-      cerr << "Formato " << argv[0] << " <num_elem>" << endl;
-      return -1;
+        cerr << "Formato " << argv[0] << " <num_elem>" << endl;
+        return -1;
     }
 
-  int n = atoi(argv[1]);
-
-  int * T = new int[n];
-  assert(T);
-
-  srandom(time(0));
-
-  for (int i = 0; i < n; i++)
+    high_resolution_clock::time_point tantes, tdespues;
+    duration<double> transcurrido;
+    
+    int n = atoi(argv[1]);
+  
+    int * T = new int[n];
+    assert(T);
+  
+    srandom(time(0));
+  
+    for (int i = 0; i < n; i++)
     {
-      T[i] = random();
+        T[i] = random();
     }
-
-  burbuja(T, n);
-
-  delete [] T;
-
-  return 0;
+    
+    //----------- Ejecución del algoritmo -----------//
+    antes = high_resolution_clock::now();
+    
+    burbuja(T, n);
+    
+    tdespues = high_resolution_clock::now();
+    transcurrido = duration_cast<duration<double>>(tdespues - tantes);
+    // Se imprime el tiempo transcurrido
+    cout << transcurrido << endl;
+  
+    delete [] T;
+  
+    return 0;
 }
  
