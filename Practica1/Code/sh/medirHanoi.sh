@@ -2,29 +2,29 @@
 
 #################################################
 # Algoritmica, Practica 1
-# Medir el tiempo del algoritmo mergesort.
+# Medir el tiempo del algoritmo hanoi.
 #################################################
 
-# Script de bash que obtiene los datos para el algoritmo mergesort.
+# Script de bash que obtiene los datos para el algoritmo hanoi.
 
 # Variables:
-PROGRAMA=mergesort
-SALIDA=./Datos/tiempo_mergesort.dat
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo mergesort:"
+PROGRAMA=hanoi
+SALIDA=./Datos/tiempo_hanoi.dat
+MENSAJE_INICIO="Se inicia la ejecución del algoritmo hanoi:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
-# Se genera el ejecutable con el algoritmo de ordenación mergesort:
+# Se genera el ejecutable con el algoritmo de ordenación hanoi:
 g++ -o $PROGRAMA ./src/$PROGRAMA.cpp
 
 echo "$MENSAJE_INICIO"
 
 # Variables:
-INICIO=1000
-FIN=25000
-INCREMENTO=1000
+INICIO=5
+FIN=30
+INCREMENTO=1
 
 i=$INICIO
-echo > $SALIDA
+printf "" > $SALIDA
 while [ $i -le $FIN ]
 do
     echo Ejecución tam = $i
