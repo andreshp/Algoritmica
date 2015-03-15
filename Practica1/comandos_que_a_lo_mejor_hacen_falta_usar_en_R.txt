@@ -1,0 +1,11 @@
+local({pkg <- select.list(sort(.packages(all.available = TRUE)),graphics=TRUE)
+if(nchar(pkg)) library(pkg, character.only=TRUE)})
+#Las dos primeras no sé si hacen falta.
+
+
+
+if(!require(installr)) { install.packages("installr"); require(installr)}
+install.pandoc()
+install.packages("knitr")
+install.packages('devtools')
+devtools::install_github("rstudio/rmarkdown")
