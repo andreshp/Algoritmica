@@ -241,7 +241,7 @@ Con cada una de las tablas anteriores, genere un gráfico comparando los tiempos
 
 ## Gráfica comparativa de los algoritmos cuadráticos. ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cuadraticos.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/cuadraticos.png}}$
 
 Cabe destacar, que dentro de los algoritmos cuadráticos también existen ciertas diferencias; a continuación, vamos a exponerlas. Como se puede observar, el algoritmo de la burbuja emplea un mayor tiempo que los otros dos. La causa, viene determinada por dos hechos que cabe nombrar: el primero, y que no se debe pasar por alto, es que los vectores se generan de manera aleatoria, y por lo tanto, varía el tiempo que se puede dedicar a la ordenación en función a cómo quede estructurado el vector (por ejemplo, si hay un mayor número de elementos bien ordenados en un caso que en otro, se ahorra tiempo). Pero el hecho de que sea algo más lento el método de la burbuja no sólo se debe a que los vectores se generen aleatoriamente, sino que aquí entra en juego el segundo factor determinante. Aunque el método de la burbuja hace el mismo número de comprobaciones que el de selección, pues recorremos el vector el mismo número de veces, en el método de la burbuja se realizan un mayor número de intercambios, lo que supone cierto coste (en el de selección hay un sólo intercambio cada vez que se recorre el vector, pues siempre se busca el mínimo y se coloca al principio). Todo ésto se traduce en la diferencia que podemos ver en la gráfica entre el algoritmo de burbuja y el de selección.
 
@@ -249,7 +249,7 @@ Veamos ahora, que el de insercción, de los tres es el mejor. De nuevo entra en 
 
 ## Gráfica del algoritmo cúbico (Floyd) ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cubicos.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/cubicos.png}}$
 
 Contrastando con las gráficas anteriores, podemos ver que existe una gran diferencia entre los algoritmos cuadráticos y el algoritmo de Floyd, que es cúbico (éste último emplea un tiempo mucho mayor).
 
@@ -257,23 +257,23 @@ Como nota, el algoritmo de Dijkistra resuelve el mismo problema para grafos con 
 
 ## Gráfica del algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/fibonacci.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/fibonacci.png}}$
 
 Tanto en éste algoritmo, como en el de Hanoi, que cómo podemos observar son de orden exponencial, tenemos que tener en cuenta que los datos que sirven de prueba no pueden ser excesivamente grandes, pues de lo contrario el programa requeriría demasiado tiempo.
 
 ## Gráfica del algoritmo de Hanoi ($O(2^n)$) ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/hanoi.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/hanoi.png}}$
 
 ## Gráfica de los algoritmos $O(n \log{n})$ ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/nlogn.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/nlogn.png}}$
 
 En el caso de éstos algoritmos, podemos ver que el el algoritmo quicksort es más rápido. A parte de, cómo se ha explicado antes, el hecho de que los vectores se generan aleatoriamente, aquí debemos tener en cuenta que el algoritmo mergesort utiliza espacio extra, con lo que la reserva de dicho espacio supone un coste de tiempo. 
 
 ## Gráfica comparativa con todos los algoritmos de ordenación. ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/ordenacion.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/ordenacion.png}}$
 
 Por último y a modo de conclusión, podemos observar esta gráfica en la que quedan comparados los algoritmos cuadráticos y los de orden n*log(n), pues el algoritmo de Floyd y los exponenciales deben realizarse con datos de tamaño menor, de forma que la comparación es bastante complicada, aunque claramente, el algoritmo de Floyd requiere mayor tiempo que los cuadráticos y los exponenciales (Hanoi y Fibonacci), un mayor tiempo que todos los demás. 
 
@@ -860,7 +860,7 @@ en memoria del vector para su funcionamiento. Se comparan los resultados con:
 
 Los resultados obtenidos son los siguientes:
 
-$\centerline{\includegraphics[height=8cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/Comparacion.png}}$
+$\centerline{\includegraphics[height=8cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/Comparacion.png}}$
 
 Se puede apreciar que el mejor algoritmo en la práctica es el Quicksort (recordemos que en teoría
 su peor caso es **cuadrático**). Obtiene resultados similares al sort de la STL, luego presupongo
@@ -876,19 +876,19 @@ que el ajuste cuadrático sea casi exacto. En este caso la **desviación media**
 responde a: 
 $$ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 0.00877017$$
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/InsercionAjuste.png}}$
+$\centerline{\includegraphics[height=7cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/InsercionAjuste.png}}$
 
 La siguiente imagen responde al ajuste realizado para el mergesort. Al ser calculados los puntos como la 
 media de 1000 ejecuciones el ajuste tiene una **desviación media** del orden del 1%:
 $$ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 2.86917 / 10^{-05} $$
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste.png}}$
+$\centerline{\includegraphics[height=7cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste.png}}$
 
 En cambio, para una única ejecución se tiene una mayor dispersión de los puntos. Esto se debe a que
 el ruido introducido por el sistema operativo es significativo en relación con el tiempo que tarda
 el algoritmo:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste_1.png}}$
+$\centerline{\includegraphics[height=7cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste_1.png}}$
 
 ***
 
