@@ -243,13 +243,23 @@ Con cada una de las tablas anteriores, genere un gráfico comparando los tiempos
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cuadraticos.png}}$
 
+Cabe destacar, que dentro de los algoritmos cuadráticos también existen ciertas diferencias; a continuación, vamos a exponerlas. Como se puede observar, el algoritmo de la burbuja emplea un mayor tiempo que los otros dos. La causa, viene determinada por dos hechos que cabe nombrar: el primero, y que no se debe pasar por alto, es que los vectores se generan de manera aleatoria, y por lo tanto, varía el tiempo que se puede dedicar a la ordenación en función a cómo quede estructurado el vector (por ejemplo, si hay un mayor número de elementos bien ordenados en un caso que en otro, se ahorra tiempo). Pero el hecho de que sea algo más lento el método de la burbuja no sólo se debe a que los vectores se generen aleatoriamente, sino que aquí entra en juego el segundo factor determinante. Aunque el método de la burbuja hace el mismo número de comprobaciones que el de selección, pues recorremos el vector el mismo número de veces, en el método de la burbuja se realizan un mayor número de intercambios, lo que supone cierto coste (en el de selección hay un sólo intercambio cada vez que se recorre el vector, pues siempre se busca el mínimo y se coloca al principio). Todo ésto se traduce en la diferencia que podemos ver en la gráfica entre el algoritmo de burbuja y el de selección.
+
+Veamos ahora, que el de insercción, de los tres es el mejor. De nuevo entra en juego que los vectores se generen aleatoriamente, pero también, y como factor principal, está el hecho de que el algoritmo de insercción, en su peor caso (vector totalmente invertido) funciona igual que el de selección. Pero es sencillo ver, que el método de insercción requiere un coste menor, pues coloca el elemento mínimo entre un conjunto i de elementos al principio de dicho conjunto de elementos, con lo que se consigue una eficiencia algo mejor (aunque bastante similar como se ve en las gráficas), que el algoritmo de selección.
+
 ## Gráfica del algoritmo cúbico (Floyd) ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cubicos.png}}$
 
+Contrastando con las gráficas anteriores, podemos ver que existe una gran diferencia entre los algoritmos cuadráticos y el algoritmo de Floyd, que es cúbico (éste último emplea un tiempo mucho mayor).
+
+Como nota, el algoritmo de Dijkistra resuelve el mismo problema para grafos con pesos no negativos y consigue una eficiencia de $O(n^2 *logn)$, por lo que es mucho más práctico.
+
 ## Gráfica del algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/fibonacci.png}}$
+
+Tanto en éste algoritmo, como en el de Hanoi, que cómo podemos observar son de orden exponencial, tenemos que tener en cuenta que los datos que sirven de prueba no pueden ser excesivamente grandes, pues de lo contrario el programa requeriría demasiado tiempo.
 
 ## Gráfica del algoritmo de Hanoi ($O(2^n)$) ##
 
@@ -259,11 +269,63 @@ $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/hanoi.png}}$
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/nlogn.png}}$
 
+En el caso de éstos algoritmos, podemos ver que el el algoritmo quicksort es más rápido. A parte de, cómo se ha explicado antes, el hecho de que los vectores se generan aleatoriamente, aquí debemos tener en cuenta que el algoritmo mergesort utiliza espacio extra, con lo que la reserva de dicho espacio supone un coste de tiempo. 
+
 ## Gráfica comparativa con todos los algoritmos de ordenación. ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/ordenacion.png}}$
 
+Por último y a modo de conclusión, podemos observar esta gráfica en la que quedan comparados los algoritmos cuadráticos y los de orden n*log(n), pues el algoritmo de Floyd y los exponenciales deben realizarse con datos de tamaño menor, de forma que la comparación es bastante complicada, aunque claramente, el algoritmo de Floyd requiere mayor tiempo que los cuadráticos y los exponenciales (Hanoi y Fibonacci), un mayor tiempo que todos los demás. 
 
+En cuánto a lo que vemos en esta gráfica, podemos ver la gran diferencia entre los algoritmos quicksort y mergesort y los cuadráticos, principalmente el algoritmo de selección e insercción. Podemos ver también que dentro de este conjunto de algoritmos, como hemos explicado anteriormente, el peor algoritmo es el de la burbuja.
+
+# Comparación de ejecuciones entre los componentes del grupo.
+
+En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 ordenadores de los componentes del grupo, y veamos las diferencias. Para ello, dentro de cada apartado, vamos a realizar una tabla de tres entradas, colocando en la primera entrada los resultados para el primer dato, en la segunda para un dato medio y en la tercera resultados en el último dato (más grande):
+
+## Comparación algoritmos cuadráticos. ##
+
+En el caso de los cuadráticos, cogemos el método de inserción. 
+
+| Tamaño del Vector | Andrés | Antonio | Iván | Juanlu |
+|-------------------|--------|---------|------|--------|
+|1000|0.001321|0.003619|0.001556|0.010846|
+|13000|0.209278|0.34684|0.262103|1.26515|
+|25000|0.762199|1.28187|0.978268|4.59284|
+
+## Comparación algoritmos cúbicos. ##
+
+| Nodos del grafo | Andrés | Antonio | Iván | Juanlu |
+|-----------------|--------|---------|------|--------|
+|32|0.000596|0.000961|0.000298|0.001617|
+|416|0.460287|0.825125|0.586223|3.57139|
+|800|3.25971|6.14008|4.15313|25.4081|
+
+## Comparación algoritmo de Fibonacci. ##
+
+| Índice | Andrés | Antonio | Iván | Juanlu |
+|--------|--------|---------|------|--------|
+|15|1.3e-05|1.5e-05|7e-06|3.2e-05|
+|27|0.002394|0.004638|0.003859|0.020256|
+|40|0.849934|1.21011|1.03951|4.43443|
+
+## Comparación algoritmo de Hanoi. ##
+
+| Número de discos | Andrés | Antonio | Iván | Juanlu |
+|------------------|--------|---------|------|--------|
+|5|1e-06|1e-06|1e-06|4e-06|
+|17|0.002302|0.002542|0.00182|0.005348|
+|30|7.63996|9.44513|9.81995|32.7569|
+
+## Comparación algoritmos n*logn. ##
+
+El algoritmo que comparamos es el quicksort.
+
+| Tamaño del Vector | Andrés | Antonio | Iván | Juanlu |
+|-------------------|--------|---------|------|--------|
+|40000|0.006235|0.012287|0.007532||
+|520000|0.082585|0.118127|0.103365||
+|1000000|0.178312|0.229693|0.204994||
 
 <!---
 TODO ESTO ESTÁ COMENTADO. LO DEJO COMO MODELO POR SI NECESITÁIS VER CÓMO SE HACE ALGO.
