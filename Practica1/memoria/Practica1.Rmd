@@ -241,27 +241,27 @@ Con cada una de las tablas anteriores, genere un gráfico comparando los tiempos
 
 ## Gráfica comparativa de los algoritmos cuadráticos. ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cuadraticos.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/cuadraticos.png}}$
 
 ## Gráfica del algoritmo cúbico (Floyd) ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cubicos.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/cubicos.png}}$
 
 ## Gráfica del algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/fibonacci.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/fibonacci.png}}$
 
 ## Gráfica del algoritmo de Hanoi ($O(2^n)$) ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/hanoi.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/hanoi.png}}$
 
 ## Gráfica de los algoritmos $O(n \log{n})$ ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/nlogn.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/nlogn.png}}$
 
 ## Gráfica comparativa con todos los algoritmos de ordenación. ##
 
-$\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/ordenacion.png}}$
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/ordenacion.png}}$
 
 
 
@@ -798,7 +798,7 @@ en memoria del vector para su funcionamiento. Se comparan los resultados con:
 
 Los resultados obtenidos son los siguientes:
 
-$\centerline{\includegraphics[height=8cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/Comparacion.png}}$
+$\centerline{\includegraphics[height=8cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/Comparacion.png}}$
 
 Se puede apreciar que el mejor algoritmo en la práctica es el Quicksort (recordemos que en teoría
 su peor caso es **cuadrático**). Obtiene resultados similares al sort de la STL, luego presupongo
@@ -814,19 +814,19 @@ que el ajuste cuadrático sea casi exacto. En este caso la **desviación media**
 responde a: 
 $$ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 0.00877017$$
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/InsercionAjuste.png}}$
+$\centerline{\includegraphics[height=7cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/InsercionAjuste.png}}$
 
 La siguiente imagen responde al ajuste realizado para el mergesort. Al ser calculados los puntos como la 
 media de 1000 ejecuciones el ajuste tiene una **desviación media** del orden del 1%:
 $$ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 2.86917 / 10^{-05} $$
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste.png}}$
+$\centerline{\includegraphics[height=7cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste.png}}$
 
 En cambio, para una única ejecución se tiene una mayor dispersión de los puntos. Esto se debe a que
 el ruido introducido por el sistema operativo es significativo en relación con el tiempo que tarda
 el algoritmo:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste_1.png}}$
+$\centerline{\includegraphics[height=7cm]{../Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste_1.png}}$
 
 ***
 
