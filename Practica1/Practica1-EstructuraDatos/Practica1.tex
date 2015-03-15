@@ -1,12 +1,10 @@
 \documentclass[]{article}
-\usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
 \else % if luatex or xelatex
   \ifxetex
@@ -18,8 +16,13 @@
   \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
   \newcommand{\euro}{€}
 \fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -66,20 +69,36 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
 
-\title{Estructura de Datos: Práctica 1}
-\author{Andrés Herrera Poyatos}
-\date{}
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Estructura de Datos: Práctica 1}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Andrés Herrera Poyatos}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \date{}
+  \predate{}\postdate{}
+
 \usepackage{graphicx}
+
 
 \begin{document}
 
-\begin{center}
-\huge Estructura de Datos: Práctica 1 \\[0.2cm]
-\end{center}
-\begin{center}
-\large \emph{Andrés Herrera Poyatos}\\[0.1cm]
-\end{center}
-\normalsize
+\maketitle
 
 
 \subsection{Características del
@@ -191,12 +210,12 @@ operaciones en total. Por otro lado, por cada iteración del bucle
 externo se realizan anlálogamente las 3 operaciones mencionadas más la
 asignación j=0 junto con la ejecución del bucle interno. Se debe sumar
 la asignación inicial i=0 al resultado de aunar lo anterior. Sea
-$T: \mathbb{N} \rightarrow \mathbb{N}$ la función que dado el número de
-datos nos proporciona el número de operaciones realizadas, utilizando lo
-anterior podemos calcularla como sigue:
+\(T: \mathbb{N} \rightarrow \mathbb{N}\) la función que dado el número
+de datos nos proporciona el número de operaciones realizadas, utilizando
+lo anterior podemos calcularla como sigue:
 \[ T(n) = 1 + \sum_{i=0}^{n-1}4\sum_{j=0}^{n-i-1}13 = 1 + \sum_{i=0}^{n-1}(4+13(n-i)) = 1 + \sum_{i=0}^{n-1}4 + 13\sum_{i=0}^{n-1}(n-i)= \]
 \[ 1 + 4n + 1   3\left(\sum_{i=0}^{n-1}n - \sum_{i=0}^{n-1}i\right) = 1 + 4n + 13(n^2 - \frac{n(n-1)}{2}) = 1 + 4n + 13\frac{2n^2 - n^2 + n}{2} = 1  + 13\frac{n^2 + 105n}{2} \ \forall n \in \mathbb{N} \]
-De donde es claro que $T \in O(n^2)$ y \textbf{el algoritmo de la
+De donde es claro que \(T \in O(n^2)\) y \textbf{el algoritmo de la
 burbuja es cuadrático}.
 
 \subsubsection{Resultados empíricos:}\label{resultados-empiricos}
@@ -206,7 +225,7 @@ claro que la evolución del tiempo en función del número de datos se rige
 bajo una ley cuadrática aunque la pendiente de la misma es suave dada la
 velocidad del ordenador al ejecutar una operación.
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio1/Imagenes/Trabajo/AlgoritmoBurbuja.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio1/Imagenes/Trabajo/AlgoritmoBurbuja.png}}\)
 
 Si dibujamos la función obtenida para la eficiencia teórica con gnuplot
 se ve claramente la parábola característica de un algoritmo cuadrático.
@@ -217,22 +236,22 @@ tienen que ver con la ejecución del algoritmo.
 
 \[ \centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio1/Imagenes/Trabajo/EficienciaTeorica.png}} \]
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \subsection{Ejercicio 2: Ajuste en la ordenación de la
 burbuja}\label{ejercicio-2-ajuste-en-la-ordenacion-de-la-burbuja}
 
 Replique el experimento de ajuste por regresión a los resultados
 obtenidos en el ejercicio 1 que calculaba la eficiencia del algoritmo de
-ordenación de la burbuja. Para ello considere que $f(x)$ es de la forma
-$ax^2+bx+c$.
+ordenación de la burbuja. Para ello considere que \(f(x)\) es de la
+forma \(ax^2+bx+c\).
 
 \subsubsection{Resultados:}\label{resultados}
 
 A continuación se muestra la regresión cuadrática calculada frente a los
 datos obtenidos.
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio2/Imagenes/Trabajo/AlgoritmoBurbuja.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio2/Imagenes/Trabajo/AlgoritmoBurbuja.png}}\)
 
 La \textbf{desviación media} del ajuste cuadrático responde a:
 \[ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 0.0138602 \] Como
@@ -289,17 +308,17 @@ donde finaliza. El proceso para cada iteración es el siguiente:
   \{\emph{inf}, \ldots{} , \emph{sup}\}.
 \item
   Si dicho elemento es el buscado se devuelve su posición,
-  $\frac{inf+sup}{2}$. En caso contrario:
+  \(\frac{inf+sup}{2}\). En caso contrario:
 
   \begin{enumerate}
   \def\labelenumii{\alph{enumii})}
   \itemsep1pt\parskip0pt\parsep0pt
   \item
     Si es menor que el elemento buscado, se busca en el subvector
-    \{$\frac{inf+sup}{2}+1$, \ldots{}, \emph{sup}\}.
+    \{\(\frac{inf+sup}{2}+1\), \ldots{}, \emph{sup}\}.
   \item
     Si es mayor que el elemento buscado, se busca en el subvector
-    \{\emph{inf}, \ldots{}, $\frac{inf+sup}{2}-1$\}.
+    \{\emph{inf}, \ldots{}, \(\frac{inf+sup}{2}-1\)\}.
   \end{enumerate}
 \item
   Se repite el proceso hasta encontrar el valor pedido o bien cuando inf
@@ -312,24 +331,25 @@ teórica}\label{calculo-de-la-eficiencia-teorica-1}
 
 El peor de los casos para la búsqueda binaria es aquel en el que nunca
 encuentra el elemento deseado. Sea
-$T: \mathbb{N} \rightarrow \mathbb{N}$ la función tal que dado el número
-de elementos del vector nos proporciona la eficiencia del algoritmo en
-el caso de que no se encuentre un elemento dado. Es claro que
-$T(1) = O(1)$ pues solo se comprueba dicho elemento. Para $n > 1$
-podemos expresar $T$ de forma recursiva: \[ T(n) = 1 + T(n/2) \] La
-explicación es sencilla, para un vector de tamaño n se realiza una
-comprobación y se aplica el algoritmo en un subvector de tamaño la
-mitad. Por tanto, basta resolver la anterior ecuación recurrente para
-obtener la eficiencia teórica. Tomando $m = log_2 n$ se tiene que
-$T(n) = T(2^m) = 1 + T(2^{m-1}) \ \forall n > 1$. Denotando
-$x_m = T(2^m) \ \forall m \in \mathbb{N}$, basta resolver la siguiente
+\(T: \mathbb{N} \rightarrow \mathbb{N}\) la función tal que dado el
+número de elementos del vector nos proporciona la eficiencia del
+algoritmo en el caso de que no se encuentre un elemento dado. Es claro
+que \(T(1) = O(1)\) pues solo se comprueba dicho elemento. Para
+\(n > 1\) podemos expresar \(T\) de forma recursiva:
+\[ T(n) = 1 + T(n/2) \] La explicación es sencilla, para un vector de
+tamaño n se realiza una comprobación y se aplica el algoritmo en un
+subvector de tamaño la mitad. Por tanto, basta resolver la anterior
+ecuación recurrente para obtener la eficiencia teórica. Tomando
+\(m = log_2 n\) se tiene que
+\(T(n) = T(2^m) = 1 + T(2^{m-1}) \ \forall n > 1\). Denotando
+\(x_m = T(2^m) \ \forall m \in \mathbb{N}\), basta resolver la siguiente
 suceción recurrente:
 \[ x_m = 1 + x_{m-1} \ \forall m > 0, \ x_0 = 1 \]\\El resultado de la
 misma es evidente: \[ x_m = m \ \forall m \in \mathbb{N} \] Este hecho
-se prueba de forma sencilla por inducción. Para $m=0$ se tiene que
-$x_0 = T(2^0) = T(1) = 1$. Supesto cierto el resultado para
-$m \in \mathbb{N}$ se tiene $x_{m+1} = 1 + x_m = 1 + m$ como se quería.
-Volviendo a la función $T$:
+se prueba de forma sencilla por inducción. Para \(m=0\) se tiene que
+\(x_0 = T(2^0) = T(1) = 1\). Supesto cierto el resultado para
+\(m \in \mathbb{N}\) se tiene \(x_{m+1} = 1 + x_m = 1 + m\) como se
+quería. Volviendo a la función \(T\):
 \[ T(n) = T(2^m) = x_m = m = log_ 2 n \ \forall n \in \mathbb{N} \] Por
 tanto, \textbf{la búsqueda binaria es un algoritmo logarítmico}.
 
@@ -342,24 +362,25 @@ realizamos el proceso de cálculo de la eficiencia empírica para el
 código ejercicio\_desc.cpp con la búsqueda binaria se obtiene el
 siguiente resultado:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio3/Imagenes/Trabajo/BusquedaBinaria1.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio3/Imagenes/Trabajo/BusquedaBinaria1.png}}\)
 
-Se puede observar un valor casi nulo con una variación de $10^{-6}$. La
-razón es bien sencilla: la precisión del clock de c++ es muy limitada.
-Puesto que la búsqueda binaria es muy rápida por ser logarítmica, el
-tiempo tomado tiende a 0 y clock no es capaz de medirlo. Para resolver
-este problema he creado un nuevo código \textbf{busqueda\_binaria.cpp}
-que contiene el algoritmo dado y lo ejecuta 10000 veces, calculando el
-tiempo como la media de las 10000 reiteraciones. De esta forma sí se
-consigue medir el tiempo con clock para las 10000 ejecuciones. Se
-muestran los resultados en la siguiente imagen:
+Se puede observar un valor casi nulo con una variación de \(10^{-6}\).
+La razón es bien sencilla: la precisión del clock de c++ es muy
+limitada. Puesto que la búsqueda binaria es muy rápida por ser
+logarítmica, el tiempo tomado tiende a 0 y clock no es capaz de medirlo.
+Para resolver este problema he creado un nuevo código
+\textbf{busqueda\_binaria.cpp} que contiene el algoritmo dado y lo
+ejecuta 10000 veces, calculando el tiempo como la media de las 10000
+reiteraciones. De esta forma sí se consigue medir el tiempo con clock
+para las 10000 ejecuciones. Se muestran los resultados en la siguiente
+imagen:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio3/Imagenes/Trabajo/BusquedaBinaria2.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio3/Imagenes/Trabajo/BusquedaBinaria2.png}}\)
 
 La tendencia logarítmica es clara. Si aplicamos una regresión
 logarítmica a los datos se obtiene el siguiente resultado:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio3/Imagenes/Trabajo/BusquedaBinariaAjuste.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio3/Imagenes/Trabajo/BusquedaBinariaAjuste.png}}\)
 
 En este caso la \textbf{desviación media} del ajuste logarítmico
 responde a:
@@ -369,7 +390,7 @@ de los datos tomados. Esta desviación se debe al poco tiempo de
 ejecución de la búsqueda binaria, lo que produce que cualquier operación
 del sistema operativo afecte gravemente a los resultados.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \[ \pagebreak \]
 
@@ -398,13 +419,13 @@ resultado del ejercicio 1.
 \subsubsection{Cálculo de la eficiencia
 empírica}\label{calculo-de-la-eficiencia-empirica-1}
 
-Nótese que de forma teórica el algoritmo sigue siendo O($n^2$) en
+Nótese que de forma teórica el algoritmo sigue siendo O(\(n^2\)) en
 cualquier caso. La única variación entre los posibles casos es el hecho
 de entrar o no al condicional que intercambia dos componentes del
 vector. Por ello, la diferencia entre los casos no es excesiva. Se
 muestra en la siguiente imagen los resultados obtenidos:
 
-$\centerline{\includegraphics[height=8cm]{./Codigos/Ejercicio4/Imagenes/Trabajo/AlgoritmoBurbuja.png}}$
+\(\centerline{\includegraphics[height=8cm]{./Codigos/Ejercicio4/Imagenes/Trabajo/AlgoritmoBurbuja.png}}\)
 
 Es sorprendente que el supuesto peor caso obtenga mejores resultados que
 un caso arbitrario. La razón es la siguiente: en el peor caso siempre se
@@ -417,7 +438,7 @@ esta optimización al no ejecutarse siempre el bloque condicional. Debido
 a este hecho realiza más accesos a memoria que el peor caso, obteniendo
 como consecuencia los peores resultados.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \[ \pagebreak \]
 
@@ -462,14 +483,14 @@ la primera iteración se finaliza el algoritmo. Consecuentemente, es
 claro que el algoritmo se comporta de forma lineal en el mejor caso.
 Matemáticamente, realizando el mismo proceso que en el
 \hyperref[Ejercicioux5cux25201:ux5cux2520Ordenaciuxf3nux5cux2520deux5cux2520laux5cux2520burbuja]{ejercicio
-1}, sea $T: \mathbb{N} \rightarrow \mathbb{N}$ la función que nos
-proporciona para un número de datos ordenados, $n$, el número de
-operaciones que realiza el algoritmo burbuja, $T(n)$. Podemos expresar
-$T(n)$ como:
+1}, sea \(T: \mathbb{N} \rightarrow \mathbb{N}\) la función que nos
+proporciona para un número de datos ordenados, \(n\), el número de
+operaciones que realiza el algoritmo burbuja, \(T(n)\). Podemos expresar
+\(T(n)\) como:
 
 \[ T(n) = 1 + 5 + 1 + \sum_{j=0}^{n}3 = 3n + 7 \]
 
-De donde $T \in O(n)$.
+De donde \(T \in O(n)\).
 
 \subsection{Resultados empíricos}\label{resultados-empiricos-1}
 
@@ -483,19 +504,19 @@ una enorme mejoría en cuanto al tiempo. Además, hay severas variaciones
 en la imagen tal y como pasaba con la búsqueda binaria pero de forma
 menos drástica.
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbujaAntiguo.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbujaAntiguo.png}}\)
 
 Para obtener unos datos más limpios se aplica el criterio utilizado en
 la búsqueda binaria que consiste en repetir una ejecución una serie de
 veces y proporcionar el tiempo medio de la misma:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbuja1.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbuja1.png}}\)
 
 El orden lineal ya es claro. Se ha reducido la varianza de los datos
 como se pretendía. Con estos nuevos datos se compara el algoritmo con
 peor caso y caso promedio en la siguiente imagen:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbuja2.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbuja2.png}}\)
 
 Como se ve el tiempo del mejor caso se vuelve prácticamente nulo en
 comparación. El peor caso sigue ganando a un caso promedio a pesar de la
@@ -507,9 +528,9 @@ en ambos. El tiempo que el nuevo algoritmo gana en caso que que en
 determinado momento el vector ya esté ordenado lo pierde por las
 comparaciones y asignaciones extras del código.
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbuja3.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio5/Imagenes/Trabajo/AlgoritmoBurbuja3.png}}\)
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \[ \pagebreak \]
 
@@ -535,7 +556,7 @@ eficiencia del programa.
 Se utiliza el código del \textbf{ejercicio 5} para el algoritmo de
 ordenación burbuja. Los resultados obtenidos son los siguientes:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio6/Imagenes/Trabajo/AlgoritmoBurbuja.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio6/Imagenes/Trabajo/AlgoritmoBurbuja.png}}\)
 
 Es clara la amplia mejora que proporciona la optimización del código por
 parte del compilador. Se obtienen tiempos que son casi la mitad con
@@ -543,7 +564,7 @@ respecto a los iniciales. Sin embargo, la optimización del código solo
 afecta a la eficiencia del mismo desde el punto de vista de operaciones
 por segundo, el algoritmo sigue siendo cuadrático.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \[ \pagebreak \]
 
@@ -567,13 +588,14 @@ He implementado dos algoritmos para este apartado:
 \subsubsection{Algoritmo Clásico para el producto de
 matrices}\label{algoritmo-clasico-para-el-producto-de-matrices}
 
-Sea $n,m,k \in \mathbb{N}$, y sean $A \in \mathbb{M}_{nxk}(\mathbb{R})$,
-$B \in \mathbb{M}_{kxm}(\mathbb{R})$ dos matrices. Entonces, se define
+Sea \(n,m,k \in \mathbb{N}\), y sean
+\(A \in \mathbb{M}_{nxk}(\mathbb{R})\),
+\(B \in \mathbb{M}_{kxm}(\mathbb{R})\) dos matrices. Entonces, se define
 el producto de A y B como:
 \[ c_{ij} = (A.B)_{ij} = \sum_{r=1}^{k}a_{ir}.b_{rj} \ \forall i,j \in \mathbb{N} \ con \ 1 \le i \le n \ y \ 1 \le j \le m \]
 
-Nótese que la matriz resultante $C$ pertenece a
-$\mathbb{M}_{nxm}(\mathbb{R})$.
+Nótese que la matriz resultante \(C\) pertenece a
+\(\mathbb{M}_{nxm}(\mathbb{R})\).
 
 La implementación clásica del producto de matrices consiste en respetar
 la definición del mismo. El código de dicha implementación se muestra a
@@ -598,27 +620,27 @@ continuación:
 
 La eficiencia del mismo es evidente. Se realizan tres bucles encadenados
 con una operación constante al final del mismo. Sea
-$T: \mathbb{N}x\mathbb{N}x\mathbb{N} \rightarrow \mathbb{N}$ la función
-que nos proporciona para una terna de dimensiones de las matrices $A$ y
-$B$, $(n,k,m)$, la eficiencia del algoritmo, $T(n,k,m)$. Podemos
-expresar $T(n,k,m)$ como:
+\(T: \mathbb{N}x\mathbb{N}x\mathbb{N} \rightarrow \mathbb{N}\) la
+función que nos proporciona para una terna de dimensiones de las
+matrices \(A\) y \(B\), \((n,k,m)\), la eficiencia del algoritmo,
+\(T(n,k,m)\). Podemos expresar \(T(n,k,m)\) como:
 
 \[ T(n,k,m) =  \sum_{i=0}{n-1}\sum_{j=0}^{m-1}\sum_{r=0}{k-1}O(1) = O(n m k) \]
 
-Por tanto , $T \in O(nmk)$. En la práctica se aplicará el algoritmo para
-matrices cuadradas para poder así ver la evolución del tiempo de cómputo
-en fución de su dimensión. En este caso particular es evidente que el
-algoritmo resulta ser \textbf{cúbico} y por tanto su ejecución será
-potencialmente inabordable para matrices de grandes dimensiones.
+Por tanto , \(T \in O(nmk)\). En la práctica se aplicará el algoritmo
+para matrices cuadradas para poder así ver la evolución del tiempo de
+cómputo en fución de su dimensión. En este caso particular es evidente
+que el algoritmo resulta ser \textbf{cúbico} y por tanto su ejecución
+será potencialmente inabordable para matrices de grandes dimensiones.
 
 \subsubsection{Algoritmo de Strassen}\label{algoritmo-de-strassen}
 
 El algoritmo de Strassen es un algoritmo recursivo para el producto de
 matrices cuadradas. Fue el primer algoritmo en bajar la eficiencia
-teórica del producto matricial a un orden menor que O($n^3$), en
-particular, O($n^{log_{2}7}$). No solo supuso una mejoría en el cálculo
-de producto de matrices de gran dimensión sino que además inicio una
-investigación en torno a la búsqueda de algoritmos que mejorasen la
+teórica del producto matricial a un orden menor que O(\(n^3\)), en
+particular, O(\(n^{log_{2}7}\)). No solo supuso una mejoría en el
+cálculo de producto de matrices de gran dimensión sino que además inicio
+una investigación en torno a la búsqueda de algoritmos que mejorasen la
 eficiencia obtenida a la vista de que esto era factible. Esto permitió
 el descubrimiento de algoritmos como el de
 \href{http://en.wikipedia.org/wiki/Coppersmith-Winograd_algorithm}{Coppersmith-Winograd}
@@ -626,9 +648,9 @@ que hacen que el producto de matrices sea una operación abordable.
 
 El algoritmo de Strassen se basa en la siguiente obserración:
 
-Sean $m \in \mathbb{N}$ y $n = 2^m$ una potencia de 2. Sean
-$A,B \in \mathbb{M}_{nxn}(\mathbb{R})$ dos matrices cuadradas. Se puede
-denotar:
+Sean \(m \in \mathbb{N}\) y \(n = 2^m\) una potencia de 2. Sean
+\(A,B \in \mathbb{M}_{nxn}(\mathbb{R})\) dos matrices cuadradas. Se
+puede denotar:
 
 \[ A = \left( \begin{array}{ccc}
 a_{11} & a_{12} \\
@@ -638,27 +660,27 @@ b_{11} & b_{12} \\
 b_{21} & b_{22} \end{array} \right)\]
 
 Con
-$a_{11}, a_{12}, a_{21}, a_{22}, b_{11}, b_{12}, b_{21}, b_{22} \in \mathbb{M}_{2^{m-1}x2^{m-1}}(\mathbb{R})$.
+\(a_{11}, a_{12}, a_{21}, a_{22}, b_{11}, b_{12}, b_{21}, b_{22} \in \mathbb{M}_{2^{m-1}x2^{m-1}}(\mathbb{R})\).
 Definimos las matrices
-$P_{1}, P_{2}, P_{3}, P_{4}, P_{5}, P_{6}, P_{7} \in \mathbb{M}_{2^{m-1}x2^{m-1}}(\mathbb{R})$
+\(P_{1}, P_{2}, P_{3}, P_{4}, P_{5}, P_{6}, P_{7} \in \mathbb{M}_{2^{m-1}x2^{m-1}}(\mathbb{R})\)
 como sigue:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  $P1 = (a_{11} + a_{22})(b_{11} + b_{22})$\\
+  \(P1 = (a_{11} + a_{22})(b_{11} + b_{22})\)\\
 \item
-  $P2 = (a_{21} + a_{22})b_{11}$\\
+  \(P2 = (a_{21} + a_{22})b_{11}\)\\
 \item
-  $P3 = a_{11}(b_{12} - b_{22})$\\
+  \(P3 = a_{11}(b_{12} - b_{22})\)\\
 \item
-  $P4 = a_{22}(b_{21} - b_{12})$\\
+  \(P4 = a_{22}(b_{21} - b_{12})\)\\
 \item
-  $P5 = (a_{11} + a_{12})b_{22}$\\
+  \(P5 = (a_{11} + a_{12})b_{22}\)\\
 \item
-  $P6 = (a_{21} - a_{11})(b_{11} + b_{12})$\\
+  \(P6 = (a_{21} - a_{11})(b_{11} + b_{12})\)\\
 \item
-  $P7 = (a_{12} - a_{22})(b_{21} + b_{22})$
+  \(P7 = (a_{12} - a_{22})(b_{21} + b_{22})\)
 \end{itemize}
 
 Entonces se tiene que:
@@ -668,7 +690,7 @@ P_1+P_4+P_7-P_5 & P_3 + P_5 \\
 \\
 P_2 + P_4 & P_3 + P_1 + P_6 - P_2 \end{array} \right)\]
 
-Nótese que las matrices $P_i$ también tienen dimenión potencia de 2.
+Nótese que las matrices \(P_i\) también tienen dimenión potencia de 2.
 Puesto que estas matrices se calculan mediante un producto, la misma
 idea puede aplicarse a las mismas. Por tanto, el algoritmo de Strassen
 sustituye productos por sumas hasta llegar a matrices con una dimensión
@@ -680,13 +702,13 @@ El análisis teórico del algoritmo se basa en la siguiente recurrencia:
 \[ T(n) = 7T(\frac{n}{2}) + O(n^2) \]
 
 Su obtención es sencilla. Para una matriz de dimensión \emph{n} se
-calculan las matrices $P_i$ como el producto de sumas y restas de
+calculan las matrices \(P_i\) como el producto de sumas y restas de
 matrices de dimensión la mitad. La operación de producto tendrá una
-eficiencia de $T(\frac{n}{2})$ pues se llama recurrentemente al
+eficiencia de \(T(\frac{n}{2})\) pues se llama recurrentemente al
 algoritmo. El número 7 proviene de la realización de 7 productos
-matriciales, uno por cada $P_i$. Las sumas y restas realizadas en el
+matriciales, uno por cada \(P_i\). Las sumas y restas realizadas en el
 proceso así como las que tienen lugar durante el cálculo de \emph{C} son
-operaciones de orden de eficiencia $O(n^2)$ y el número de operaciones
+operaciones de orden de eficiencia \(O(n^2)\) y el número de operaciones
 es siempre constante. La suma de ambas eficiencias nos proporciona la
 ecuación anterior. Para su resolución se acude al
 \href{http://en.wikipedia.org/wiki/Master_theorem}{Master Theorem}
@@ -720,9 +742,9 @@ aumenta, el algoritmo de Strassen sí obtiene mejores resultados gracias
 a su eficiencia teórica. Se muestra a continuación una comparativa entre
 ambos algoritmos en la se aprecia todo lo explicado anteriormente:
 
-$\centerline{\includegraphics[height=9cm]{./Codigos/Ejercicio7/Imagenes/Trabajo/ProductoMatrices.png}}$
+\(\centerline{\includegraphics[height=9cm]{./Codigos/Ejercicio7/Imagenes/Trabajo/ProductoMatrices.png}}\)
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \[ \pagebreak \]
 
@@ -764,8 +786,8 @@ primeras secciones junto con un \textbf{plot\_i.sh} por script.
 Burbuja}\label{algoritmo-de-insercion-vs-algoritmo-burbuja}
 
 El algoritmo de inserción utilizado en el código es un algoritmo de
-ordenación de eficiencia O($n^2$) y que suele ser de los mejores con esa
-eficiencia. El cálculo teórico de la misma es sencillo.
+ordenación de eficiencia O(\(n^2\)) y que suele ser de los mejores con
+esa eficiencia. El cálculo teórico de la misma es sencillo.
 
 Su funcionamito se basa en el siguiente proceso:
 
@@ -776,7 +798,7 @@ Su funcionamito se basa en el siguiente proceso:
   Se realiza una iteración por cada elemento del vector.
 \item
   Para la iteración m-ésima se presupone que se ha ordenado el subvector
-  \{$1, ..., m-1$\}. Se toma el elemento en la posición m y se inserta
+  \{\(1, ..., m-1\)\}. Se toma el elemento en la posición m y se inserta
   en el subvector anterior manteniéndose este ordenado y con un elemento
   más.
 \end{enumerate}
@@ -785,7 +807,7 @@ Es claro que cuando finalice el proceso se habrá ordenado el vector al
 completo. Se muestra en la siguiente gráfica una comparativa entre este
 algoritmo y el burbuja con el código del \textbf{ejercicio 5}:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/InsercionBurbuja.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/InsercionBurbuja.png}}\)
 
 El mejor factor del algoritmo de inserción con respecto al brubuja es
 claro. Se debe a que el burbuja recorre todo el subvector en cada
@@ -800,7 +822,7 @@ UMBRAL\_MS del mergesort. En el estudio el parámetro toma el valor 2,
 20, 40, 60, 80 y 100. Se realiza la media de 1000 ejecuciones para cada
 dato. Los resultados se resumen en la siguiente imagen:
 
-$\centerline{\includegraphics[height=9cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergesortVariacion.png}}$
+\(\centerline{\includegraphics[height=9cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergesortVariacion.png}}\)
 
 Se puede observar que el mejor resultado viene dado por UMBRAL\_MS=20.
 Nótese que para umbrales mayores se produce un desnivel importante en
@@ -814,8 +836,8 @@ las finales tienen tamaño 101. En consecuencia, se realizará otra
 partición, aplicando inserción a vectores de tamaño 50 o 51
 posteriormente. En este caso se obtiene el mejor resultado posible en
 términos de tiempo. Por tanto, cuando la longitud del vector está en
-torno a $101 2^n$ se producirá este fenómeno, mejorando radicalmente el
-tiempo del algoritmo.
+torno a \(101 2^n\) se producirá este fenómeno, mejorando radicalmente
+el tiempo del algoritmo.
 
 Para los siguentes estudios se toma UMBRAL\_MS = 20.
 
@@ -845,16 +867,16 @@ funcionamiento. Se comparan los resultados con:
 
 Los resultados obtenidos son los siguientes:
 
-$\centerline{\includegraphics[height=8cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/Comparacion.png}}$
+\(\centerline{\includegraphics[height=8cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/Comparacion.png}}\)
 
 Se puede apreciar que el mejor algoritmo en la práctica es el Quicksort
 (recordemos que en teoría su peor caso es \textbf{cuadrático}). Obtiene
 resultados similares al sort de la STL, luego presupongo que puede estar
 implementado también como quicksort. Mergesort no consigue los
 resultados de los dos algoritmos anteriores pero no se queda atrás. Sí
-lo hace Heapsort pues a pesar de ser O($nlog_2 n$), en primer lugar crea
-el heap y en segundo lugar lo ordena. Por ello obtiene tiempos dos veces
-más lento.
+lo hace Heapsort pues a pesar de ser O(\(nlog_2 n\)), en primer lugar
+crea el heap y en segundo lugar lo ordena. Por ello obtiene tiempos dos
+veces más lento.
 
 \subsubsection{Ajustes para Inserción y
 Mergesort}\label{ajustes-para-insercion-y-mergesort}
@@ -866,21 +888,21 @@ cuadrático sea casi exacto. En este caso la \textbf{desviación media}
 del ajuste cuadrático responde a:
 \[ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 0.00877017\]
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/InsercionAjuste.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/InsercionAjuste.png}}\)
 
 La siguiente imagen responde al ajuste realizado para el mergesort. Al
 ser calculados los puntos como la media de 1000 ejecuciones el ajuste
 tiene una \textbf{desviación media} del orden del 1\%:
 \[ \sqrt{\frac{\sum_{i=1}^{n}(y_i - f(x_i))^2}{n}} = 2.86917 / 10^{-05} \]
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste.png}}\)
 
 En cambio, para una única ejecución se tiene una mayor dispersión de los
 puntos. Esto se debe a que el ruido introducido por el sistema operativo
 es significativo en relación con el tiempo que tarda el algoritmo:
 
-$\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste_1.png}}$
+\(\centerline{\includegraphics[height=7cm]{./Codigos/Ejercicio8/Imagenes/Trabajo/MergeSortAjuste_1.png}}\)
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \end{document}
