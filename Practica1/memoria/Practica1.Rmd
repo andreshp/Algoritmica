@@ -1,17 +1,19 @@
 ---
 title: 'Algorítmica: Práctica 1'
 author: "Andrés Herrera Poyatos, Antonio Rafael Moya Martín-Castaño, Iván Sevillano García, Juan Luis Suárez Díaz"
+date: "15/3/2015"
 output:
   pdf_document:
     highlight: zenburn
-    keep_tex: yes
+    toc: yes
     includes:
         in_header:
             mystyles.sty
 ---
 
+$\pagebreak$
 
-## Organización de la práctica ##
+# Organización de la práctica
 
 Se adjunta el directorio comprimido **code** con todos los datos obtenidos. La información se organiza como sigue:
 
@@ -34,7 +36,7 @@ Cada ejercicio tiene su apartado en el pdf con su corresponiente enunciado y sol
 
 ***Nota:*** Se ha utilizado el shell bash para la obtención de los distintos datos de los algoritmos.
 
-##Ejercicio 1: Cálculo de la eficiencia empírica##
+# Ejercicio 1: Cálculo de la eficiencia empírica
 
 Calcule la eficiencia empírica de los algoritmos pedidos. Defina adecuadamente los tamaños de entrada para que se generen 
 al menos 25 datos. Incluya en la memoria tablas diferentes para los algoritmos de distinto orden de eficiencia (una con los
@@ -42,7 +44,7 @@ algoritmos $O(n^2)$, otra con los $O(n \log{n})$, otra con $O(n^3)$ y otra con $
 
 A continuación se disponen las distintas tablas para cada clase de algoritmos:
 
-### Tabla con los algoritmos cuadráticos ###
+## Tabla con los algoritmos cuadráticos
 
 | Tamaño del Vector | Burbuja | Seleccion | Insercion |
 |-------------------|---------|-----------|-----------|
@@ -73,7 +75,7 @@ A continuación se disponen las distintas tablas para cada clase de algoritmos:
 |25000|1.9893|0.864984|0.762199|
 
 
-### Tabla con los algoritmos cúbicos ###
+## Tabla con los algoritmos cúbicos ##
 
 | Nodos del Grafo | Floyd |
 |-----------------|-------|
@@ -104,7 +106,7 @@ A continuación se disponen las distintas tablas para cada clase de algoritmos:
 |800|3.25971|
 
 
-### Tabla con el algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ###
+## Tabla con el algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ##
 
 | Índice | Fibonacci |
 |--------|-----------|
@@ -136,7 +138,7 @@ A continuación se disponen las distintas tablas para cada clase de algoritmos:
 |40|0.849934|
 
 
-### Tabla con el algoritmo de Hanoi ($O(2^n))$) ###
+## Tabla con el algoritmo de Hanoi ($O(2^n))$) ##
 
 | Num. Discos | Hanoi |
 |-------------|-------|
@@ -167,7 +169,7 @@ A continuación se disponen las distintas tablas para cada clase de algoritmos:
 |29|3.83247|
 |30|7.63996|
 
-### Tabla con los algoritmos n log n ###
+## Tabla con los algoritmos n log n ##
 
 | Tamaño del Vector | Mergesort | Quicksort |
 |-------------------|-----------|-----------|
@@ -201,7 +203,7 @@ A continuación se disponen las distintas tablas para cada clase de algoritmos:
 Finalmente, mostramos una tabla con la comparativa de todos los algoritmos de ordenación, tanto cuadráticos como $n \log{n}$.
 Podemos apreciar, que para tamaños relativamente pequeños (25.000), ya se muestran diferencias bastante grandes:
 
-### Tabla con los algoritmos de ordenación ###
+## Tabla con los algoritmos de ordenación ##
 
 | Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort |
 |-------------------|---------|-----------|-----------|-----------|-----------|
@@ -231,31 +233,33 @@ Podemos apreciar, que para tamaños relativamente pequeños (25.000), ya se mues
 |24000|1.84769|0.800821|0.70273|0.010512|0.006921|
 |25000|1.9893|0.864984|0.762199|0.009398|0.003104|
 
-##Ejercicio 2: Elaboración de gráficas.
+$\pagebreak$
+
+# Ejercicio 2: Elaboración de gráficas.
 
 Con cada una de las tablas anteriores, genere un gráfico comparando los tiempos de los algoritmos. Indique claramente el significado de cada serie. Para los algoritmos que realizan la misma tarea (los de ordenación), incluya también una gráfica con todos ellos, para poder apreciar las diferencias de rendimiento de algoritmos con diferente orden de eficiencia.
 
-### Gráfica comparativa de los algoritmos cuadráticos. ###
+## Gráfica comparativa de los algoritmos cuadráticos. ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cuadraticos.png}}$
 
-### Gráfica del algoritmo cúbico (Floyd) ###
+## Gráfica del algoritmo cúbico (Floyd) ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/cubicos.png}}$
 
-### Gráfica del algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ###
+## Gráfica del algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/fibonacci.png}}$
 
-### Gráfica del algoritmo de Hanoi ($O(2^n)$) ###
+## Gráfica del algoritmo de Hanoi ($O(2^n)$) ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/hanoi.png}}$
 
-### Gráfica de los algoritmos $O(n \log{n})$ ###
+## Gráfica de los algoritmos $O(n \log{n})$ ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/nlogn.png}}$
 
-### Gráfica comparativa con todos los algoritmos de ordenación. ###
+## Gráfica comparativa con todos los algoritmos de ordenación. ##
 
 $\centerline{\includegraphics[height=7cm]{./Code/ImagenesAndres/ordenacion.png}}$
 
