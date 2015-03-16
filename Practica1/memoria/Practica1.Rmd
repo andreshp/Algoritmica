@@ -287,7 +287,13 @@ En cuánto a lo que vemos en esta gráfica, podemos ver la gran diferencia entre
 
 # Comparación de ejecuciones entre los componentes del grupo.
 
-En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 ordenadores de los componentes del grupo, y veamos las diferencias. Para ello, dentro de cada apartado, vamos a realizar una tabla de tres entradas, colocando en la primera entrada los resultados para el primer dato, en la segunda para un dato medio y en la tercera resultados en el último dato (más grande):
+En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 ordenadores de los componentes del grupo, y veamos las diferencias. Para ello, dentro de cada apartado, vamos a realizar una tabla de tres filas, teniendo cada una los datos para cierto *n* fijado de antemano.
+
+## Características de los ordenadores
+
+Se proporcionan las características del ordenador de cada integrante del grupo.
+
+- **Andrés :** Toshiba - 8 GB de RAM - Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
 
 ## Comparación: algoritmos cuadráticos
 
