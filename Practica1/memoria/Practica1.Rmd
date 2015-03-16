@@ -173,34 +173,33 @@ A continuación se proporcionan las tablas, una para cada clase de algoritmos:
 
 ## Tabla con los algoritmos n log n ##
 
-| Tamaño del Vector | Mergesort | Quicksort | Heapsort |
-|-------------------|-----------|-----------|----------|
-|40000|0.015087|0.006235|0.008042|
-|80000|0.02682|0.014736|0.018251|
-|120000|0.037756|0.02246|0.027588|
-|160000|0.041266|0.025439|0.043|
-|200000|0.059359|0.032775|0.048956|
-|240000|0.057706|0.041055|0.067071|
-|280000|0.065938|0.045861|0.065239|
-|320000|0.082393|0.053183|0.072391|
-|360000|0.093771|0.057395|0.095929|
-|400000|0.107337|0.063843|0.102829|
-|440000|0.102685|0.071064|0.104917|
-|480000|0.122825|0.076521|0.111892|
-|520000|0.136037|0.082585|0.120963|
-|560000|0.141045|0.087434|0.132638|
-|600000|0.150005|0.093448|0.143338|
-|640000|0.1658|0.100634|0.156171|
-|680000|0.181068|0.109131|0.165101|
-|720000|0.211107|0.115456|0.178005|
-|760000|0.205422|0.121493|0.188856|
-|800000|0.226734|0.129283|0.193322|
-|840000|0.200972|0.136155|0.207626|
-|880000|0.211482|0.141553|0.223124|
-|920000|0.23571|0.148845|0.229493|
-|960000|0.240497|0.155352|0.247564|
-|1000000|0.244299|0.178312|0.267759|
-
+| Tamaño del Vector | Mergesort | Quicksort |
+|-------------------|-----------|-----------|
+|40000|0.015087|0.006235|
+|80000|0.02682|0.014736|
+|120000|0.037756|0.02246|
+|160000|0.041266|0.025439|
+|200000|0.059359|0.032775|
+|240000|0.057706|0.041055|
+|280000|0.065938|0.045861|
+|320000|0.082393|0.053183|
+|360000|0.093771|0.057395|
+|400000|0.107337|0.063843|
+|440000|0.102685|0.071064|
+|480000|0.122825|0.076521|
+|520000|0.136037|0.082585|
+|560000|0.141045|0.087434|
+|600000|0.150005|0.093448|
+|640000|0.1658|0.100634|
+|680000|0.181068|0.109131|
+|720000|0.211107|0.115456|
+|760000|0.205422|0.121493|
+|800000|0.226734|0.129283|
+|840000|0.200972|0.136155|
+|880000|0.211482|0.141553|
+|920000|0.23571|0.148845|
+|960000|0.240497|0.155352|
+|1000000|0.244299|0.178312|
 
 ## Tabla con los algoritmos de ordenación
 
@@ -208,33 +207,33 @@ Finalmente, mostramos una tabla con la comparativa de todos los algoritmos de or
 Podemos apreciar que para tamaños relativamente pequeños (25.000) ya existen notables diferencias:
 
 
-| Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort | Heapsort |
-|-------------------|---------|-----------|-----------|-----------|-----------|----------|
-|1000|0.005971|0.003397|0.001321|0.000359|0.000195|0.000114|
-|2000|0.018136|0.009589|0.007588|0.000756|0.000269|0.000639|
-|3000|0.024143|0.014704|0.020282|0.00074|0.000671|0.001008|
-|4000|0.043267|0.025817|0.023064|0.000748|0.00067|0.001327|
-|5000|0.067684|0.037817|0.034221|0.002255|0.000567|0.000822|
-|6000|0.099499|0.055028|0.047872|0.001549|0.001661|0.001141|
-|7000|0.137072|0.073739|0.064517|0.003041|0.001953|0.001359|
-|8000|0.181558|0.092111|0.082905|0.003166|0.002456|0.001679|
-|9000|0.232648|0.118624|0.103043|0.004058|0.001649|0.002775|
-|10000|0.290489|0.14394|0.124546|0.003803|0.001971|0.002436|
-|11000|0.354349|0.178614|0.151216|0.004144|0.002048|0.003717|
-|12000|0.433737|0.20678|0.178228|0.0041|0.003616|0.004062|
-|13000|0.519202|0.239558|0.209278|0.005279|0.003037|0.004538|
-|14000|0.59308|0.273397|0.248141|0.006677|0.002399|0.003738|
-|15000|0.689312|0.314147|0.276967|0.006024|0.002247|0.006105|
-|16000|0.789129|0.356495|0.317291|0.007461|0.002721|0.003677|
-|17000|0.890449|0.402106|0.358508|0.006324|0.002745|0.00402|
-|18000|1.01538|0.450575|0.397242|0.008806|0.005765|0.00688|
-|19000|1.1313|0.50472|0.435913|0.008887|0.004034|0.003986|
-|20000|1.26128|0.55525|0.483853|0.007868|0.003407|0.007215|
-|21000|1.39441|0.611367|0.541654|0.00544|0.00359|0.007316|
-|22000|1.55788|0.670662|0.600085|0.006238|0.00374|0.008641|
-|23000|1.68169|0.732809|0.644882|0.010339|0.006076|0.008602|
-|24000|1.84769|0.800821|0.70273|0.010512|0.006921|0.009229|
-|25000|1.9893|0.864984|0.762199|0.009398|0.003104|0.006293|
+| Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort |
+|-------------------|---------|-----------|-----------|-----------|-----------|
+|1000|0.005971|0.003397|0.001321|0.000359|0.000195|
+|2000|0.018136|0.009589|0.007588|0.000756|0.000269|
+|3000|0.024143|0.014704|0.020282|0.00074|0.000671|
+|4000|0.043267|0.025817|0.023064|0.000748|0.00067|
+|5000|0.067684|0.037817|0.034221|0.002255|0.000567|
+|6000|0.099499|0.055028|0.047872|0.001549|0.001661|
+|7000|0.137072|0.073739|0.064517|0.003041|0.001953|
+|8000|0.181558|0.092111|0.082905|0.003166|0.002456|
+|9000|0.232648|0.118624|0.103043|0.004058|0.001649|
+|10000|0.290489|0.14394|0.124546|0.003803|0.001971|
+|11000|0.354349|0.178614|0.151216|0.004144|0.002048|
+|12000|0.433737|0.20678|0.178228|0.0041|0.003616|
+|13000|0.519202|0.239558|0.209278|0.005279|0.003037|
+|14000|0.59308|0.273397|0.248141|0.006677|0.002399|
+|15000|0.689312|0.314147|0.276967|0.006024|0.002247|
+|16000|0.789129|0.356495|0.317291|0.007461|0.002721|
+|17000|0.890449|0.402106|0.358508|0.006324|0.002745|
+|18000|1.01538|0.450575|0.397242|0.008806|0.005765|
+|19000|1.1313|0.50472|0.435913|0.008887|0.004034|
+|20000|1.26128|0.55525|0.483853|0.007868|0.003407|
+|21000|1.39441|0.611367|0.541654|0.00544|0.00359|
+|22000|1.55788|0.670662|0.600085|0.006238|0.00374|
+|23000|1.68169|0.732809|0.644882|0.010339|0.006076|
+|24000|1.84769|0.800821|0.70273|0.010512|0.006921|
+|25000|1.9893|0.864984|0.762199|0.009398|0.003104|
 
 $\pagebreak$
 
@@ -276,7 +275,7 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/hanoi.png}}$
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/nlogn.png}}$
 
-En el caso de éstos algoritmos, podemos ver que el algoritmo quicksort es más rápido. A parte de, cómo se ha explicado antes, el hecho de que los vectores se generan aleatoriamente, aquí debemos tener en cuenta que el algoritmo mergesort utiliza espacio extra, con lo que la reserva de dicho espacio supone un coste de tiempo. Comparando tambien el heapsort con el quicksort, ha de notarse que en el primero se crea el heap y luego se ordena, sacando los elementos del heap, sin embargo el quicksort empieza a ordenar desde el primer momento y es por ello que este es más rapido. La comparación entre mergesort y heapsort y su parecido es debido a que ambos reservan memoria extra, que es lo que los diferencia a fin de cuentas del quicksort.
+En el caso de éstos algoritmos, podemos ver que el el algoritmo quicksort es más rápido. A parte de, cómo se ha explicado antes, el hecho de que los vectores se generan aleatoriamente, aquí debemos tener en cuenta que el algoritmo mergesort utiliza espacio extra, con lo que la reserva de dicho espacio supone un coste de tiempo. 
 
 ## Gráfica comparativa con todos los algoritmos de ordenación. ##
 
@@ -284,7 +283,7 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/ordenacion.png}
 
 Por último y a modo de conclusión, podemos observar esta gráfica en la que quedan comparados los algoritmos cuadráticos y los de orden n*log(n), pues el algoritmo de Floyd y los exponenciales deben realizarse con datos de tamaño menor, de forma que la comparación es bastante complicada, aunque claramente, el algoritmo de Floyd requiere mayor tiempo que los cuadráticos y los exponenciales (Hanoi y Fibonacci), un mayor tiempo que todos los demás. 
 
-En cuánto a lo que vemos en esta gráfica, podemos ver la gran diferencia entre los algoritmos quicksort, mergesort y heapsort con respecto a los cuadráticos, principalmente el algoritmo de selección e insercción. Podemos ver también que dentro de este conjunto de algoritmos, como hemos explicado anteriormente, el peor algoritmo es el de la burbuja.
+En cuánto a lo que vemos en esta gráfica, podemos ver la gran diferencia entre los algoritmos quicksort y mergesort y los cuadráticos, principalmente el algoritmo de selección e insercción. Podemos ver también que dentro de este conjunto de algoritmos, como hemos explicado anteriormente, el peor algoritmo es el de la burbuja.
 
 # Comparación de ejecuciones entre los componentes del grupo.
 
@@ -295,7 +294,6 @@ En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 
 Se proporcionan las características del ordenador de cada integrante del grupo.
 
 - **Andrés :** Toshiba - 8 GB de RAM - Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
-- **Iván :** HP - 2 GB de RAM - Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz
 
 ## Comparación: algoritmos cuadráticos
 
@@ -337,10 +335,10 @@ El algoritmo que comparamos es el quicksort.
 
 | Tamaño del Vector | Andrés | Antonio | Iván | Juanlu |
 |-------------------|--------|---------|------|--------|
-|40000|0.006235|0.012287|0.007532|0.245822|
-|520000|0.082585|0.118127|0.103365|0.272054|
-|1000000|0.178312|0.229693|0.204994|0.583711|
+|40000|0.006235|0.012287|0.007532||
+|520000|0.082585|0.118127|0.103365||
+|1000000|0.178312|0.229693|0.204994||
 
-### Conclusion ###
+## Comentarios
 
-Tras ver los resultados de las distintas tablas, observamos que las prestaciones del ordenador de Andrés es claramente mas rápido que los demás, y que la máquina utilizada por JuanLuis es claramente más lento, que era lo que se esperaba previo al experimento. Aun así, pese a la mejora de las prestaciones del ordenador de Andres, es claro que si el algorítmo es cúbico o exponencial, estas mejoras harán eterno el tiempo de espera, como es el caso de las torres de hanoi. Igualmente, un algorítmo muy rápido como el quicksort al compararlo en varias máquinas vemos que tampoco difiere mucho en cuanto a tiempos y que es mucho más importante este hecho que las prestaciones.
+Tras ver los resultados de las distintas tablas, observamos que las prestaciones del ordenador de Andrés es mas rápido que los demás, y que la máquina utilizada por JuanLuis es muy lento, que era lo que se esperaba previamente al experimento. Aun así, pese a la mejora de las prestaciones del ordenador de Andres, es claro que si el algorítmo es cúbico o exponencial, el tiempo de espera puede ser eterno para un *n* lo suficientemente grande, como es el caso de las torres de hanoi. Igualmente, un algorítmo muy rápido como el quicksort al compararlo en varias máquinas vemos que tampoco difiere mucho en cuanto a tiempos y que es mucho más importante este hecho que las prestaciones.
