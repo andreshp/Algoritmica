@@ -73,8 +73,8 @@ cat $TEMPORAL4 >> ./Tablas/cuadraticos.md
 
 echo "# Tabla con los algoritmos n log n"            >  ./Tablas/nlogn.md
 echo                                                 >> ./Tablas/nlogn.md
-echo "| Tamaño del Vector | Mergesort | Quicksort |" >> ./Tablas/nlogn.md
-echo "|-------------------|-----------|-----------|" >> ./Tablas/nlogn.md
+echo "| Tamaño del Vector | Mergesort | Quicksort | Heapsort |" >> ./Tablas/nlogn.md
+echo "|-------------------|-----------|-----------|----------|" >> ./Tablas/nlogn.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_mergesort_1.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -83,8 +83,10 @@ cat ./Datos/tiempo_mergesort_1.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 cat ./Datos/tiempo_quicksort_1.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
-paste -d'|' $TEMPORAL4 $TEMPORAL1 > $TEMPORAL3
-cat $TEMPORAL3 >> ./Tablas/nlogn.md
+cat ./Datos/tiempo_heapsort_1.dat | cut -d' ' -f2 > $TEMPORAL2
+paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
+paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
+cat $TEMPORAL4 >> ./Tablas/nlogn.md
 
 # Tabla para los algoritmos cúbicos
 
@@ -135,8 +137,8 @@ cat $TEMPORAL4 >> ./Tablas/hanoi.md
 
 echo "# Tabla con los algoritmos de ordenación"                                        >  ./Tablas/ordenacion.md
 echo                                                                                   >> ./Tablas/ordenacion.md
-echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort |" >> ./Tablas/ordenacion.md
-echo "|-------------------|---------|-----------|-----------|-----------|-----------|" >> ./Tablas/ordenacion.md
+echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort | Heapsort |" >> ./Tablas/ordenacion.md
+echo "|-------------------|---------|-----------|-----------|-----------|-----------|----------|" >> ./Tablas/ordenacion.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_burbuja.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -151,8 +153,10 @@ cat ./Datos/tiempo_mergesort.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_quicksort.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
-paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
-cat $TEMPORAL4 >> ./Tablas/ordenacion.md
+cat ./Datos/tiempo_heapsort.dat | cut -d' ' -f2 > $TEMPORAL2
+paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
+paste -d'|' $TEMPORAL4 $TEMPORAL1 > $TEMPORAL3
+cat $TEMPORAL3 >> ./Tablas/ordenacion.md
 
 #------------- OBTENER GRAFICAS -------------#
 
