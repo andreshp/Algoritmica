@@ -243,17 +243,25 @@ $\pagebreak$
 
 **Enunciado:**
 
-Con cada una de las tablas anteriores, genere un gráfico comparando los tiempos de los algoritmos. Indique claramente el significado de cada serie. Para los algoritmos que realizan la misma tarea (los de ordenación), incluya también una gráfica con todos ellos, para poder apreciar las diferencias de rendimiento de algoritmos con diferente orden de eficiencia.
+Con cada una de las tablas anteriores genere un gráfico comparando los tiempos de los algoritmos. Indique claramente el significado de cada serie. Para los algoritmos que realizan la misma tarea (los de ordenación), incluya también una gráfica con todos ellos, para poder apreciar las diferencias de rendimiento de algoritmos con diferente orden de eficiencia.
 
 ***
+
+No se debe pasar por alto que los datos utilizados en los algoritmos de ordenación y el de Floyd se generan de manera aleatoria. Esto influye sobre todo al comparar los algoritmos de ordenación entre sí pues es bien conocido que ciertos algoritmos operan bien cuando los datos están casi ordenados (insección, burbuja) y otros no (quicksort). Existen otros algoritmos que el tiempo dedicado es casi independiente de los datos de entrada (selección, mergesort, heapsort). Sin embargo, el error que se pueda cometer por este hecho es pequeño ya que es muy raro obtener datos casi ordenados de forma aleatoria.
 
 ## Gráfica comparativa de los algoritmos cuadráticos. ##
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/cuadraticos.png}}$
 
-Cabe destacar, que dentro de los algoritmos cuadráticos también existen ciertas diferencias; a continuación, vamos a exponerlas. Como se puede observar, el algoritmo de la burbuja emplea un mayor tiempo que los otros dos. La causa, viene determinada por dos hechos que cabe nombrar: el primero, y que no se debe pasar por alto, es que los vectores se generan de manera aleatoria, y por lo tanto, varía el tiempo que se puede dedicar a la ordenación en función a cómo quede estructurado el vector (por ejemplo, si hay un mayor número de elementos bien ordenados en un caso que en otro, se ahorra tiempo). Pero el hecho de que sea algo más lento el método de la burbuja no sólo se debe a que los vectores se generen aleatoriamente, sino que aquí entra en juego el segundo factor determinante. Aunque el método de la burbuja hace el mismo número de comprobaciones que el de selección, pues recorremos el vector el mismo número de veces, en el método de la burbuja se realizan un mayor número de intercambios, lo que supone cierto coste (en el de selección hay un sólo intercambio cada vez que se recorre el vector, pues siempre se busca el mínimo y se coloca al principio). Todo ésto se traduce en la diferencia que podemos ver en la gráfica entre el algoritmo de burbuja y el de selección.
+Cabe destacar, que dentro de los algoritmos cuadráticos también existen ciertas diferencias; a continuación, vamos a razonar su existencia. Como se puede observar, el algoritmo de la burbuja emplea un mayor tiempo que los otros dos. Le sigue el algoritmo de selección y de cerca el de inserción. La razón es la siguiente:
 
-Veamos ahora, que el de insercción, de los tres es el mejor. De nuevo entra en juego que los vectores se generen aleatoriamente, pero también, y como factor principal, está el hecho de que el algoritmo de insercción, en su peor caso (vector totalmente invertido) funciona igual que el de selección. Pero es sencillo ver, que el método de insercción requiere un coste menor, pues coloca el elemento mínimo entre un conjunto i de elementos al principio de dicho conjunto de elementos, con lo que se consigue una eficiencia algo mejor (aunque bastante similar como se ve en las gráficas), que el algoritmo de selección.
+- Comparaciones e intercambios del algoritmo de selección: $\frac{n(n-1)}{2}$ y $n$ respectivamente.
+- Comparaciones e intercambios del algoritmo de burbuja: $\frac{n(n-1)}{2}$ y un intercambio por cada par de índices $i < j$ tales que $v[i] > v[j]$.
+- Comparaciones e intercambios del algoritmo de inserción: $\frac{n(n-1)}{4}$ en promedio y $n$ desplazamientos de los datos (uno por iteración) luego $\frac{n(n-1)}{4}$ asignaciones en promedio.
+
+El número de intercambios del algoritmo burbuja suele ser mucho mayor en promedio que en el caso del algoritmo de selección, que siempre es $n$. Los intercambios son una operación relativamente costosa, lo que produce el mayor tiempo dedicado.
+
+Veamos ahora, por qué el de insercción es el mejor de los tres. El algoritmo de insercción, en su peor caso (vector totalmente invertido)  utiliza el mismo número de comparaciones que el de selección y en el caso promedio la mitad. Esto produce un ahorro importante de tiempo que prevalece en el total del algoritmo (los desplazamientos no son tan costosos). Al ser mejor que el de selección ya es mejor automáticamente que el algoritmo de burbuja.
 
 ## Gráfica del algoritmo cúbico (Floyd) ##
 
@@ -261,7 +269,7 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/cubicos.png}}$
 
 Contrastando con las gráficas anteriores, podemos ver que existe una gran diferencia entre los algoritmos cuadráticos y el algoritmo de Floyd, que es cúbico (éste último emplea un tiempo mucho mayor).
 
-Como nota, el algoritmo de Dijkistra resuelve el mismo problema para grafos con pesos no negativos y consigue una eficiencia de $O(n^2 *logn)$, por lo que es mucho más práctico.
+Como nota, el algoritmo de Dijkistra resuelve el mismo problema para grafos con pesos no negativos y consigue una eficiencia de $O(n^2 \log n)$, por lo que es mucho más práctico dada la diferencia que existe entre ambos órdenes de eficiencia.
 
 ## Gráfica del algoritmo de Fibonacci ($O((\frac{1+\sqrt{5}}{2})^n)$) ##
 
@@ -296,7 +304,7 @@ En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 
 Se proporcionan las características del ordenador de cada integrante del grupo.
 
 - **Andrés :** Toshiba - 8 GB de RAM - Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
-- **Iván** :** HP - 2 GB de RAM - Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz
+- **Iván :** HP - 4 GB de RAM - Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz
 - **Antonio :** 
 - **Juan Luis :**
 
