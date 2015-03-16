@@ -38,6 +38,8 @@ TEMPORAL4=temp4.txt
 ./sh/medirOrdenacion.sh insercion
 ./sh/medirOrdenacion.sh quicksort
 ./sh/medirOrdenacion.sh mergesort
+./sh/medirOrdenacion.sh heapsort
+./sh/medirOrdenacionLog.sh heapsort
 ./sh/medirOrdenacionLog.sh quicksort
 ./sh/medirOrdenacionLog.sh mergesort
 

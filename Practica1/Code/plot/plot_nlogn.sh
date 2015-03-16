@@ -14,8 +14,10 @@ XLABEL="Longitud del Vector"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Mergesort"
 LEYENDA2="Quicksort"
+LEYENDA3="Heapsort"
 FICHERO_DATOS1="./Datos/tiempo_mergesort_1.dat"
 FICHERO_DATOS2="./Datos/tiempo_quicksort_1.dat"
+FICHERO_DATOS3="./Datos/tiempo_heapsort_1.dat"
 
 gnuplot<<FIN
 # Terminal para png:
@@ -25,6 +27,7 @@ set border linewidth 1.5
 # Estilo de línea y color:
 set style line 1 lc rgb "red" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set style line 2 lc rgb "blue" lt 1 lw 2 pt 7 pi 0 ps 0.5
+set style line 2 lc rgb "green" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set pointintervalbox 0
 
 # Nombre de la imagen resultante:
@@ -37,5 +40,5 @@ set ylabel "$YLABEL"
 
 set autoscale
 
-plot "$FICHERO_DATOS1" title '$LEYENDA1' with linespoints ls 1, "$FICHERO_DATOS2" title '$LEYENDA2' with linespoints ls 2
+plot "$FICHERO_DATOS1" title '$LEYENDA1' with linespoints ls 1, "$FICHERO_DATOS2" title '$LEYENDA2' with linespoints ls 2, "$FICHERO_DATOS3" title '$LEYENDA3' with linespoints ls 3
 FIN
