@@ -27,7 +27,7 @@ set border linewidth 1.5
 # Estilo de línea y color:
 set style line 1 lc rgb "red" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set style line 2 lc rgb "blue" lt 1 lw 2 pt 7 pi 0 ps 0.5
-set style line 2 lc rgb "green" lt 1 lw 2 pt 7 pi 0 ps 0.5
+set style line 3 lc rgb "green" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set pointintervalbox 0
 
 # Nombre de la imagen resultante:
