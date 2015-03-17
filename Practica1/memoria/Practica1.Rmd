@@ -306,7 +306,7 @@ Se proporcionan las características del ordenador de cada integrante del grupo.
 - **Andrés :** Toshiba - 8 GB de RAM - Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
 - **Iván :** HP - 4 GB de RAM - Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz
 - **Antonio :** Acer - 4 GB de RAM - Intel(R) Core(TM) i5 CPU M 450 @ 2.40GHz  
-- **Juan Luis :**
+- **Juan Luis :** Olidata - 1 GB de RAM - Intel(R) Atom(TM) CPU N450 @ 1.66GHz 
 
 ## Comparación: algoritmos cuadráticos
 
@@ -354,4 +354,4 @@ El algoritmo que comparamos es el quicksort.
 
 ## Comentarios
 
-Tras ver los resultados de las distintas tablas, observamos que las prestaciones del ordenador de Andrés es mas rápido que los demás, y que la máquina utilizada por JuanLuis es muy lento, que era lo que se esperaba previamente al experimento. Aun así, pese a la mejora de las prestaciones del ordenador de Andres, es claro que si el algorítmo es cúbico o exponencial, el tiempo de espera puede ser eterno para un *n* lo suficientemente grande, como es el caso de las torres de hanoi. Igualmente, un algorítmo muy rápido como el quicksort al compararlo en varias máquinas vemos que tampoco difiere mucho en cuanto a tiempos y que es mucho más importante este hecho que las prestaciones.
+Tras ver los resultados de las distintas tablas, observamos que las prestaciones del ordenador de Andrés es mas rápido que los demás, y que la máquina utilizada por Juan Luis es muy lento, que era lo que se esperaba previamente al experimento. Aun así, pese a la mejora de las prestaciones del ordenador de Andres, es claro que si el algorítmo es cúbico o exponencial, el tiempo de espera puede ser eterno para un *n* lo suficientemente grande, como es el caso de las torres de hanoi. Igualmente, un algorítmo muy rápido como el quicksort al compararlo en varias máquinas vemos que tampoco difiere mucho en cuanto a tiempos y que es mucho más importante este hecho que las prestaciones.
