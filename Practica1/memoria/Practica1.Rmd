@@ -305,7 +305,7 @@ Se proporcionan las características del ordenador de cada integrante del grupo.
 
 - **Andrés :** Toshiba - 8 GB de RAM - Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
 - **Iván :** HP - 4 GB de RAM - Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz
-- **Antonio :** 
+- **Antonio :** Acer - 4 GB de RAM - Intel(R) Core(TM) i5 CPU M 450 @ 2.40GHz  
 - **Juan Luis :**
 
 ## Comparación: algoritmos cuadráticos
