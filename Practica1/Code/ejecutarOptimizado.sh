@@ -19,10 +19,17 @@ chmod a+x ./plot/plot_fibonacci.sh
 chmod a+x ./plot/plot_hanoi.sh
 chmod a+x ./plot/plot_ordenacion.sh
 
+chmod a+x ./plot/plot_cuadraticos_optimizacion.sh
+chmod a+x ./plot/plot_nlogn_optimizacion.sh
+chmod a+x ./plot/plot_cubicos_optimizacion.sh
+chmod a+x ./plot/plot_fibonacci_optimizacion.sh
+chmod a+x ./plot/plot_hanoi_optimizacion.sh
+
 # Directorios
 mkdir -p Datos
 mkdir -p Imagenes
-mkdir -p Tablas
+mkdir -p Tablas$1
+mkdir -p Ajustes$1
 
 # Variables
 TEMPORAL1=temp1.txt
@@ -33,29 +40,29 @@ TEMPORAL4=temp4.txt
 #------------- OBTENER DATOS -------------#
 
 # Medir para ordenacion
-./sh/medirOrdenacion.sh burbuja 0
-./sh/medirOrdenacion.sh seleccion 0
-./sh/medirOrdenacion.sh insercion 0
-./sh/medirOrdenacion.sh quicksort 0
-./sh/medirOrdenacion.sh mergesort 0
-./sh/medirOrdenacion.sh heapsort 0
-./sh/medirOrdenacionLog.sh heapsort 0
-./sh/medirOrdenacionLog.sh quicksort 0
-./sh/medirOrdenacionLog.sh mergesort 0
+./sh/medirOrdenacion.sh burbuja 2
+./sh/medirOrdenacion.sh seleccion 2 
+./sh/medirOrdenacion.sh insercion 2
+./sh/medirOrdenacion.sh quicksort 2
+./sh/medirOrdenacion.sh mergesort 2
+./sh/medirOrdenacion.sh heapsort 2
+./sh/medirOrdenacionLog.sh heapsort 2
+./sh/medirOrdenacionLog.sh quicksort 2
+./sh/medirOrdenacionLog.sh mergesort 2
 
 # Medir otros
-./sh/medirFloyd.sh 0
-./sh/medirHanoi.sh 0
-./sh/medirFibonacci.sh 0
+./sh/medirFloyd.sh 2
+./sh/medirHanoi.sh 2
+./sh/medirFibonacci.sh 2
 
 #------------- OBTENER TABLAS -------------#
 
 # Tabla para los algoritmos cuadráticos
 
-echo "# Tabla con los algoritmos cuadráticos"                  >  ./Tablas/cuadraticos.md
-echo                                                           >> ./Tablas/cuadraticos.md
-echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion |" >> ./Tablas/cuadraticos.md
-echo "|-------------------|---------|-----------|-----------|" >> ./Tablas/cuadraticos.md
+echo "# Tabla con los algoritmos cuadráticos"                  >  ./Tablas$1/cuadraticos_optimizado.md
+echo                                                           >> ./Tablas$1/cuadraticos_optimizado.md
+echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion |" >> ./Tablas$1/cuadraticos_optimizado.md
+echo "|-------------------|---------|-----------|-----------|" >> ./Tablas$1/cuadraticos_optimizado.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_burbuja.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -67,14 +74,14 @@ paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_insercion.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
-cat $TEMPORAL4 >> ./Tablas/cuadraticos.md
+cat $TEMPORAL4 >> ./Tablas$1/cuadraticos_optimizado.md
 
 # Tabla para los algoritmos n log n
 
-echo "# Tabla con los algoritmos n log n"            >  ./Tablas/nlogn.md
-echo                                                 >> ./Tablas/nlogn.md
-echo "| Tamaño del Vector | Mergesort | Quicksort | Heapsort |" >> ./Tablas/nlogn.md
-echo "|-------------------|-----------|-----------|----------|" >> ./Tablas/nlogn.md
+echo "# Tabla con los algoritmos n log n"            >  ./Tablas$1/nlogn_optimizado.md
+echo                                                 >> ./Tablas$1/nlogn_optimizado.md
+echo "| Tamaño del Vector | Mergesort | Quicksort | Heapsort |" >> ./Tablas$1/nlogn_optimizado.md
+echo "|-------------------|-----------|-----------|----------|" >> ./Tablas$1/nlogn_optimizado.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_mergesort_1.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -86,14 +93,14 @@ paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_heapsort_1.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
-cat $TEMPORAL4 >> ./Tablas/nlogn.md
+cat $TEMPORAL4 >> ./Tablas$1/nlogn_optimizado.md
 
 # Tabla para los algoritmos cúbicos
 
-echo "# Tabla con los algoritmos cubicos" >  ./Tablas/cubico.md
-echo                                      >> ./Tablas/cubico.md
-echo "| Nodos del Grafo | Floyd |"        >> ./Tablas/cubico.md
-echo "|-----------------|-------|"        >> ./Tablas/cubico.md
+echo "# Tabla con los algoritmos cubicos" >  ./Tablas$1/cubico_optimizado.md
+echo                                      >> ./Tablas$1/cubico_optimizado.md
+echo "| Nodos del Grafo | Floyd |"        >> ./Tablas$1/cubico_optimizado.md
+echo "|-----------------|-------|"        >> ./Tablas$1/cubico_optimizado.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_floyd.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -101,14 +108,14 @@ paste -d'|' $TEMPORAL1 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_floyd.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
-cat $TEMPORAL4 >> ./Tablas/cubico.md
+cat $TEMPORAL4 >> ./Tablas$1/cubico_optimizado.md
 
 # Tabla para los algoritmos ((1+sqrt(5))/2)^n (Fibonacci)
 
-echo "# Tabla con el algoritmo de Fibonacci" >  ./Tablas/fibonacci.md
-echo                                         >> ./Tablas/fibonacci.md
-echo "| Índice | Fibonacci |"                >> ./Tablas/fibonacci.md
-echo "|--------|-----------|"                >> ./Tablas/fibonacci.md
+echo "# Tabla con el algoritmo de Fibonacci" >  ./Tablas$1/fibonacci_optimizado.md
+echo                                         >> ./Tablas$1/fibonacci_optimizado.md
+echo "| Índice | Fibonacci |"                >> ./Tablas$1/fibonacci_optimizado.md
+echo "|--------|-----------|"                >> ./Tablas$1/fibonacci_optimizado.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_fibonacci.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -116,14 +123,14 @@ paste -d'|' $TEMPORAL1 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_fibonacci.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
-cat $TEMPORAL4 >> ./Tablas/fibonacci.md
+cat $TEMPORAL4 >> ./Tablas$1/fibonacci_optimizado.md
 
 # Tabla para los algoritmos 2^n (Hanoi)
 
-echo "# Tabla con el algoritmo de Hanoi (2^n)" >  ./Tablas/hanoi.md
-echo                                           >> ./Tablas/hanoi.md
-echo "| Num. Discos | Hanoi |"                 >> ./Tablas/hanoi.md
-echo "|-------------|-------|"                 >> ./Tablas/hanoi.md
+echo "# Tabla con el algoritmo de Hanoi (2^n)" >  ./Tablas$1/hanoi_optimizado.md
+echo                                           >> ./Tablas$1/hanoi_optimizado.md
+echo "| Num. Discos | Hanoi |"                 >> ./Tablas$1/hanoi_optimizado.md
+echo "|-------------|-------|"                 >> ./Tablas$1/hanoi_optimizado.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_hanoi.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -131,14 +138,14 @@ paste -d'|' $TEMPORAL1 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_hanoi.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
-cat $TEMPORAL4 >> ./Tablas/hanoi.md
+cat $TEMPORAL4 >> ./Tablas$1/hanoi_optimizado.md
 
 # Tabla para todos los algoritmos de ordenación
 
-echo "# Tabla con los algoritmos de ordenación"                                        >  ./Tablas/ordenacion.md
-echo                                                                                   >> ./Tablas/ordenacion.md
-echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort | Heapsort |" >> ./Tablas/ordenacion.md
-echo "|-------------------|---------|-----------|-----------|-----------|-----------|----------|" >> ./Tablas/ordenacion.md
+echo "# Tabla con los algoritmos de ordenación"                                        >  ./Tablas$1/ordenacion_optimizado.md
+echo                                                                                   >> ./Tablas$1/ordenacion_optimizado.md
+echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion | Mergesort | Quicksort | Heapsort |" >> ./Tablas$1/ordenacion_optimizado.md
+echo "|-------------------|---------|-----------|-----------|-----------|-----------|----------|" >> ./Tablas$1/ordenacion_optimizado.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_burbuja.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -156,7 +163,7 @@ paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 cat ./Datos/tiempo_heapsort.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 paste -d'|' $TEMPORAL4 $TEMPORAL1 > $TEMPORAL3
-cat $TEMPORAL3 >> ./Tablas/ordenacion.md
+cat $TEMPORAL3 >> ./Tablas$1/ordenacion_optimizado.md
 
 #------------- OBTENER GRAFICAS -------------#
 
@@ -167,7 +174,23 @@ cat $TEMPORAL3 >> ./Tablas/ordenacion.md
 ./plot/plot_hanoi.sh
 ./plot/plot_ordenacion.sh
 
+./plot/plot_cuadraticos_optimizacion.sh
+./plot/plot_nlogn_optimizacion.sh
+./plot/plot_cubicos_optimizacion.sh
+./plot/plot_fibonacci_optimizacion.sh
+./plot/plot_hanoi_optimizacion.sh
+
+./plot/plot_cuadraticos_ajuste.sh > Ajustes$1/cuadraticos_optimizado.txt
+./plot/plot_nlogn_ajuste.sh > Ajustes$1/nlogn_optimizado.txt
+./plot/plot_cubicos_ajuste.sh > Ajustes$1/cubicos_optimizado.txt
+./plot/plot_fibonacci_ajuste.sh > Ajustes$1/fibonacci_optimizado.txt
+./plot/plot_hanoi_ajuste.sh > Ajustes$1/hanoi_optimizado.txt
+./plot/plot_ordenacion_ajuste.sh > Ajustes$1/ordenacion_optimizado.txt
+
 rm $TEMPORAL1
 rm $TEMPORAL2
 rm $TEMPORAL3
 rm $TEMPORAL4
+
+mv Datos DatosOpt$1
+mv Imagenes ImagenesOpt$1
