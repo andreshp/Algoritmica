@@ -13,7 +13,7 @@ TITULO="Algoritmo de las torres de Hanoi"
 XLABEL="Numero de discos"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Hanoi"
-LEYENDA2="Hanoi"
+LEYENDA2="Hanoi Optimizado"
 FICHERO_DATOS1="./Datos/tiempo_hanoi.dat"
 FICHERO_DATOS2="./DatosOpt/tiempo_hanoi.dat"
 

@@ -49,5 +49,5 @@ set ylabel "$YLABEL"
 
 set autoscale
 
-plot "$FICHERO_DATOS1" title '$LEYENDA1' with points ls 1, "$FICHERO_DATOS2" title '$LEYENDA2' with points ls 2, "$FICHERO_DATOS3" title '$LEYENDA3' with points ls 3, "$FICHERO_DATOS4" title '$LEYENDA4' with points ls 4, "$FICHERO_DATOS5" title '$LEYENDA5' with points ls 5, "$FICHERO_DATOS6" title '$LEYENDA6' with points ls 6
+plot "$FICHERO_DATOS1" title '$LEYENDA1' with linepoints ls 1, "$FICHERO_DATOS2" title '$LEYENDA2' with linepoints ls 2, "$FICHERO_DATOS3" title '$LEYENDA3' with linepoints ls 3, "$FICHERO_DATOS4" title '$LEYENDA4' with linepoints ls 4, "$FICHERO_DATOS5" title '$LEYENDA5' with linepoints ls 5, "$FICHERO_DATOS6" title '$LEYENDA6' with linepoints ls 6
 FIN
