@@ -55,6 +55,9 @@ TEMPORAL4=temp4.txt
 ./sh/medirHanoi.sh 2
 ./sh/medirFibonacci.sh 2
 
+mv Datos DatosOpt
+mv Datos$1 Datos
+
 #------------- OBTENER TABLAS -------------#
 
 # Tabla para los algoritmos cuadráticos
@@ -192,5 +195,6 @@ rm $TEMPORAL2
 rm $TEMPORAL3
 rm $TEMPORAL4
 
-mv Datos DatosOpt$1
+mv DatosOpt DatosOpt$1
+mv Datos Datos$1
 mv Imagenes ImagenesOpt$1
