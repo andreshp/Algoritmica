@@ -326,6 +326,8 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 |13000|0.209278|0.34684|0.262103|1.26515|
 |25000|0.762199|1.28187|0.978268|4.59284|
 
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/insercion_comparacion.png}}$
+
 ## Comparación: algoritmos cúbicos
 
 | Nodos del grafo | Andrés | Antonio | Iván | Juan Luis |
@@ -333,6 +335,8 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 |32|0.000596|0.000961|0.000298|0.001617|
 |416|0.460287|0.825125|0.586223|3.57139|
 |800|3.25971|6.14008|4.15313|25.4081|
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/floyd_comparacion.png}}$
 
 ## Comparación: algoritmo de Fibonacci
 
@@ -342,6 +346,8 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 |27|0.002394|0.004638|0.003859|0.020256|
 |40|0.849934|1.21011|1.03951|4.43443|
 
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/fibonacci_comparacion.png}}$
+
 ## Comparación: algoritmo de las Torres de Hanoi
 
 | Número de discos | Andrés | Antonio | Iván | Juan Luis |
@@ -349,6 +355,8 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 |5|1e-06|1e-06|1e-06|4e-06|
 |17|0.002302|0.002542|0.00182|0.005348|
 |30|7.63996|9.44513|9.81995|32.7569|
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/hanoi_comparacion.png}}$
 
 ## Comparación: algoritmos n logn
 
@@ -359,6 +367,8 @@ El algoritmo que comparamos es el quicksort.
 |40000|0.006235|0.012287|0.007532|0.03168|
 |520000|0.082585|0.118127|0.103365|0.272054|
 |1000000|0.178312|0.229693|0.204994|0.583711|
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/quicksort_comparacion.png}}$
 
 ## Comentarios
 
