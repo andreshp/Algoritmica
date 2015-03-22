@@ -1,0 +1,160 @@
+
+
+ Iteration 0
+ WSSR        : 8.99383e+06       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 300550
+
+initial set of free parameter values
+
+a_f             = 0.002
+/
+
+ Iteration 1
+ WSSR        : 13305.6           delta(WSSR)/WSSR   : -674.941
+ delta(WSSR) : -8.98052e+06      limit for stopping : 1e-05
+ lambda	  : 30055
+
+resultant parameter values
+
+a_f             = 8.11018e-05
+/
+
+ Iteration 2
+ WSSR        : 1.16659           delta(WSSR)/WSSR   : -11404.6
+ delta(WSSR) : -13304.5          limit for stopping : 1e-05
+ lambda	  : 3005.5
+
+resultant parameter values
+
+a_f             = 4.37651e-06
+/
+
+ Iteration 3
+ WSSR        : 1.16447           delta(WSSR)/WSSR   : -0.0018266
+ delta(WSSR) : -0.00212701       limit for stopping : 1e-05
+ lambda	  : 300.55
+
+resultant parameter values
+
+a_f             = 4.34582e-06
+/
+
+ Iteration 4
+ WSSR        : 1.16447           delta(WSSR)/WSSR   : -2.93653e-14
+ delta(WSSR) : -3.41949e-14      limit for stopping : 1e-05
+ lambda	  : 30.055
+
+resultant parameter values
+
+a_f             = 4.34582e-06
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 1.16447
+rel. change during last iteration : -2.93653e-14
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.220271
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0485194
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a_f             = 4.34582e-06      +/- 1.466e-07    (3.373%)
+
+
+correlation matrix of the fit parameters:
+
+               a_f    
+a_f             1.000 
+
+
+ Iteration 0
+ WSSR        : 4.29014e+12       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.07127e+08
+
+initial set of free parameter values
+
+a_g             = 0.002
+/
+
+ Iteration 1
+ WSSR        : 6.34635e+09       delta(WSSR)/WSSR   : -675
+ delta(WSSR) : -4.28379e+12      limit for stopping : 1e-05
+ lambda	  : 2.07127e+07
+
+resultant parameter values
+
+a_g             = 7.69292e-05
+/
+
+ Iteration 2
+ WSSR        : 1014.61           delta(WSSR)/WSSR   : -6.25498e+06
+ delta(WSSR) : -6.34635e+09      limit for stopping : 1e-05
+ lambda	  : 2.07127e+06
+
+resultant parameter values
+
+a_g             = 3.71481e-08
+/
+
+ Iteration 3
+ WSSR        : 0.00253513        delta(WSSR)/WSSR   : -400218
+ delta(WSSR) : -1014.6           limit for stopping : 1e-05
+ lambda	  : 207127
+
+resultant parameter values
+
+a_g             = 6.39142e-09
+/
+
+ Iteration 4
+ WSSR        : 0.00253511        delta(WSSR)/WSSR   : -6.40348e-06
+ delta(WSSR) : -1.62335e-08      limit for stopping : 1e-05
+ lambda	  : 20712.7
+
+resultant parameter values
+
+a_g             = 6.3913e-09
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.00253511
+rel. change during last iteration : -6.40348e-06
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0102776
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00010563
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a_g             = 6.3913e-09       +/- 9.924e-12    (0.1553%)
+
+
+correlation matrix of the fit parameters:
+
+               a_g    
+a_g             1.000 
+
+
+ Iteration 0
+ WSSR        : inf               delta(WSSR)/WSSR   : -nan
+ delta(WSSR) : -nan              limit for stopping : 1e-05
+ lambda	  : inf
+
+initial set of free parameter values
+
+a_h             = 0.002
+*
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : inf
+rel. change during last iteration : -nan
+
+degrees of freedom    (FIT_NDF)                        : 24
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : inf
+variance of residuals (reduced chisquare) = WSSR/ndf   : inf
+
+         Calculation error: non-positive diagonal element in covar. matrix
+         line 0: error during fit
+
