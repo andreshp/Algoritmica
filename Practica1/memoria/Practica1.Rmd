@@ -339,6 +339,17 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/nlogn_ajuste
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/ordenacion_ajuste.png}}$
 
+## Probando otros ajustes
+
+Finalmente, vamos a probar a realizar otros ajustes sobre ciertos algoritmos, para ver la calidad de estos en comparación con el ajuste teórico, que es el que se ha establecido anteriormente. Por un lado, vamos a intentar ajustar el quicksort, representante de $O(n\log{n})$ con ajustes lineales, para observar qué influencia tiene la parte logarítmica del $n\log{n}$. Por otra parte, intentaremos realizar un ajuste polinomial de un algoritmo exponencial, como es el de Fibonacci.
+
+### Ajuste lineal del quicksort:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/comparacion_ajustes_nlogn.png}}$
+
+### Ajuste polinomial de un algoritmo exponencial (Fibonacci):
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/comparacion_ajustes_fibonacci.png}}$
 
 $\pagebreak$
 
