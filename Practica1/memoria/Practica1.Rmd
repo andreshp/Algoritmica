@@ -1,7 +1,7 @@
 ---
 title: 'Algorítmica: Práctica 1'
 author: "Andrés Herrera Poyatos, Antonio Rafael Moya Martín-Castaño, Iván Sevillano García, Juan Luis Suárez Díaz"
-date: "15/3/2015"
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
 output:
   pdf_document:
     highlight: zenburn
@@ -33,6 +33,8 @@ Se adjunta el directorio comprimido **Code** con todos los datos obtenidos. La i
   respectivamente.
 
 Cada ejercicio tiene su apartado en el pdf con su corresponiente enunciado y solución.
+
+<!--Los datos y gráficas tomados junto con toda la estructura jerárquica de la práctica pueden consultarse [aquí](https://github.com/andreshp/Algoritmica/tree/master/Practica1/Code).-->
 
 # Ejercicio 1: Cálculo de la eficiencia empírica
 
@@ -303,20 +305,90 @@ Por último y a modo de conclusión, podemos observar esta gráfica en la que qu
 
 En cuánto a lo que vemos en esta gráfica, podemos observar la gran diferencia entre los algoritmos quicksor, mergesort y heapsort y los cuadráticos. Podemos ver también que dentro de este conjunto de algoritmos, como hemos explicado anteriormente, el peor de todos es el de la burbuja.
 
-# Comparación de ejecuciones entre los componentes del grupo.
+$\pagebreak$
+
+# Ejercicio 3: Eficiencia híbrida.
+
+**Enunciado:**
+
+Calcule la eficiencia híbrida de los algoritmos. Pruebe también con otros ajustes que no se correspondan con la eficiencia teórica y compruebe la variación en la calidad del ajuste.
+
+***
+
+## Ajustes de los algoritmos de ordenación cuadráticos:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/cuadraticos_ajuste.png}}$
+
+## Ajuste del algoritmo de Floyd:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/cubicos_ajuste.png}}$
+
+## Ajuste del algoritmo de Fibonacci:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/fibonacci_ajuste.png}}$
+
+## Ajuste del algoritmo de las torres de Hanoi:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/hanoi_ajuste.png}}$
+
+## Ajuste de los algoritmos de ordenación $O(n\log{n})$
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/nlogn_ajuste.png}}$
+
+## Comparativa de ajustes de todos los algoritmos de ordenación
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/ordenacion_ajuste.png}}$
+
+
+$\pagebreak$
+
+# Ejercicio 4: estudio de la eficiencia empírica en función de parámetros externos.
+
+**Enunciado:**
+
+Otro aspecto interesante a analizar mediante este tipo de estudio es la variación de la eficiencia empírica en función de parámetros externos tales como: las opciones de compilación utilizadas, el ordenador donde se realizan las pruebas, el sistema operativo, etc. Sugiera algún estudio de este tipo, consulte con el profesor de prácticas y llévelo a acabo.
+
+***
+
+## Comparación de ejecuciones con y sin optimización
+
+A continuación se muestran las comparaciones de los algoritmos dados para distintos niveles de optimización: sin optimización, y con la optimización *O2* proporcionada por el compilador de *g++*.
+
+### Optimización de los algoritmos cuadráticos
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/cuadraticos_con_sin_opt.png}}$
+
+### Optimización del algoritmo de Floyd:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/cubicos_con_sin_opt.png}}$
+
+### Optimización del algoritmo de Fibonacci:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/fibonacci_con_sin_opt.png}}$
+
+### Optimización del algoritmo de las torres de Hanoi:
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/hanoi_con_sin_opt.png}}$
+
+### Optimización de los algoritmos de ordenación $O(n\log{n})$
+
+$\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/nlogn_con_sin_opt.png}}$
+
+
+## Comparación de ejecuciones entre los componentes del grupo.
 
 En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 ordenadores de los componentes del grupo, y veamos las diferencias. Para ello, dentro de cada apartado, vamos a realizar una tabla de tres filas, teniendo cada una los datos para cierto *n* fijado de antemano.
 
-## Características de los ordenadores
+### Características de los ordenadores
 
 Se proporcionan las características del ordenador de cada integrante del grupo.
 
 - **Andrés :** Toshiba - 8 GB de RAM - Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
 - **Iván :** HP - 4 GB de RAM - Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz
-- **Antonio :** Acer - 4 GB de RAM - Intel(R) Core(TM) i5 CPU M 450 @ 2.40GHz  
+- **Antonio :** Acer - 4 GB de RAM - Intel(R) Core(TM) i5 CPU M 450 @ 2.40GHz
 - **Juan Luis :** Olidata - 1 GB de RAM - Intel(R) Atom(TM) CPU N450 @ 1.66GHz 
 
-## Comparación: algoritmos cuadráticos
+### Comparación: algoritmos cuadráticos
 
 En el caso de los cuadráticos, cogemos el método de inserción. 
 
@@ -328,7 +400,7 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/insercion_comparacion.png}}$
 
-## Comparación: algoritmos cúbicos
+### Comparación: algoritmos cúbicos
 
 | Nodos del grafo | Andrés | Antonio | Iván | Juan Luis |
 |-----------------|--------|---------|------|--------|
@@ -338,7 +410,7 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/insercion_
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/floyd_comparacion.png}}$
 
-## Comparación: algoritmo de Fibonacci
+### Comparación: algoritmo de Fibonacci
 
 | Índice | Andrés | Antonio | Iván | Juan Luis |
 |--------|--------|---------|------|--------|
@@ -348,7 +420,7 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/floyd_comp
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/fibonacci_comparacion.png}}$
 
-## Comparación: algoritmo de las Torres de Hanoi
+### Comparación: algoritmo de las Torres de Hanoi
 
 | Número de discos | Andrés | Antonio | Iván | Juan Luis |
 |------------------|--------|---------|------|--------|
@@ -358,7 +430,7 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/fibonacci_
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/hanoi_comparacion.png}}$
 
-## Comparación: algoritmos n logn
+### Comparación: algoritmos n logn
 
 El algoritmo que comparamos es el quicksort.
 
@@ -370,6 +442,6 @@ El algoritmo que comparamos es el quicksort.
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/quicksort_comparacion.png}}$
 
-## Comentarios
+### Comentarios
 
-Tras ver los resultados de las distintas tablas, observamos que las prestaciones del ordenador de Andrés es mas rápido que los demás, y que la máquina utilizada por Juan Luis es muy lento, que era lo que se esperaba previamente al experimento. Aun así, pese a la mejora de las prestaciones del ordenador de Andres, es claro que si el algorítmo es cúbico o exponencial, el tiempo de espera puede ser eterno para un *n* lo suficientemente grande, como es el caso de las torres de hanoi. Igualmente, un algorítmo muy rápido como el quicksort al compararlo en varias máquinas vemos que tampoco difiere mucho en cuanto a tiempos y que es mucho más importante este hecho que las prestaciones.
+Tras ver los resultados de las distintas tablas, observamos que las prestaciones del ordenador de Andrés son superiores a los demás, y que la máquina utilizada por Juan Luis es muy lenta, que era lo que se esperaba previamente al experimento. Aun así, pese a la mejora de las prestaciones del ordenador de Andres, es claro que si el algorítmo es cúbico o exponencial, el tiempo de espera puede ser eterno para un *n* lo suficientemente grande, como es el caso de las torres de hanoi. Igualmente, un algorítmo muy rápido como el quicksort al compararlo en varias máquinas vemos que tampoco difiere mucho en cuanto a tiempos y que es mucho más importante este hecho que las prestaciones.
