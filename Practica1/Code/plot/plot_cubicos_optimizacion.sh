@@ -13,9 +13,9 @@ TITULO="Algoritmo de Floyd O(n^3)"
 XLABEL="Nodos del Grafo"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Floyd"
-LEYENDA1="Floyd Optimizado"
+LEYENDA2="Floyd Optimizado"
 FICHERO_DATOS1="./Datos/tiempo_floyd.dat"
-FICHERO_DATOS1="./DatosOpt/tiempo_floyd.dat"
+FICHERO_DATOS2="./DatosOpt/tiempo_floyd.dat"
 
 gnuplot<<FIN
 # Terminal para png:
@@ -24,7 +24,7 @@ set border linewidth 1.5
 
 # Estilo de línea y color:
 set style line 1 lc rgb "red" lt 1 lw 2 pt 7 pi 0 ps 0.5
-set style line 1 lc rgb "red" lt 2 lw 2 pt 7 pi 0 ps 0.5
+set style line 2 lc rgb "blue" lt 2 lw 2 pt 7 pi 0 ps 0.5
 set pointintervalbox 0
 
 # Nombre de la imagen resultante:
