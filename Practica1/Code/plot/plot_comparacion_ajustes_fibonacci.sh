@@ -13,6 +13,7 @@ OUTPUT=./ImagenesComparacion/comparacion_ajustes_fibonacci.png
 TITULO="Comparación de diferentes ajustes para fibonacci"
 XLABEL="Longitud del Vector"
 YLABEL="Tiempo (segundos)"
+LEYENDA="Datos de Fibonacci"
 LEYENDA1="n**2"
 LEYENDA2="n**3"
 LEYENDA3="((1+sqrt(5))/2)**n"
@@ -40,6 +41,7 @@ set border linewidth 1.5
 set style line 1 lc rgb "red" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set style line 2 lc rgb "blue" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set style line 3 lc rgb "green" lt 1 lw 2 pt 7 pi 0 ps 0.5
+set style line 4 lc rgb "brown" lt 1 lw 2 pt 7 pi 0 ps 0.5
 set pointintervalbox 0
 
 # Nombre de la imagen resultante:
@@ -52,5 +54,5 @@ set ylabel "$YLABEL"
 
 set autoscale
 
-plot "$FICHERO_DATOS" title '$LEYENDA1' with points ls 1, "$FICHERO_DATOS" title '$LEYENDA2' with points ls 2, "$FICHERO_DATOS" title '$LEYENDA3' with points ls 3, f(x) title sprintf('f(x) = %.10f*x**2', a_f) ls 1, g(x) title sprintf('g(x) = %.10f*x**3', a_g) ls 2, h(x) title sprintf('h(x) = %.10f*(((1+sqrt(5))/2**x)', a_h) ls 3
+plot "$FICHERO_DATOS" title '$LEYENDA' with points ls 4, f(x) title sprintf('f(x) = %.10f*x**2', a_f) ls 1, g(x) title sprintf('g(x) = %.10f*x**3', a_g) ls 2, h(x) title sprintf('h(x) = %.10f*(((1+sqrt(5))/2**x)', a_h) ls 3
 FIN

@@ -7,7 +7,7 @@
 #################################################
 
 # Script de bash para crear las imagenes entre comparaciones 
-mkdir ./ImagenesComparacion
+mkdir -p ./ImagenesComparacion
 
 chmod a+x ./plot/compararFibonacci.sh
 chmod a+x ./plot/compararFloyd.sh
