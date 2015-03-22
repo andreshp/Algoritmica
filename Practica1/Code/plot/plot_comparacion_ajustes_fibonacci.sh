@@ -32,6 +32,11 @@ h(x) = a_h*((1+sqrt(5))/2)**x
 a_h = 0.002
 fit h(x) "$FICHERO_DATOS" via a_h
 
+title_2(a) = sprintf('f(x) = %.10fx^2', a)
+title_3(a) = sprintf('g(x) = %.10fx^3', a)
+title_e(a) = sprintf('h(x) = %.10f * 1.618^x', a)
+
+
 
 # Terminal para png:
 set terminal pngcairo enhanced font 'Verdana,10'
@@ -54,5 +59,5 @@ set ylabel "$YLABEL"
 
 set autoscale
 
-plot "$FICHERO_DATOS" title '$LEYENDA' with points ls 4, f(x) title sprintf('f(x) = %.10f*x**2', a_f) ls 1, g(x) title sprintf('g(x) = %.10f*x**3', a_g) ls 2, h(x) title sprintf('h(x) = %.10f*(((1+sqrt(5))/2**x)', a_h) ls 3
+plot "$FICHERO_DATOS" title '$LEYENDA' with points ls 4, f(x) title title_2(a_f) ls 1, g(x) title title_3(a_g)  ls 2, h(x) title title_e(a_h)  ls 3
 FIN
