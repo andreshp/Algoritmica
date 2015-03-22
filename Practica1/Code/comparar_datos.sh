@@ -9,14 +9,18 @@
 # Script de bash para crear las imagenes entre comparaciones 
 mkdir ./ImagenesComparacion
 
-chmod a+x ./sh/compararFibonacci.sh
-chmod a+x ./sh/compararFloyd.sh
-chmod a+x ./sh/compararInsercion.sh
-chmod a+x ./sh/compararQuicksort.sh
-chmod a+x ./sh/compararHanoi.sh
+chmod a+x ./plot/compararFibonacci.sh
+chmod a+x ./plot/compararFloyd.sh
+chmod a+x ./plot/compararInsercion.sh
+chmod a+x ./plot/compararQuicksort.sh
+chmod a+x ./plot/compararHanoi.sh
+chmod a+x ./plot/plot_comparacion_ajustes_nlogn.sh
+chmod a+x ./plot/plot_comparacion_ajustes_fibonacci.sh
 
-./sh/compararFibonacci.sh
-./sh/compararFloyd.sh
-./sh/compararInsercion.sh
-./sh/compararQuicksort.sh
-./sh/compararHanoi.sh
+./plot/compararFibonacci.sh
+./plot/compararFloyd.sh
+./plot/compararInsercion.sh
+./plot/compararQuicksort.sh
+./plot/compararHanoi.sh
+./plot/plot_comparacion_ajustes_nlogn.sh
+./plot/plot_comparacion_ajustes_fibonacci.sh
