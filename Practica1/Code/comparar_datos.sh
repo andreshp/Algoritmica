@@ -16,11 +16,17 @@ chmod a+x ./plot/compararQuicksort.sh
 chmod a+x ./plot/compararHanoi.sh
 chmod a+x ./plot/plot_comparacion_ajustes_nlogn.sh
 chmod a+x ./plot/plot_comparacion_ajustes_fibonacci.sh
+chmod a+x ./plot/plot_comparacion_ajustes_cuadraticos.sh
+chmod a+x ./plot/plot_comparacion_ajustes_cubicos.sh
 
-./plot/compararFibonacci.sh
-./plot/compararFloyd.sh
-./plot/compararInsercion.sh
-./plot/compararQuicksort.sh
-./plot/compararHanoi.sh
-./plot/plot_comparacion_ajustes_nlogn.sh
-./plot/plot_comparacion_ajustes_fibonacci.sh
+./plot/compararFibonacci.sh 2> salida
+./plot/compararFloyd.sh 2> salida
+./plot/compararInsercion.sh 2> salida
+./plot/compararQuicksort.sh 2> salida
+./plot/compararHanoi.sh 2> salida
+./plot/plot_comparacion_ajustes_nlogn.sh 2> salida
+./plot/plot_comparacion_ajustes_fibonacci.sh 2> salida
+./plot/plot_comparacion_ajustes_cubicos.sh 2> salida
+./plot/plot_comparacion_ajustes_cuadraticos.sh 2> salida
+
+rm salida
