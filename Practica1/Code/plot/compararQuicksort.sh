@@ -10,10 +10,10 @@
 # Script de bash para crear una imagen .png con GNU-PLOT
 OUTPUT=./ImagenesComparacion/quicksort_comparacion.png
 
-FICHERO_DATOS1="./DatosAndres/tiempo_quicksort.dat"
-FICHERO_DATOS2="./DatosIvan/tiempo_quicksort.dat"
-FICHERO_DATOS3="./DatosAntonioMoya/tiempo_quicksort.dat"
-FICHERO_DATOS4="./DatosJuanLuis/tiempo_quicksort.dat"
+FICHERO_DATOS1="./DatosAndres/tiempo_quicksort_1.dat"
+FICHERO_DATOS2="./DatosIvan/tiempo_quicksort_1.dat"
+FICHERO_DATOS3="./DatosAntonioMoya/tiempo_quicksort_1.dat"
+FICHERO_DATOS4="./DatosJuanLuis/tiempo_quicksort_1.dat"
 
 TITULO="Comparación de quicksort entre computadores"
 
