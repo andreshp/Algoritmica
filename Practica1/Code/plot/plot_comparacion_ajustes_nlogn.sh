@@ -17,7 +17,7 @@ LEYENDA="Datos del Quicksort"
 LEYENDA1="nlogn"
 LEYENDA2="n"
 LEYENDA3="nlogn + n"
-FICHERO_DATOS="./DatosAndres/tiempo_quicksort.dat"
+FICHERO_DATOS="./DatosAndres/tiempo_quicksort_1.dat"
 
 
 gnuplot<<FIN
