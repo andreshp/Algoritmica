@@ -1,7 +1,7 @@
 ---
 title: 'Algorítmica: Práctica 1'
 author: "Andrés Herrera Poyatos, Antonio Rafael Moya Martín-Castaño, Iván Sevillano García, Juan Luis Suárez Díaz"
-date: "`r format(Sys.time(), '%d de %B de %Y')`"
+date: "23 de marzo de 2015"
 output:
   pdf_document:
     highlight: zenburn
@@ -452,8 +452,6 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 |25000|0.762199|1.28187|0.978268|4.59284|
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/insercion_comparacion.png}}$
-
-Como podemos observar, los ordenadores de Andrés, Iván y Antonio tienen diferencias de tiempo más o menos razonables, siendo el de Andrés el más rápido mientras que la diferencia con el ordenador de Juanlu es bastante notoria, siendo este último el más lento.
 
 ### Comparación: algoritmos cúbicos
 
