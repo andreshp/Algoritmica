@@ -301,9 +301,9 @@ Mergesort y heapsort operan con similar velocidad. Sin embargo, es preferible el
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesAndres/ordenacion.png}}$
 
-Por último y a modo de conclusión, podemos observar esta gráfica en la que quedan comparados los algoritmos cuadráticos y los de orden $n \log(n)$. No se compara con el resto de algoritmo por la abismal diferencia existente, hecho mostrado anteriormente. Esta diferencia es aún mayor en el caso de los exponenciales que son inviables en la práctica. 
+Por último y a modo de conclusión, podemos observar esta gráfica en la que quedan comparados los algoritmos cuadráticos y los de orden $n \log(n)$. No se compara con el resto de algoritmos por la abismal diferencia existente, hecho mostrado anteriormente. Esta diferencia es aún mayor en el caso de los exponenciales que son inviables en la práctica. 
 
-En cuánto a lo que vemos en esta gráfica, podemos observar la gran diferencia entre los algoritmos quicksor, mergesort y heapsort y los cuadráticos. Podemos ver también que dentro de este conjunto de algoritmos, como hemos explicado anteriormente, el peor de todos es el de la burbuja.
+En cuanto a lo que vemos en esta gráfica, podemos observar la gran diferencia entre los algoritmos quicksort, mergesort y heapsort y los cuadráticos. Podemos ver también que dentro de este conjunto de algoritmos, como hemos explicado anteriormente, el peor de todos es el de la burbuja.
 
 $\pagebreak$
 
@@ -319,7 +319,7 @@ Calcule la eficiencia híbrida de los algoritmos. Pruebe también con otros ajus
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/cuadraticos_ajuste.png}}$
 
-En esta gráfica podemos observar la parábola a la que se ajusta el comportamiento de cada uno de los algoritmos de ordenación cuadráticos. La constante oculta ($a_0$) es casi el triple en  para el algoritmo de la burbuja con respecto al de selección y  al de inserción. También podemos ver que el algoritmo de selección y de inserción tienen un comportamiento muy similar en el ajuste, variando la constante oculta en un 8.33 %.
+En esta gráfica podemos observar la parábola a la que se ajusta el comportamiento de cada uno de los algoritmos de ordenación cuadráticos. La constante oculta (el término que acompaña a los coeficientes líder) es casi el triple en  para el algoritmo de la burbuja con respecto al de selección y  al de inserción. También podemos ver que el algoritmo de selección y de inserción tienen un comportamiento muy similar en el ajuste, variando la constante oculta en un 8.33 %.
 
 Con todo esto, lo que queda en evidencia es que, como ya presagiamos en los ejercicios 1 y 2, el algoritmo de la burbuja es el más lento de los 3. La explicación, ya dada en el ejercicio anterior pero que nunca viene mal recordar, es que el número de intercambios es mucho mayor en el caso del algoritmo de burbuja que en el de selección a pesar de que realizan el mismo número de comparaciones. En el caso del algoritmo de inserción, en media realiza la mitad de comparaciones que los otros dos pero también $\frac{n(n-1)}{4}$ asignaciones. Un total de $\frac{n(n-1)}{2}$ operaciones en media ganando $n$ intercambios que sí realiza el algoritmo de selección. Si hacemos proporciones esto explica los coeficientes obtenidos de forma empírica.
 
@@ -333,13 +333,13 @@ En este caso, podemos ver de nuevo que el comportamiento del algoritmo se ajusta
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/fibonacci_ajuste.png}}$
 
-En este caso, podemos ver de nuevo que el comportamiento del algoritmo se ajusta bastante bien con el de esta función. Hemos visto que tanto en casos cuadráticos, cúbicos como exponenciales, el ajuste realizado es de gran calidad, cosa que no ocurre exactamente con los $n \log n$ como veremos más adelante. Esto se produce ya que las llamadas al Sistema Operativo propocan poca varianza en relación con el trabajo realizado. Además, existen otros condicionantes, en el caso de los $n \log n$ que se explicarán en el apartado de ajuste de éstos útlimos, que necesitarán un $n$ muy grande para conseguir unos datos decentes.
+En este caso, podemos ver de nuevo que el comportamiento del algoritmo se ajusta bastante bien con el de esta función. Hemos visto que tanto en casos cuadráticos, cúbicos como exponenciales, el ajuste realizado es de gran calidad, cosa que no ocurre exactamente con los $n \log n$ como veremos más adelante. Esto se produce debido a que las llamadas al Sistema Operativo propocan poca varianza en relación con el trabajo realizado. Además, existen otros condicionantes, en el caso de los $n \log n$ que se explicarán en el apartado de ajuste de éstos últimos, que necesitarán un $n$ muy grande para conseguir unos datos decentes.
 
 ## Ajuste del algoritmo de las torres de Hanoi
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/hanoi_ajuste.png}}$
 
-En este caso, de nuevo, podemos ver que este algoritmos se ajusta bastante bien a la función que se observa en la gráfica. En este apartado, cabe destacar que se ve claramente, que pese a ser el algoritmo de las torres de Hanoi y el de Fibonacci ambos exponenciales, se ve que el de Fibonacci es más rápido que el de las torres de Hanoi tanto en base ($1.6 vs 2$) como en coeficientes. Nótese que $1.6^n$ es $O(2^n)$ pero el recíproco no es cierto, razón por la cual se producen estas notables diferencias. 
+En este caso, de nuevo, podemos ver que el algoritmo se ajusta bastante bien a la función que se observa en la gráfica. En este apartado, cabe destacar que se ve claramente que, pese a ser el algoritmo de las torres de Hanoi y el de Fibonacci ambos exponenciales, el de Fibonacci es más rápido que el de las torres de Hanoi (1.6 vs 2). Otro detalle que merece la pena destacar, tanto para este algoritmo como el de Fibonacci, ambos exponenciales, es que a pesar del pequeño tamaño de la constante oculta obtenida (en torno a $3*10^{-9}$), los tiempos se disparan enseguida, quedando los algoritmos inoperables con tamaños relativamente pequeños, como la media centena. Esto nos pone de manifiesto, además, que aunque hubiésemos usado una máquina mucho más potente, por mucho que logremos disminuir la constante oculta, la naturaleza exponencial del algoritmo va a terminar por disparar el tiempo para tamaños no demasiado grandes. 
 
 ## Ajuste de los algoritmos de ordenación $O(n\log{n})$
 
@@ -347,9 +347,9 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/nlogn_ajuste
 
 Para comenzar, comentar que se ve de nuevo, al igual que comentamos anteriormente, que el mergesort y el heapsort son bastante similares, mientras que el quicksort es el más rápido de los tres. Ésto, como ya explicamos antes en el ejercicio 2, se debe pricipalmente a las reservas de memoria extra que se realizan en el mergesort y menor número de operaciones en media del quicksort. Decíamos en su momento que el heapsort tardaba casi el doble que el quicksort pues también tenía que crear el heap previamente. Ahora, podemos comprobarlo de forma empírica, siendo su constante oculta un $54.17 \%$ mayor. Por tanto, todo lo explicado queda de manifiesto al observar el ajuste de cada una de estas gráficas, probando que la teoría funciona en la práctica.
 
-Por otra parte, es necesario comentar a que se debe que el ajuste sea menos preciso que en casos anteriores y que, además, sea distinto para los 3 casos. 
+Por otra parte, es necesario comentar a qué se debe que el ajuste sea menos preciso que en casos anteriores y que, además, sea distinto para los 3 casos. 
 Por un lado, como ya explicamos anteriormente, el hecho de que se tarde menos tiempo en realizar estos algoritmos hace que existan ciertas variaciones en las medidas. 
-Por otro lado, podemos ver que el ajuste en el caso del mergesort es peor que en el caso del resto. Ésto se debe a las variaciones que hay en la medida, debido a que, en función del tamaño del vector, se realizan unas particiones distintas. Podemos observar también que el ajuste es algo mejor en el heapsort que en el quicksort, y ésto se puede deber a la aleatoriedad de éste último.
+Por otro lado, podemos ver que el ajuste en el caso del mergesort es peor que en el caso del resto. Ésto último se debe a las variaciones que hay en la medida, ya que, en función del tamaño del vector, se realizan unas particiones distintas. Podemos observar también que el ajuste es algo mejor en el heapsort que en el quicksort, y ésto se puede deber a la aleatoriedad de éste último.
 
 ## Comparativa de ajustes de todos los algoritmos de ordenación
 
@@ -365,13 +365,13 @@ Finalmente, vamos a probar a realizar otros ajustes sobre ciertos algoritmos, pa
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/comparacion_ajustes_nlogn.png}}$
 
-En esta comparativa, podemos observar que el algoritmo quicksort, en la práctica se ajusta a una función lineal con una alta constante. Al final asintóticamente el $n \log{n}$ es más alto, razón por la cual termina teniendo bastante más valor, pero para datos prácticos se ajusta incluso mejorcon la función lineal. Concluimos que en la práctica los logaritmos se pueden incluso despreciar, dando un valor añadido a los algoritmos de este estilo.
+En esta comparativa, podemos observar que el algoritmo quicksort, en la práctica se ajusta a una función lineal con una alta constante. Al final asintóticamente el $n \log{n}$ es más alto, razón por la cual termina teniendo bastante más valor, pero para datos prácticos se ajusta incluso mejor con la función lineal. Concluimos que en la práctica los logaritmos se pueden incluso despreciar, dando un valor añadido a los algoritmos de este estilo.
 
 ### Ajuste polinomial de un algoritmo exponencial (Fibonacci)
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/comparacion_ajustes_fibonacci.png}}$
 
-En este caso, podemos observar que hasta una longitud de algo más de 35 elementos, el comportamiento es mejor para el ajuste exponencial que para los ajustes cuadráticos y cúbicos, pero a partir de ahí se adapta mucho mejor al crecimiento que los anteriores, que no sirven para ste cometido. De esta forma queda de manifiesto que su comportamiento no se ajusta al de las funciones polinómicas. Por esta razón intentamos rehuir los algoritmos exponenciales.
+En este caso, podemos observar que hasta una longitud de algo más de 35 elementos, el comportamiento es mejor para el ajuste exponencial que para los ajustes cuadráticos y cúbicos, pero a partir de ahí se adapta mucho mejor al crecimiento que los anteriores, que no sirven para este cometido. De esta forma queda de manifiesto que su comportamiento no se ajusta al de las funciones polinómicas. De esta forma queda de manifiesto que su comportamiento no se ajusta al de éstas funciones polinómicas. También se aprecia bastante bien que en el momento en que la función exponencial decide crecer, no vamos a poder encontrar un polinomio que pueda mantener el ritmo de crecimiento de la exponencial asintóticamente. Lo hemos representado para grados 2 y 3, pero por mucho que hagamos crecer este grado, siempre encontraremos un momento en el que la gráfica exponencial decide arrasar, en términos de crecimiento, con la gráfica polinómica. Por esta razón intentamos rehuir los algoritmos exponenciales.
 
 $\pagebreak$
 
@@ -403,19 +403,19 @@ A pesar de las mejoras del tiempo la gráfica deja en evidencia que el algoritmo
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/cubicos_con_sin_opt.png}}$
 
-En este caso, podemos ver como la optimización reduce mucho el tiempo de ejcución. Comparando para un cierto tamaño, podemos ver como para un tamaño de 800 nodos del grafo, sin optimización se requieren más de tres segundos mientras que, con optimización, se requiere menos de un segundo. Esto se produce porque el algoritmo consiste en un triple bucle sobre una matriz. Al ser tan sencillo se pueden conseguir grandes mejoras a nivel de ensamblador. A pesar de todo, el algoritmo sigue siendo de orden cúbico.
+En este caso, podemos ver cómo la optimización reduce mucho el tiempo de ejcución. Comparando para un cierto tamaño, podemos ver cómo para un tamaño de 800 nodos del grafo, sin optimización se requieren más de tres segundos mientras que, con optimización, se requiere menos de un segundo. Esto se produce porque el algoritmo consiste en un triple bucle sobre una matriz. Al ser tan sencillo se pueden conseguir grandes mejoras a nivel de ensamblador. A pesar de todo, el algoritmo sigue siendo de orden cúbico.
 
 ### Optimización del algoritmo de Fibonacci
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/fibonacci_con_sin_opt.png}}$
 
-En el algoritmo de Fibonacci, a la "larga" (entre comillas, pues como ya vimos, al tratarse de un algoritmo de orden exponencial no se pueden calculas elementos muy elevados de la sucesión, pues de lo contrario el tiempo sería muy exagerado), la optimización también mejora bastante el algoritmo, pasando de necesitar más de 0.8 segundos para calcular el elemento 40, a necesitar menos de 0.6. Sin embargo, cabe destacar que el algoritmo sigue siendo exponencial, simplemente se consigue una leve mejora de las constantes ocultas. Nótese que la mejora en este caso es mucho menor que en los anteriores. Esto prueba que lo que verdad importa es la eficiencia del algoritmo y no las optimizaciones realizadas al código. 
+En el algoritmo de Fibonacci, a la "larga" (entre comillas, pues como ya vimos, al tratarse de un algoritmo de orden exponencial no se pueden calcular elementos muy elevados de la sucesión, pues de lo contrario el tiempo sería inabordable), la optimización también mejora bastante el algoritmo, pasando de necesitar más de 0.8 segundos para calcular el elemento 40, a necesitar menos de 0.6. Sin embargo, cabe destacar que el algoritmo sigue siendo exponencial; simplemente se consigue una leve mejora de las constantes ocultas. Nótese que la mejora en este caso es mucho menor que en los anteriores. Esto prueba que lo que verdad importa es la eficiencia del algoritmo y no las optimizaciones realizadas al código. 
 
 ### Optimización del algoritmo de las torres de Hanoi
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/hanoi_con_sin_opt.png}}$
 
-Al igual que en el caso anterior, el algoritmo de las torres de Hanoi, solo nota la optimización a partir de un determinado valor (en este caso, la diferencia empieza a notarse a partir de 25 discos), de tal forma que el tiempo también se mejora bastante. Un claro ejemplo es que para 30 discos, sin optimizar se necesitaron más de 7 segundos, mientras que con optimización se han necesitado menos de 5. También, como ocurría antes, la optimización supone una mejora, pero el orden del algoritmo sigue siendo exponencial y marcando su comportamiento. No importa que el algoritmo sea el doble de rápido si de todas formas para $n=100$ es incalculable.
+Al igual que en el caso anterior, el algoritmo de las torres de Hanoi solo nota la optimización a partir de un determinado valor (en este caso, la diferencia empieza a notarse a partir de 25 discos), de tal forma que el tiempo también se mejora bastante. Un claro ejemplo es que para 30 discos, sin optimizar se necesitaron más de 7 segundos, mientras que con optimización se han necesitado menos de 5. También, como ocurría antes, la optimización supone una mejora, pero el orden del algoritmo sigue siendo exponencial y marcando su comportamiento. No importa que el algoritmo sea el doble de rápido si de todas formas para $n=100$ es incalculable. Como se ha comentado varias veces, una mejora en las constantes ocultas apenas puede frenar el despegue de la exponencial durante un número muy escaso de discos añadidos, haciéndolo igualmente inabordable para tamaños grandes.
 
 
 ### Optimización de los algoritmos de ordenación $O(n\log{n})$
@@ -424,8 +424,8 @@ $\centerline{\includegraphics[height=7cm]{../Code/ImagenesOptAndres/nlogn_con_si
 
 En este último caso (recordemos que hablamos para el caso de las ejecuciones en el ordenador de Andrés, que en otro ordenador por los factores nombrados anteriormente, los resultados podrían ser distintos), y a diferencia de lo que ocurría anteriormente en el caso de los algoritmos cuadráticos, los tres algoritmos optimizados son más rápidos que el mejor de ellos sin optimizar (quicksort). 
 
-También, podemos ver como el comportamiento sigue siendo similar al comparar las tres funciones: mergesort y heapsort muy similares mientras que el quicksort algo más rápido. Los motivos siguen siendo los mismos que los explicados anteriormente.
-Por último, destacar, como en los casos anteriores, que pesa a la mejor de las constantes ocultas a casi la mitad, el comportamiento asintótico sigue siendo de $n \log{n}$ en los tres casos.
+También, podemos ver cómo el comportamiento sigue siendo similar al comparar las tres funciones: mergesort y heapsort muy similares mientras que el quicksort algo más rápido. Los motivos siguen siendo los mismos que los explicados anteriormente.
+Por último, destacar, como en los casos anteriores, que pese a la mejora de las constantes ocultas a casi la mitad, el comportamiento asintótico sigue siendo de $n \log{n}$ en los tres casos.
 
 ### Conclusión acerca de la optimización
 
@@ -433,7 +433,7 @@ Como conclusión se puede sacar el hecho de que la optimización supone una mejo
 
 ## Comparación de ejecuciones entre los componentes del grupo.
 
-En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 ordenadores de los componentes del grupo, y veamos las diferencias. Para ello, dentro de cada apartado, vamos a realizar una tabla de tres filas, teniendo cada una los datos para cierto *n* fijado de antemano.
+En ésta última sección, vamos a comparar las ejecuciones realizadas en los 4 ordenadores de los componentes del grupo, y veremos las diferencias. Para ello, dentro de cada apartado, vamos a realizar una tabla de tres filas, teniendo cada una los datos para cierto $n$ fijado de antemano.
 
 ### Características de los ordenadores
 
@@ -458,7 +458,7 @@ En el caso de los cuadráticos, cogemos el método de inserción.
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/insercion_comparacion.png}}$
 
-Como podemos observar, los ordenadores de Andrés, Iván y Antonio tienen diferencias de tiempo más o menos razonables, siendo el de Andrés el más rápido mientras que la diferencia con el ordenador de Juanlu es bastante notoria, siendo este último el más lento.
+Como podemos observar, los ordenadores de Andrés, Iván y Antonio tienen diferencias de tiempo más o menos razonables, siendo el de Andrés el más rápido mientras que la diferencia con el ordenador de Juan Luis es bastante notoria, siendo este último el más lento.
 
 ### Comparación: algoritmos cúbicos
 
@@ -482,7 +482,7 @@ Las conclusiones son similares a las obtenidas en el apartado anterior, reafirma
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/fibonacci_comparacion.png}}$
 
-Las pocas prestaciones del ordenador de Juanlu también afectan a los algoritmos exponenciales. Sin embargo, esto no es muy importante pues de todas formas el algoritmo no es viable ni en un computador de altas prestaciones.
+Las pocas prestaciones del ordenador de Juan Luis también afectan a los algoritmos exponenciales. Sin embargo, esto no es muy importante pues de todas formas el algoritmo no es viable ni en un computador de altas prestaciones. Como ya se ha dicho ya varias veces, cuando tratamos con algoritmos exponenciales, una mejora en los ordenadores solo puede retrasar el despegue de la curva para un escaso aumento del tamaño del input. Todos terminan por dispararse bastante pronto, por lo que ningún ordenador resulta útil para la ejecución del algoritmo con tamaños grandes.
 
 ### Comparación: algoritmo de las Torres de Hanoi
 
@@ -508,7 +508,7 @@ El algoritmo que comparamos es el quicksort.
 
 $\centerline{\includegraphics[height=7cm]{../Code/ImagenesComparacion/quicksort_comparacion.png}}$
 
-En este caso el ordenador de Juanlu es incluso peor ya que debe mantener en memoria un vector con más componentes (hasta $1000000$), no teniendo espacio para ello. Cuando un algoritmo requiere más recursos en forma de memoria, pila, etc, se nota en aquellos ordenadores que no pueden proporcionárselos.
+En este caso el ordenador de Juan Luis es incluso peor ya que debe mantener en memoria un vector con más componentes (hasta $1000000$), no teniendo espacio para ello. Cuando un algoritmo requiere más recursos en forma de memoria, pila, etc, se nota en aquellos ordenadores que no pueden proporcionárselos.
 
 ### Comentarios
 
