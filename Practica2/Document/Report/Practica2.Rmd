@@ -1,0 +1,19 @@
+---
+title: "Problema 2"
+author: "A. Herrera, A. Moya, I. Sevillano, J.L. Suarez"
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+output:
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+---
+
+# Problema 6
+
+# Opcional: Problema 2
+
+## Enunciado del problema
+
+Muchos sitios web intentan comparar las preferencias de dos usuarios para realizar sugerencias a partir de las preferencias de usuarios con gustos similares a los nuestros. Dado un ranking de $n$ productos (p.ej. películas) mediante el cual los usuarios indicamos nuestras preferencias, un algoritmo puede medir la similitud de nuestras preferencias contando el número de inversiones: dos productos i y j están "invertidos"" en las preferencias de A y B si el usuario A prefiere el producto i antes que el j, mientras que el usuario B prefiere el producto j antes que el i. Esto es, cuantas menos inversiones existan entre dos rankings, más similares serán las preferencias de los usuarios representados por esos rankings.
+
+Por simplicidad podemos suponer que los productos se pueden identificar mediante enteros $1, \ldots, n$, y que uno de los rankings siempre es $1, \ldots, n$ (si no fuese así bastaría reenumerarlos) y el otro es $a_1, a_2, \ldots, a_n$, de forma que dos productos $i$ y $j$ están invertidos si $i < j$ pero $a_i > a_j$. De esta forma nuestra representación del problema será un vector de enteros $v$ de tamaño $n$, de forma que $v[i] = ai, \forall i =1, \ldots, n$. El objetivo es diseñar, analizar la eficiencia e implementar un algoritmo "divide y vencerás" para medir la similitud entre dos rankings. Compararlo con el algoritmo de "fuerza bruta" obvio. Realizar también un estudio empírico e híbrido de la eficiencia de ambos algoritmos.
