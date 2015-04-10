@@ -197,7 +197,7 @@ Por simplicidad podemos suponer que los productos se pueden identificar mediante
 
 Como se ha ido indicando en el enunciado del problema, podemos abstraernos en el problema propuesto para reducirlo a un problema equivalente, que es el de contar inversiones en un vector. Decimos que hay una inversión en un vector $v$, si para un par de indices $i, j$ del vector verificando $i < j$, se tiene que $v[i] > v[j]$.
 
-Se puede pensar fácilmente en una forma sencilla de resolver este problema "a la fuerza bruta", sin más que recorrer todas las posibles parejas ${(i,j): i < j} e incrementar el número de inversiones cada vez que se nos presente la condición $v[i] > v[j]$. Analizaremos esta versión junto con otras basadas en ciertos algoritmos de ordenación, que nos permiten aprovechar las mismas iteraciones del algoritmo para incrementar las inversiones sin un exceso computacional apreciable. Finalmente, concluiremos de esta forma con un algoritmo divide y vencerás basado en el algoritmo mergesort.
+Se puede pensar fácilmente en una forma sencilla de resolver este problema "a la fuerza bruta", sin más que recorrer todas las posibles parejas ${(i,j): i < j}$ e incrementar el número de inversiones cada vez que se nos presente la condición $v[i] > v[j]$. Analizaremos esta versión junto con otras basadas en ciertos algoritmos de ordenación, que nos permiten aprovechar las mismas iteraciones del algoritmo para incrementar las inversiones sin un exceso computacional apreciable. Finalmente, concluiremos de esta forma con un algoritmo divide y vencerás basado en el algoritmo mergesort.
 
 ### Solución trivial
 
@@ -299,7 +299,7 @@ $$ T(n) = 2T(\frac{n}{2}) + n $$
 
 Tenemos una ecuación en diferencias, que tras el cambio de variable $n = 2^k$ podemos resolver con facilidad:
 
-$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iif T(2^k) = 2^k + k*2^k \iif T(n) = n + n\log{n} \in O(n\log{n}) $$
+$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iif T(2^k) = 2^k + k*2^k \iif T(n) = an + bn\log{n} \in O(n\log{n}) $$
 
 De esta forma, gracias a la estrategia divide y vencerás hemos conseguido mejorar el orden de eficiencia cuadrático de la solución más inmediata a este problema hasta un orden $n \log{n}$, lo cual es un gran avance respecto al coste computacional.
 
