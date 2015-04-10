@@ -37,7 +37,6 @@ int p=1+(int)((n-2)*u);
 T[p]=n-1;
 for (int i=0; i<p; i++) T[i]=i;
 for (int i=p+1; i<n; i++) T[i]=n-1-i+p;
-
 for (int j=0; j<n; j++) {cout << T[j] << " ";}
 
 } 
