@@ -5,7 +5,7 @@
 #include <fstream>
 
 using namespace std;
-
+    
 #define PRINT_P   //Descomentar para obtener la posicion p.
 #define PRINT_TIME  //Descomentar para el tiempo gastado
 #define PRINT_TEXT  //Descomentar para obtener la linea que imprime resultados

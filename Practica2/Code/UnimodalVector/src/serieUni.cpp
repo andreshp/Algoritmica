@@ -1,4 +1,8 @@
-/////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+// Author: A.Herrera, A. Moya, I. Sevillano, J.L. Suárez
+// Date: 10, April, 2015
+// Algoritmica - Práctica 2 - Divide y Vencerás - Problema 6 - Algoritmo recursivo
+//////////////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
 #include <stdlib.h>
@@ -18,23 +22,15 @@ y simplemente comprobamos, teniendo tres casos:
 1) El numero del vector en esa posicion es mayor que en la posicion anterior, pero menor que la siguiente: nuestro p esta a la derecha
 2) El numero del vector en esa posicion es menor que la posicion anterior y mayor que la siguiente: nuestro p esta a la izquierda
 3) El numero del vector en esa posicion es mayor que la posicion anterior y tambien mayor que la siguiente: ese es el p que buscamos*/
-
-
-
 int unimodalDivide(int *v, int start, int end){
     bool found = false;
     int middle = (end+start)/2;
     if (middle > start){
         if(v[middle-1] < v[middle] && v[middle] < v[middle+1])
-           unimodalDivide(v, middle, end);
-    
+           return unimodalDivide(v, middle, end);
         else if(v[middle-1] > v[middle] && v[middle] > v[middle+1])
-           unimodalDivide(v, start, middle);
-    
+           return unimodalDivide(v, start, middle);    
         else if(v[middle-1]<v[middle] && v[middle] > v[middle-1])
-            found = true;
-    
-        if(found)
             return middle;
     }
     else{
