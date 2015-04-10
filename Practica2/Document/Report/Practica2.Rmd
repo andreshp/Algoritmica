@@ -193,7 +193,114 @@ Por simplicidad podemos suponer que los productos se pueden identificar mediante
 
 ***
 
-~cpp
+## Resolución teórica del problema
+
+Como se ha ido indicando en el enunciado del problema, podemos abstraernos en el problema propuesto para reducirlo a un problema equivalente, que es el de contar inversiones en un vector. Decimos que hay una inversión en un vector $v$, si para un par de indices $i, j$ del vector verificando $i < j$, se tiene que $v[i] > v[j]$.
+
+Se puede pensar fácilmente en una forma sencilla de resolver este problema "a la fuerza bruta", sin más que recorrer todas las posibles parejas ${(i,j): i < j} e incrementar el número de inversiones cada vez que se nos presente la condición $v[i] > v[j]$. Analizaremos esta versión junto con otras basadas en ciertos algoritmos de ordenación, que nos permiten aprovechar las mismas iteraciones del algoritmo para incrementar las inversiones sin un exceso computacional apreciable. Finalmente, concluiremos de esta forma con un algoritmo divide y vencerás basado en el algoritmo mergesort.
+
+### Solución trivial
+
+Ya hemos mencionado en el apartado anterior la idea para resolver trivialmente nuestro problema. Dado un vector $v$ de $n$ elementos con índices $0,...,n-1$, la idea trivial es la siguiente:
+
+- Para $i$ desde $0$ hasta $n-1$
+-- Para $j$ desde $i+1$ hasta $n-1$
+--- Si $v[i] > $v[j]$
+---- inversiones++
+
+- Devolver inversiones.
+
+Claramente, estamos hablando de un algoritmo cuadrático. Concretamente, la expresión condicional del interior de los bucles es de orden constante, y el número de iteraciones en función del tamaño $n$ del vector es:
+
+$$ \sum_{i=0}^{n-1}\sum_{j=i+1}^{n-1}1 = \sum_{i=0}^{n-1}(n-i-1) = \frac{n(n-1)}{2} $$
+
+Vemos así que, claramente, el algoritmo trivial es de un orden de eficiencia $\theta(n^2)$. A continuación se muestra una versión sencilla de este algoritmo en código C++:
+
+~~~cpp
+# Código para el algoritmo trivial:
+# v es un array de tamaño n
+# se devuelven las inversiones (inv)
+inv = 0;
+for(int i = 0; i < n; i++)
+    for(int j = i+1; j < n; j++)
+        if(v[i] > v[j])
+            inv++;
+
+return inv;
+            
+~~~
+
+### Solución divide y vencerás: modificación del Mergesort.
+
+Vamos a plantear la solución divide y vencerás partiendo de un ejemplo sencillo. Sea $v = [4,2,1,3]$ un vector de tamaño $n = 4$. Para usar el paradigma divide y vencerás partimos nuestro vector por la mitad, obteniendo los subvectores izquierdo $[4,2]$ y derecho $[1,3]$. Ahora partimos de que conocemos la solución de este subproblema, es decir, conocemos las inversiones de cada subvector, que son $1$ en el izquierdo, y $0$ en el derecho. Ahora tenemos que juntar de nuevo los vectores y a partir de sus respectivas soluciones concluir con la solución final. ¿Cómo hacemos esto?
+
+Supongamos que hubiéramos recuperado los subvectores ordenados tras la división del problema. De esta forma quedaríamos con los subvectores [2,4] y [1,3]. Esta ordenación no nos afectaría al resultado puesto que estamos partiendo de que ya hemos obtenido las inversiones de cada subvector, y como permanecen las mismas componentes, las inversiones existentes entre ambos subvectores van a seguir siendo las mismas. Una vez razonado esto, veamos cómo podemos obtener de forma sencilla las inversiones entre ambos vectores. Además, como hemos usado en la hipótesis de división la ordenación, deberíamos juntar de forma ordenada los subvectores para no romper con la técnica divide y vencerás. De esta forma, podemos seguir un razonamiento muy simple: creamos un nuevo vector donde almacenaremos el ordenado de los subvectores,recorremos nuestros dos subvectores, con un índice al inicio de cada subvector y realizamos los siguientes pasos:
+
+- Si el elemento que marca el índice del subvector izquierdo es menor o igual que el del subvector derecho, no tenemos inversión. De hecho, la condición de que los subvectores estén ordenados nos permite afirmar que no tenemos ninguna inversión del elemento izquierdo con todo el restante subvector derecho, por lo que podemos incrementar el índice izquierdo sin aumentar las inversiones con total tranquilidad. El elemento izquierdo, obviamente, es el que añadimos al vector ordenado.
+
+- Si el elemento que marca el indice del subvector izquierdo es mayor que el del subvector derecho, vamos a tener inversiones. La ordenación de los subvectores nos permite afirmar que todo el subvector restante izquierdo restante por recorrer va a tener una inversión con el elemento del subvector derecho. De esta forma, añadimos tantas inversiones como elementos queden por recorrer en el subvector izquierdo. Añadiremos en este caso el elemento derecho al array ordenado e incrementaremos el índice derecho.
+
+Esto lo hacemos para cada índice, hasta haber recorrido los subvectores completos. Hay que tener en cuenta que cuando un vector se haya recorrido completo, los elementos restantes del otro se añadirán directamente sin inversiones adicionales. Nótese que tal y como se ha descrito, esta parte de nuestro algoritmo es lineal respecto a la suma de los tamaños de los subvectores, que es justamente el tamaño del vector inicial, en nuestro ejemplo, $n=4$. También debemos percatarnos ahora que lo que acabamos de proponer no es ni más ni menos que el algoritmo de ordenación Merge Sort (ordenación por mezcla) ya conocido, al que se añade simplemente una pequeña modificación para contar las inversiones. Tras el algoritmo se nos devolverá el vector ordenado mediante las mezclas de los subvectores correspondientes. Como caso base para las divisiones tendremos, como en el propio Merge Sort, los vectores de un elemento.
+
+Volviendo a nuestro ejemplo, ya podemos finalizarlo concluyendo que tendremos 4 inversiones: una es la obtenida de los subcasos izquierdo y derecho, y las restantes de la mezcla (al comparar el 2 de [2,4] con el 1 de [1,3] tenemos inversiones para el 2 y el 4; la comparación de 2 con 3 no da inversión, y finalmente comparamos 4 y 3 que nos da la última).
+
+#### Pseudocódigo y eficiencia.
+
+Una vez descrita nuestra solución, planteamos el algoritmo y su eficiencia. Tenemos dos partes claramente diferenciadas en el algoritmo: la parte que se encarga de dividir y la parte que se encarga de mezclar. Sus pseudocódigos se muestran a continuación:
+
+~~~python
+
+#Función de mezcla de los subarrays:
+def mergeCount(array, begin, middle, end):
+    sorted_array = [ ]
+    sol = 0; j = middle; i = begin
+    
+    while i < middle:
+        if j < end:
+            if array[i] <= array[j]:
+                sorted_array.append(array[i])
+                i += 1
+            else:
+                sorted_array.append(array[j])
+                sol += (middle - i)
+                j += 1
+        else:
+            sorted_array.append(array[i])
+            i += 1
+
+    for i in range(j, end):
+        sorted_array.append(array[i])
+
+    for i in range(0, end-begin):
+        array[i+begin] = sorted_array[i]
+    
+    return sol
 
 
+#Función que cuenta todas las inversiones:
+def countInversions(array, begin, end):
+    middle = (begin + end) // 2
+    sol = 0
 
+    if middle - begin > 1:
+        sol += countInversions(array, begin, middle)
+    if end - middle > 1:
+        sol += countInversions(array, middle, end)
+    if (begin < middle and middle < end):
+        sol += mergeCount(array, begin, middle, end)
+
+    return sol
+
+~~~
+
+Fijándonos en el algoritmo podemos observar con facilidad la relación de recurrencia que se satisface. Si denotamos $T(n)$ a la función con la eficiencia del algoritmo, y teniendo en cuenta como ya se dijo la linealidad del algoritmo de mezcla, tenemos que en el peor caso (cuando se entra en todas las sentencias condicionales) $T(n)$ verifica:
+
+$$ T(n) = 2T(\frac{n}{2}) + n $$
+
+Tenemos una ecuación en diferencias, que tras el cambio de variable $n = 2^k$ podemos resolver con facilidad:
+
+$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iif T(2^k) = 2^k + k*2^k \iif T(n) = n + n\log{n} \in O(n\log{n}) $$
+
+De esta forma, gracias a la estrategia divide y vencerás hemos conseguido mejorar el orden de eficiencia cuadrático de la solución más inmediata a este problema hasta un orden $n \log{n}$, lo cual es un gran avance respecto al coste computacional.
+
+$\pagebreak$
