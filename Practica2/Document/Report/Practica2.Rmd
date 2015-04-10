@@ -65,7 +65,11 @@ Y, además, es el único elemento del vector que verifica (2) pues en caso caso 
 
 La idea es sencilla: recorrer el vector hasta encontrar el punto $p$. Recordemos que la propiedad (2) caracteriza al punto $p$. Por tanto, en nuestro algoritmo trivial basta recorrer todas las componentes ${2,3,...,n-1}$ y encontrar la primera componente que verifica (2), que será $p$ por unicidad. 
 
-Dado que nuestro recorrido es lineal de izquierda a derecha podemos obviar la primera comparación $v[p-1] < v[p]$ pues si no hemos encontrado todavía $p$ es porque $v[p-2] < v[p-1] < v[p-1]$. Se proporciona el pseudocódigo a continuación:
+Dado que nuestro recorrido es lineal de izquierda a derecha podemos obviar la primera comparación $v[p-1] < v[p]$ pues si no hemos encontrado todavía $p$ es porque $v[p-2] < v[p-1] < v[p-1]$. 
+
+#### Pseudocódigo.  
+
+Se proporciona el pseudocódigo a continuación:
 
 ~~~python
 # Pseudocódigo del algoritmo trivial.
@@ -77,6 +81,14 @@ for i in range(1, n-1):
 ~~~
 
 En el caso de la Imagen 1, el algoritmo recorrería el vector de izquierda a derecha hasta encontrar el elemento $p$, donde la pendiente se vuelve negativa.
+
+#### Ejemplo.  
+
+Veamos un ejemplo del algoritmo. Consideramos el vector:
+
+$\centerline{v = [1 3 5 7 8 6 4]}$
+
+Empezamos el recorrido en la componente de índice 1. Esta es menor que $v[2] = 5$ luego continuamos la búsqueda. Repetimos este hecho hasta que llegamos a la componente $v[4] = 8$. Tenemos que $v[5] = 6 < v[4] = 8$ y por ello se tiene que $p = 4$.
 
 ### Solución mediante divide y vencerás
 
@@ -96,13 +108,17 @@ Como $v[m1] < v[p]$ y nos encontramos en el subvector creciente, $p$ debe estar 
 $\centerline{\includegraphics[width=10cm]{./Images/vector_unimodal_m1.png}}$
 $\centerline{\textbf{Imagen 2}. Componente mitad del vector unimodal.}$
 
-Utilizamos ahora recursividad sobre las componentes $\{m1+1, ..., n-1\}$. Obtenemos la componente mitad de este nuevo subvector, que tampoco verifica (2) y por ello no es $p$. La Imagen 3 muestra esta situación. Pero en este caso se tiene que $m2$ verifica:
+Utilizamos ahora recursividad sobre las componentes $\{m1+1, ..., n-1\}$. La Imagen 3 muestra esta situación. Obtenemos la componente mitad de este nuevo subvector, denotémosla $m2$, que tampoco verifica (2) y por ello no es $p$. Pero en este caso se tiene que $m2$ cumple:
 $$ v[m2-1] > v[m2] > v[m2+1] $$
 
-Por tanto, estamos situados en la zona decreciente del vector $v$ y por ello $p$ se encuentra a la izquierda de $m2$ ($v[p] > v[m2]$). El subvector sobre el que vuelve a aplicar la recursividad se encuentra resaltado en gris.
+Por tanto, estamos situados en la zona decreciente del vector $v$ y por ello $p$ se encuentra a la izquierda de $m2$ ($v[p] > v[m2]$). El subvector sobre el que se volvería a aplicar la recursividad se ha resaltado en gris. Se debe repetir el proceso hasta dar con el elemento $p$.
 
 $\centerline{\includegraphics[width=10cm]{./Images/vector_unimodal_m2.png}}$
 $\centerline{\textbf{Imagen 3}. Segunda iteración sobre el vector unimodal.}$
+
+$\pagebreak$
+
+#### Pseudocódigo.
 
 Formalizando lo anterior, podemos dar el siguiente pseudocódigo:
 
@@ -123,8 +139,38 @@ def obtenerP(v, inicio, final):
         else:
             return obtenerP(v, inicio, mitad)
     else:
-        return inicio 
+        return inicio
 ~~~
+
+#### Ejemplo.  
+
+Veamos un ejemplo del funcionamiento del algoritmo. Consideramos el mismo vector que para el algoritmo lineal:
+
+$\centerline{v = [1 3 5 7 8 6 4]}$
+
+Este vector consta de 7 componentes. Inicialmente, `inicio = 0` y `final = 7`. Se tiene que la componente mitad tiene índice 3 = (0 + 7) / 3. Sin embargo, $v[2] = 5 < v[3] = 7 < v[4] = 8$. Debemos pues aplicar la recursividad en el subvector derecha, `return obtenerP(v, mitad+1, final)`.
+
+$\centerline{v = [- - - - 8 6 4]}$
+
+En este caso, la componente mitad tiene índice 5 y valor 6. Verifica $v[4] = 8 < v[5] = 6 < v[7] = 4$. En este caso se aplica la recursividad sobre el vector izquierda:
+
+$\centerline{v = [- - - - 8 - -]}$
+
+Este contiene un único elemento, el 8, cuyo índice se devuelve como $p$.
+
+Si comparamos el ejemplo con el del algoritmo lineal, aunque sea más antinatural el algoritmo recursivo realiza menos iteraciones (solo 3) en comparación con las 4 realizadas por el lineal. En problemas grandes la diferencia es incluso mayor como se verá en el siguiente apartado.
+
+#### Eficiencia teórica.  
+
+En cada llamada recursiva del algoritmo se hace un trabajo constante para calcular el punto medio y decidir en cual de los tres posibles casos estamos. En el peor de ellos, nunca se encuentra $p$ y siempre se debe hacer una llamada recursiva a un vector de tamaño mitad. Si denotamos $T(n)$ a función con la eficiencia del algoritmo, en el peor caso esta verifica:
+
+$$ T(n) = T(\frac{n}{2}) + \theta(1) $$
+
+Tenemos una ecuación en diferencias lineal de fácil solución. Tomando $n = 2^k$:
+
+$$ T(n) = T(2^k) = T(2^{k-1}) + \theta(1) = \ldots = T(1) + (k-1)\theta(1) \in \theta(k) = \theta(\log_2 n) $$ 
+
+Efectivamente, como ya se había adelantado, el algoritmo en el peor caso es $\theta(\log_2 n)$.
 
 ## Análisis empírico. Análisis de la eficiencia híbrida
 
