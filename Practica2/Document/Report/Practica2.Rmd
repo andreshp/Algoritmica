@@ -46,13 +46,12 @@ $$ \forall i, j \le p \text{ con } i < j \Rightarrow v[i] < v[j] \text{ y } \for
 
 Lo que implica que el máximo se encuentra en $p$. Diseñe un algoritmo "divide y vencerás" que permita determinar $p$. ¿Cuál es la complejidad del algoritmo?. Compárelo con el algoritmo "trivial" para realizar esta tarea. Realizar también un estudio empírico e híbrido de la eficiencia de ambos algoritmos.
 
+## Resolución teórica del problema
+
 Un ejemplo de vector unimodal es el dado en la Imagen 1, en la cual se señala el buscado elemento $p$. Se harán referencias a la imagen a lo largo del texto.
 
 $\centerline{\includegraphics[width=10cm]{./Images/vector_unimodal.png}}$
 $\centerline{\textbf{Imagen 1}. Representación de un vector unimodal.}$
-
-
-## Resolución teórica del problema
 
 Daremos dos soluciones al problema, una trivial y otra basada en divide y vencerás. Como es de esperar, la primera tendrá un orden de eficiencia lineal mientras que con la segunda conseguiremos alcanzar el deseado orden $\log n$. 
 
