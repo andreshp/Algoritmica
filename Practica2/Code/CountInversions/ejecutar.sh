@@ -31,7 +31,7 @@ TEMPORAL4=temp4.txt
 ./sh/medirOrdenacion.sh PreferencesBuble 0
 ./sh/medirOrdenacion.sh PreferencesInsertion 0
 ./sh/medirOrdenacion.sh PreferencesQuicksort 0
-./sh/medirOrdenacionLog.sh PreferencesQuicksort 0
+./sh/medirOrdenacion.sh Preferences 0
 ./sh/medirOrdenacionLog.sh Preferences 0
 
 #------------- OBTENER TABLAS -------------#

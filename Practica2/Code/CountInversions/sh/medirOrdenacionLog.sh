@@ -10,7 +10,7 @@
 
 # Variables:
 PROGRAMA=$1
-SALIDA=./Datos/tiempo_$1.dat
+SALIDA=./Datos/tiempo_$1_1.dat
 MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
