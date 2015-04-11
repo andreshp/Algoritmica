@@ -40,8 +40,8 @@ TEMPORAL4=temp4.txt
 
 echo "# Tabla con los algoritmos cuadráticos"                  >  ./Tablas/cuadraticos.md
 echo                                                           >> ./Tablas/cuadraticos.md
-echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion |" >> ./Tablas/cuadraticos.md
-echo "|-------------------|---------|-----------|-----------|" >> ./Tablas/cuadraticos.md
+echo "| Tamaño del Vector | Burbuja | Seleccion | Insercion | Quicksort |" >> ./Tablas/cuadraticos.md
+echo "|-------------------|---------|-----------|-----------|-----------|" >> ./Tablas/cuadraticos.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_PreferencesBuble.dat | cut -d' ' -f1 > $TEMPORAL2
@@ -52,6 +52,8 @@ cat ./Datos/tiempo_PreferencesFor.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 cat ./Datos/tiempo_PreferencesInsertion.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
+cat ./Datos/tiempo_PreferencesQuicksort.dat | cut -d' ' -f2 > $TEMPORAL2
+paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
 cat $TEMPORAL4 >> ./Tablas/cuadraticos.md
 
@@ -59,16 +61,14 @@ cat $TEMPORAL4 >> ./Tablas/cuadraticos.md
 
 echo "# Tabla con los algoritmos n log n"            >  ./Tablas/nlogn.md
 echo                                                 >> ./Tablas/nlogn.md
-echo "| Tamaño del Vector | Mergesort | Quicksort |" >> ./Tablas/nlogn.md
-echo "|-------------------|-----------|-----------|" >> ./Tablas/nlogn.md
+echo "| Tamaño del Vector | Mergesort |" >> ./Tablas/nlogn.md
+echo "|-------------------|-----------|" >> ./Tablas/nlogn.md
 
 echo > $TEMPORAL1
 cat ./Datos/tiempo_Preferences.dat | cut -d' ' -f1 > $TEMPORAL2
 paste -d'|' $TEMPORAL1 $TEMPORAL2 > $TEMPORAL4
-cat ./Datos/tiempo_Preferences.dat | cut -d' ' -f2 > $TEMPORAL2
+cat ./Datos/tiempo_Preferences_1.dat | cut -d' ' -f2 > $TEMPORAL2
 paste -d'|' $TEMPORAL4 $TEMPORAL2 > $TEMPORAL3
-cat ./Datos/tiempo_PreferencesQuicksort.dat | cut -d' ' -f2 > $TEMPORAL2
-paste -d'|' $TEMPORAL3 $TEMPORAL2 > $TEMPORAL4
 paste -d'|' $TEMPORAL3 $TEMPORAL1 > $TEMPORAL4
 cat $TEMPORAL4 >> ./Tablas/nlogn.md
 
