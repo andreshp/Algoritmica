@@ -33,7 +33,7 @@ using namespace std;
    Aplica el algoritmo de inserción.
 */
 inline static 
-void insercion(int T[], int num_elem);
+unsigned long long insercion(int T[], int num_elem);
 
 
 
@@ -53,7 +53,7 @@ void insercion(int T[], int num_elem);
    de menor a mayor.
    Aplica el algoritmo de inserción.
 */
-static void insercion_lims(int T[], int inicial, int final);
+static unsigned long long insercion_lims(int T[], int inicial, int final);
 
 
 
@@ -61,16 +61,21 @@ static void insercion_lims(int T[], int inicial, int final);
    Implementación de las funciones
 **/
 
-inline static void insercion(int T[], int num_elem)
+inline static unsigned long long insercion(int T[], int num_elem)
 {
-  insercion_lims(T, 0, num_elem);
+  return insercion_lims(T, 0, num_elem);
 }
 
 
-static void insercion_lims(int T[], int inicial, int final)
+static unsigned long long insercion_lims(int T[], int inicial, int final)
 {
+
+  //////////////////////
+  /// Falta este algoritmo.
+  //////////////////////
   int i, j;
   int aux;
+  unsigned long long contador = 0;
   for (i = inicial + 1; i < final; i++) {
     j = i;
     while ((T[j] < T[j-1]) && (j > 0)) {
@@ -79,7 +84,10 @@ static void insercion_lims(int T[], int inicial, int final)
       T[j-1] = aux;
       j--;
     };
+
+
   };
+  return contador;
 }
 
 
