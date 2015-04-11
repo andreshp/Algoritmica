@@ -251,21 +251,21 @@ Antes de comenzar esta sección, se tiene en cuenta que hemos implementado tres 
 
 Para realizar este mismo problema, aunque no se pedía en el ejercicio hemos pensado en más formas de solucionar el algorítmo, en concreto recurriendo a la ordenación del vector. Hemos encontrado que hay algunos de ellos que podemos contabilizar el número de inversiones. 
 
-Un ejemplo de este tipo de algorítmos es el burbuja. Como el algorítmo funciona moviendo un elemento a su posicion siguiente( o anterior) si este elemento está invertido con respecto a esa posición, sabemos que el numero de inversiones que tiene el vector resultante es una menos que el vector original. Así, si cada vez que intercambiamos dos elementos incrementamos un contador, al ordenar completamente el vector, este contador nos indica el número de inversiones que se han realizado, ya que el vector ordenado tiene cero inversiones.
+***Burbuja:***Un ejemplo de este tipo de algorítmos es el burbuja. Como el algorítmo funciona moviendo un elemento a su posicion siguiente( o anterior) si este elemento está invertido con respecto a esa posición, sabemos que el numero de inversiones que tiene el vector resultante es una menos que el vector original. Así, si cada vez que intercambiamos dos elementos incrementamos un contador, al ordenar completamente el vector, este contador nos indica el número de inversiones que se han realizado, ya que el vector ordenado tiene cero inversiones.
 
-Otro algorítmo de ordenación que conserva la idea de que el orden se tiene en cuenta, y con ello las inversiones, es el algorítmo de inserción. En el,en cada paso se pasa el elemento mínimo al primer elemento no ordenado. Nótese que no podemos cambiarlo por el elemento en esa posición, si no que debemos pasarlo paso a paso para que no cambie el orden de los elementos intermedios. Así, al pasar un elemento a la posición del primer elemento no ordenado, el numero de inversiones que realiza tal elemento es su posición menos la posición del primer elemento no ordenado, que es el número de elementos que "pasa por encima", o el numero de inversiones que realiza. Lo volvemos a almacenar en un contador y cuando el vector queda ordenado, en ese contador quedará el numero de inversiones hechas.
+***Inserción***:Otro algorítmo de ordenación que conserva la idea de que el orden se tiene en cuenta, y con ello las inversiones, es el algorítmo de inserción. En el,en cada paso se pasa el elemento mínimo al primer elemento no ordenado. Nótese que no podemos cambiarlo por el elemento en esa posición, si no que debemos pasarlo paso a paso para que no cambie el orden de los elementos intermedios. Así, al pasar un elemento a la posición del primer elemento no ordenado, el numero de inversiones que realiza tal elemento es su posición menos la posición del primer elemento no ordenado, que es el número de elementos que "pasa por encima", o el numero de inversiones que realiza. Lo volvemos a almacenar en un contador y cuando el vector queda ordenado, en ese contador quedará el numero de inversiones hechas.
 
 La idea de ordenar el vector parece que nos ha sido productiva, cambiando así de concepto para contar inversiones. En concreto, la idea de contar varias inversiones a la vez(con el algorítmo de inserción) es una idea que no podíamos contemplar con la solución trivial. La pregunta inmediata sería si otros algorítmos más rápidos, como los $O(nlog(n))$ también nos servirían para esta tarea en especial.
 
 ### Solución divide y vencerás: modificación del Quicksort y del Mergesort.
 
-El algorítmo en media más rápido a nivel de ordenación que querríamos implementar es el quicksort. Ya de primeras nos damos cuenta que la idea de los intercambios indiscriminados que se toma con el método usual de utilizar dos punteros, uno al principio y otro al final nos "desordena" la idea de contar inversiones, por que no sabemos si los elementos que pasa por encima son elementos invertidos con respecto a el mismo o estaba en una posición sin inversiones, y el numero de inversiones aumenta. Ese paso se subsana utilizando otra forma de modificar el vector, que sería insertando uno de los elementos antes que el otro, y así respetamos el orden de esos elementos, sumando o restando uno, dependiendo de si hemos saltado un elemento que esaba invertido o no.
+El algorítmo en media más rápido a nivel de ordenación que querríamos implementar es el quicksort, que usa el método de divide y vencerás. Ya de primeras nos damos cuenta que la idea de los intercambios indiscriminados que se toma con el método usual de utilizar dos punteros, uno al principio y otro al final nos "desordena" la idea de contar inversiones, por que no sabemos si los elementos que pasa por encima son elementos invertidos con respecto a el mismo o estaba en una posición sin inversiones, y el numero de inversiones aumenta. Ese paso se subsana utilizando otra forma de modificar el vector, que sería insertando uno de los elementos antes que el otro, y así respetamos el orden de esos elementos, sumando o restando uno, dependiendo de si hemos saltado un elemento que esaba invertido o no.
 
-Por simplicidad, en vez de utilizar este tipo de partición del vector, utilizamos otra en la que ambos punteros empiezan al principio. Decimos por simplicidad porque solo se tiene en cuenta que hay que intercambiar un elemento y no dos, respetando así la idea del algorítmo, que en el caso anterior se basaba en la idea de cambiar dos elementos, y en este solo uno.
+Por simplicidad, en vez de utilizar este tipo de partición del vector, utilizamos otra en la que ambos punteros empiezan al principio. Decimos por simplicidad porque solo se tiene en cuenta que hay que intercambiar un elemento y no dos, respetando así la idea del algorítmo, que en el caso anterior se basaba en la idea de cambiar dos elementos, y en este solo uno. El resto del algoŕitmo se comporta de igual manera, salvo que recojemos de ordenar cada parte el número de inversiones realizada.
 
 El método utilizado en codigo c++ para dividir el vector en dos subvectores y un pivote medio sería el siguiente:
 
-~~~
+~~~cpp
 
 unsigned long long dividir_qs(vector <int> &T, int inicial, int final, int & k){
   int pivote;
@@ -303,10 +303,14 @@ unsigned long long dividir_qs(vector <int> &T, int inicial, int final, int & k){
 
 Al utilizar este método se nos ocurre pensar que tambien puede ser del mismo orden que el quicksort, sin embargo el método para partir el vector usa la inserción, por lo que tememos que sea cuadrático. En la siguiente gráfica se compara este mètodo con los otros algorítmos expuestos anteriormente:
 
+$\centerline{\includegraphics[width=10cm]{../../Code/CountInversions/Imagenes/cuadraticos_ajuste.png}}$
+$\centerline{\textbf{Imagen 1}. Gráficos que comparan la eficiencia de los algorítmos expuestos hasta ahora.}$
 
+A priori nos puede pasar que nos sorprenda tal comparación. ¿Cómo el algorítmo de inserción utilizado puede ser más rápido que el quicksort? Esto es facil de explicar, ya que el quicksort era tan rápido por el intercambio, no por la inserción que lo hace lento, de los elementos con respecto al pivote. Podemos concluir que estamos haciendo una inserción por pasos cada vez, una mezcla entre burbuja e inserción, ya que movemos los elementos solo lo que pueden ser movidos hacia la izquierda del vector por el método de inserción. Por tanto debe tener una eficiencia, como hemos visto, no mayor que el burbuja pero si mayor que el inserción.
 
+Una vez tenido este chasco, se nos ocurre utilizar otro algorítmo logarítmico, en este caso el MergeSort. Aunque es más lento que el quicksort a la hora de ordenar, veamos si puede mantener su condición de algoritmo "n logaritmico":
 
-
+#### Solución final. Mergesort modificado.
 
 Vamos a plantear la solución divide y vencerás partiendo de un ejemplo sencillo. Sea $v = [4,2,1,3]$ un vector de tamaño $n = 4$. Para usar el paradigma divide y vencerás partimos nuestro vector por la mitad, obteniendo los subvectores izquierdo $[4,2]$ y derecho $[1,3]$. Ahora partimos de que conocemos la solución de este subproblema, es decir, conocemos las inversiones de cada subvector, que son $1$ en el izquierdo, y $0$ en el derecho. Ahora tenemos que juntar de nuevo los vectores y a partir de sus respectivas soluciones concluir con la solución final. ¿Cómo hacemos esto?
 
@@ -320,7 +324,7 @@ Esto lo hacemos para cada índice, hasta haber recorrido los subvectores complet
 
 Volviendo a nuestro ejemplo, ya podemos finalizarlo concluyendo que tendremos 4 inversiones: una es la obtenida de los subcasos izquierdo y derecho, y las restantes de la mezcla (al comparar el 2 de [2,4] con el 1 de [1,3] tenemos inversiones para el 2 y el 4; la comparación de 2 con 3 no da inversión, y finalmente comparamos 4 y 3 que nos da la última).
 
-#### Pseudocódigo y eficiencia.
+##### Pseudocódigo y eficiencia.
 
 Una vez descrita nuestra solución, planteamos el algoritmo y su eficiencia. Tenemos dos partes claramente diferenciadas en el algoritmo: la parte que se encarga de dividir y la parte que se encarga de mezclar. Sus pseudocódigos se muestran a continuación:
 
@@ -379,4 +383,19 @@ $$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iff T(2^k) = a2^k + bk2^k \iff T(n) = an +
 
 De esta forma, gracias a la estrategia divide y vencerás hemos conseguido mejorar el orden de eficiencia cuadrático de la solución más inmediata a este problema hasta un orden $n \log{n}$, lo cual es un gran avance respecto al coste computacional.
 
+La eficiencia híbrida que se obtiene se ve representada en la siguiente gráfica:
+
+$\centerline{\includegraphics[width=10cm]{../../Code/CountInversions/Imagenes/nlogn_ajuste.png}}$
+$\centerline{\textbf{Imagen 1}. Gráfico y ajuste del algorítmo MergeSort modificado.}$
+
+En la siguiente gráfica se pone de manifiesto la relación de todos estos algoritmos mostrados, y la superioridad del Mergesort:
+
+$\centerline{\includegraphics[width=10cm]{../../Code/CountInversions/Imagenes/ordenacion.png}}$
+$\centerline{\textbf{Imagen 1}. Gráficos que comparan la eficiencia de los algorítmos expuestos hasta ahora.}$
+
 $\pagebreak$
+
+
+## Notas
+
+Se puede plantear otro problema distinto, pero parecido a la hora de ver el quicksort como alternativa. Lo que nos hacía al algoritmo de orden cuadrático era la inserción de un elemento en el vector. Sin embargo, si en vez de un vector consideramos una lista y en vez de acceder a las componentes con un entero que nos da la posición, utilizamos iteradores de listas, a la hora de insertar y conservar el orden, con cambiar cuatro punteros de lugar en tiempo $O(1)$, el algoritmo podría dejar de tener el orden cuadrático para ser n logarítmico de nuevo. Aun así, el problema se plantea en un vector, por lo que no se da tal solución.
