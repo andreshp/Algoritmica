@@ -246,7 +246,68 @@ return inv;
             
 ~~~
 
-### Solución divide y vencerás: modificación del Mergesort.
+### Más soluciones posibles del mismo orden que el trivial (Idea de la ordenación)
+
+Antes de comenzar esta sección, se tiene en cuenta que hemos implementado tres algorítmos más, por lo que sería muy pesado poner en todos ellos pseudocódigos, sabiendo además que estos algorítmos son básicamente los de ordenación modificados. Así pues, se notará en que momento lo modificamos, pero no el desarrollo completo de la explicación.
+
+Para realizar este mismo problema, aunque no se pedía en el ejercicio hemos pensado en más formas de solucionar el algorítmo, en concreto recurriendo a la ordenación del vector. Hemos encontrado que hay algunos de ellos que podemos contabilizar el número de inversiones. 
+
+Un ejemplo de este tipo de algorítmos es el burbuja. Como el algorítmo funciona moviendo un elemento a su posicion siguiente( o anterior) si este elemento está invertido con respecto a esa posición, sabemos que el numero de inversiones que tiene el vector resultante es una menos que el vector original. Así, si cada vez que intercambiamos dos elementos incrementamos un contador, al ordenar completamente el vector, este contador nos indica el número de inversiones que se han realizado, ya que el vector ordenado tiene cero inversiones.
+
+Otro algorítmo de ordenación que conserva la idea de que el orden se tiene en cuenta, y con ello las inversiones, es el algorítmo de inserción. En el,en cada paso se pasa el elemento mínimo al primer elemento no ordenado. Nótese que no podemos cambiarlo por el elemento en esa posición, si no que debemos pasarlo paso a paso para que no cambie el orden de los elementos intermedios. Así, al pasar un elemento a la posición del primer elemento no ordenado, el numero de inversiones que realiza tal elemento es su posición menos la posición del primer elemento no ordenado, que es el número de elementos que "pasa por encima", o el numero de inversiones que realiza. Lo volvemos a almacenar en un contador y cuando el vector queda ordenado, en ese contador quedará el numero de inversiones hechas.
+
+La idea de ordenar el vector parece que nos ha sido productiva, cambiando así de concepto para contar inversiones. En concreto, la idea de contar varias inversiones a la vez(con el algorítmo de inserción) es una idea que no podíamos contemplar con la solución trivial. La pregunta inmediata sería si otros algorítmos más rápidos, como los $O(nlog(n))$ también nos servirían para esta tarea en especial.
+
+### Solución divide y vencerás: modificación del Quicksort y del Mergesort.
+
+El algorítmo en media más rápido a nivel de ordenación que querríamos implementar es el quicksort. Ya de primeras nos damos cuenta que la idea de los intercambios indiscriminados que se toma con el método usual de utilizar dos punteros, uno al principio y otro al final nos "desordena" la idea de contar inversiones, por que no sabemos si los elementos que pasa por encima son elementos invertidos con respecto a el mismo o estaba en una posición sin inversiones, y el numero de inversiones aumenta. Ese paso se subsana utilizando otra forma de modificar el vector, que sería insertando uno de los elementos antes que el otro, y así respetamos el orden de esos elementos, sumando o restando uno, dependiendo de si hemos saltado un elemento que esaba invertido o no.
+
+Por simplicidad, en vez de utilizar este tipo de partición del vector, utilizamos otra en la que ambos punteros empiezan al principio. Decimos por simplicidad porque solo se tiene en cuenta que hay que intercambiar un elemento y no dos, respetando así la idea del algorítmo, que en el caso anterior se basaba en la idea de cambiar dos elementos, y en este solo uno.
+
+El método utilizado en codigo c++ para dividir el vector en dos subvectores y un pivote medio sería el siguiente:
+
+~~~
+
+unsigned long long dividir_qs(vector <int> &T, int inicial, int final, int & k){
+  int pivote;
+  int aux;
+  int pp;
+  unsigned long long contador = 0;
+
+  pivote = T[inicial];
+  k = pp = inicial+1;
+
+  while(pp < final){
+    if(T[pp] < pivote){
+      aux = T[pp];
+      for(int i = pp; i > k;i--){
+        T[i] = T[i-1];
+      }
+      T[k] = aux;
+      contador += (pp-k);
+      k++;
+    }
+    pp++;
+  }
+
+  aux = T[inicial];
+  for(int i = inicial; i < k-1;i++){
+    T[i] = T[i+1];
+  }
+  T[k-1] = aux;
+  contador += k-inicial-1;
+  
+  return contador;
+}
+
+~~~
+
+Al utilizar este método se nos ocurre pensar que tambien puede ser del mismo orden que el quicksort, sin embargo el método para partir el vector usa la inserción, por lo que tememos que sea cuadrático. En la siguiente gráfica se compara este mètodo con los otros algorítmos expuestos anteriormente:
+
+
+
+
+
 
 Vamos a plantear la solución divide y vencerás partiendo de un ejemplo sencillo. Sea $v = [4,2,1,3]$ un vector de tamaño $n = 4$. Para usar el paradigma divide y vencerás partimos nuestro vector por la mitad, obteniendo los subvectores izquierdo $[4,2]$ y derecho $[1,3]$. Ahora partimos de que conocemos la solución de este subproblema, es decir, conocemos las inversiones de cada subvector, que son $1$ en el izquierdo, y $0$ en el derecho. Ahora tenemos que juntar de nuevo los vectores y a partir de sus respectivas soluciones concluir con la solución final. ¿Cómo hacemos esto?
 
