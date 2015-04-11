@@ -45,10 +45,8 @@ int main(int argc, char *argv[]){
         exit(-1);
     }
     
+    // Variables
     int results; vector <int> v; int v_i;
-
-    // Variables de tiempo
-    struct timeval tv1, tv2;
     double tv_usecs = 0;
     srand(time(0));
 
@@ -65,13 +63,16 @@ int main(int argc, char *argv[]){
             for (int i=0; i<p; i++) v[i]=i;
             for (int i=p+1; i<v_size; i++) v[i]=v_size-1-i+p;
 
+            // Variables de tiempo
+            struct timeval tv1, tv2;
+
             // Execute algorithm
             gettimeofday(&tv1,NULL);
             results = unimodalDivide(&v[0], 0, v.size());
             gettimeofday(&tv2,NULL);
             tv_usecs += ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
         }
-//        tv_usecs /= num_repetitions;
+        tv_usecs /= num_repetitions;
     }
     // Si el programa es ./unimodalDivide -t <test.txt>
     else{
@@ -86,10 +87,13 @@ int main(int argc, char *argv[]){
             if(in >> v_i)
                 v.push_back(v_i);
         }
+        // Variables de tiempo
+        struct timeval tv1, tv2;
         //Ejecucion del algoritmo.
         gettimeofday(&tv1,NULL);
         results = unimodalDivide(&v[0], 0, v.size());
         gettimeofday(&tv2,NULL);
+        tv_usecs = ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
     }
 
     cout << "Vector size: " << v.size() << "\n";
@@ -106,9 +110,6 @@ int main(int argc, char *argv[]){
         #ifdef PRINT_TEXT
             cout << "Elapsed time: ";
         #endif
-        
-        // Tiempo gastado.
-        tv_usecs= ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
         cout << tv_usecs << endl;
     #endif
 

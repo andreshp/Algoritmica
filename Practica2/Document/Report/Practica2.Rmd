@@ -175,7 +175,23 @@ Efectivamente, como ya se había adelantado, el algoritmo en el peor caso es $\t
 
 Para analizar de forma empírica el comportamiento de ambos algoritmos hemos recurrido al pograma `generar_unimodal.cpp` proporcionado para la práctica que genera vectores unimodales, es decir, verifican (1), de un tamaño dado como parámetro. Para su uso hemos desarrollado un script `generar_test_cases.sh` que compila y utiliza el programa anterior para crear 100 vectores unimodales cuyo tamaño varía de 1000 en 1000 desde 1000 hasta 100000.
 
-Mediante otro script llamado `comparar_algoritmos.sh` se ejecutan ambos algoritmos sobre todos los vectores generados, obteniendo el tiempo de ejecución para cada uno de ellos. Los resultados en un archivo para cada algoritmo compuesto de una columna con el tamaño de los vectores y otra con el tiempo de ejecución. Posteriormente, el script llama a `plot_resultados.sh`, que utiliza GNU-PLOT para generar la Imagen -.
+Mediante otro script llamado `comparar_algoritmos.sh` se ejecutan ambos algoritmos sobre todos los vectores generados, obteniendo el tiempo de ejecución para cada uno de ellos. Los resultados en un archivo para cada algoritmo compuesto de una columna con el tamaño de los vectores y otra con el tiempo de ejecución. Posteriormente, el script llama a `plot_resultados.sh`, que utiliza GNU-PLOT para generar la Imagen 4.
+
+$\centerline{\includegraphics[width=10cm]{../Code/Unimodal/Images/unimodal_ajuste.png}}$
+$\centerline{\textbf{Imagen 4}. Resultado de las ejecuciones de ambos algoritmos.}$
+
+Como vemos, hay un grave problema: una ejecución en un vector de gran tamaño puede obtener tiempo 0. ¿Por qué se produce esto?. Si nos fijamos en ambos algoritmos, en el momento en el que se encuentra $p$ su ejecución para. ¡Si se tiene suerte el algoritmo podría terminar en la primera iteración! Es decir, en el mejor caso ambos algoritmos son $\theta(1)$. Para remediarlo, debemos realizar la media de varias ejecuciones sobre vectores aleatorios en cada una de ellas. 
+
+La Imagen 5 se ha obtenido como la media de ... ejecuciones para cada tamaño de vector. Podemos ver que el algoritmo lineal mantiene ese comportamiento en media y la gran diferencia con el algoritmo recursivo que parece constante en comparación.
+
+$\centerline{\includegraphics[width=10cm]{../Code/Unimodal/Images/unimodal_ajuste.png}}$
+$\centerline{\textbf{Imagen 5}. Media de ejecuciones para ambos algoritmos.}$
+
+
+La Imagen 6 muestra solamente el algoritmo recursivo para ver que efectivamente tiene un comportamiento logarítmico.
+
+$\centerline{\includegraphics[width=10cm]{../Code/Unimodal/Images/divide_ajuste.png}}$
+$\centerline{\textbf{Imagen 6}. Media de ejecuciones para el algoritmo logarítmico.}$
 
 
 Hemos realizado x ejecuciones de ambos algoritmos para tama
@@ -299,7 +315,7 @@ $$ T(n) = 2T(\frac{n}{2}) + n $$
 
 Tenemos una ecuación en diferencias, que tras el cambio de variable $n = 2^k$ podemos resolver con facilidad:
 
-$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iif T(2^k) = 2^k + k*2^k \iif T(n) = an + bn\log{n} \in O(n\log{n}) $$
+$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iff T(2^k) = 2^k + k*2^k \iff T(n) = an + bn \log{n} \in O(n \log{n}) $$
 
 De esta forma, gracias a la estrategia divide y vencerás hemos conseguido mejorar el orden de eficiencia cuadrático de la solución más inmediata a este problema hasta un orden $n \log{n}$, lo cual es un gran avance respecto al coste computacional.
 
