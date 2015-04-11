@@ -12,6 +12,7 @@ chmod a+x ./sh/medirOrdenacionLog.sh
 chmod a+x ./plot/plot_cuadraticos.sh
 chmod a+x ./plot/plot_nlogn.sh
 chmod a+x ./plot/plot_ordenacion.sh
+chmod a+x ./eficienciaHibrida.sh
 
 # Directorios
 mkdir -p Datos
@@ -106,3 +107,5 @@ rm $TEMPORAL1
 rm $TEMPORAL2
 rm $TEMPORAL3
 rm $TEMPORAL4
+
+./eficienciaHibrida.sh
