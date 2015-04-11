@@ -9,7 +9,7 @@ using namespace std;
 //#define PRINT_INV   //Uncomment this line to print number of inversions.
 #define PRINT_TIME  //Uncomment this line to print elapsed time.
 //#define PRINT_TEXT  //Uncomment this line to print text while showing the results.
-#define RAND
+#define RAND         // Uncoment to generate a random vector
 
 /**
   * @brief Function which merges two sorted sequences to get a new complete sorted sequence.
@@ -108,8 +108,7 @@ int main(int argc, char *argv[]){
         exit(-1);
     }
     
-
-    
+    // Variables
     unsigned long long inversions = 0;
     vector <int> v;
     int v_i;
@@ -120,29 +119,26 @@ int main(int argc, char *argv[]){
 
     //Data reading
     #ifndef RAND
-    ifstream in(argv[1]);
-    if(!in){
-        cerr << "Error: cannot open the file." << endl;
-        exit(-1);
-    }
-    
-    while(!in.eof()){
-        if(in >> v_i)
-            v.push_back(v_i);
-    }
+        ifstream in(argv[1]);
+        if(!in){
+            cerr << "Error: cannot open the file." << endl;
+            exit(-1);
+        }
+        
+        while(!in.eof()){
+            if(in >> v_i)
+                v.push_back(v_i);
+        }
     #else
-    int tam = atoi(argv[1]);
-    for(int i = 0; i < tam; i++){
-        v.push_back(rand());
-    }
-
+        int tam = atoi(argv[1]);
+        for(int i = 0; i < tam; i++){
+            v.push_back(rand());
+        }
     #endif
 
     //Algorithm execution.
     gettimeofday(&tv1,NULL);
-
     inversions = sortAndCount(&v[0],0,v.size());
-
     gettimeofday(&tv2,NULL);
 
     //cout << v.size();
