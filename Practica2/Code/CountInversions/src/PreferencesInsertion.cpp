@@ -59,11 +59,9 @@ unsigned long long insercion(int T[], int num_elem);
 unsigned long long insercion_lims(int T[], int inicial, int final);
 
 
-
 /**
    Implementación de las funciones
 **/
-
 unsigned long long insercion(int T[], int num_elem) {
     insercion_lims(T, 0, num_elem);
 }
