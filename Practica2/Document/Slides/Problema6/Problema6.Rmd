@@ -17,7 +17,6 @@ compress: yes
 
 # Introdución
 
-
 - En esta presentación se proporciona una solución para el problem 6.
 
 - El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se puede encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica1/Code).
@@ -213,4 +212,32 @@ $$ \rightline{$\blacksquare$} $$
 
 # Análisis empírico. Eficiciencia híbrida
 
-Imagen de Moya...
+- Una única ejecución por tamaño del vector
+
+$\centerline{\includegraphics[width=10cm]{../../../Code/UnimodalVector/Images/unimodal_ajuste_malo.png}}$
+
+# Análisis empírico. Eficiciencia híbrida
+
+## Problema 
+
+En el mejor caso ambos algoritmos son $\theta(1)$.
+
+## Solución
+
+Hacer la media de varias ejecuciones.
+
+# Análisis empírico. Eficiciencia híbrida
+
+- Media de 1000 ejecuciones
+
+$\centerline{\includegraphics[width=10cm]{../../../Code/UnimodalVector/Images/unimodal_ajuste.png}}$
+
+# Análisis empírico. Eficiciencia híbrida
+
+- Media de 1000 ejecuciones
+
+$\centerline{\includegraphics[width=10cm]{../../../Code/UnimodalVector/Images/divide_ajuste.png}}$
+
+# Fin de la presentación
+
+**¡Gracias por su atención!**
