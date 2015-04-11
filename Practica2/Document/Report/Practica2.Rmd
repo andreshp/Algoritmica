@@ -315,7 +315,7 @@ $$ T(n) = 2T(\frac{n}{2}) + n $$
 
 Tenemos una ecuación en diferencias, que tras el cambio de variable $n = 2^k$ podemos resolver con facilidad:
 
-$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iff T(2^k) = 2^k + k*2^k \iff T(n) = an + bn \log{n} \in O(n \log{n}) $$
+$$ T(n) = T(2^k) = 2T(2^{k-1}) + 2^k \iff T(2^k) = a2^k + bk*2^k \iff T(n) = an + bn \log{n} \in O(n \log{n}) $$
 
 De esta forma, gracias a la estrategia divide y vencerás hemos conseguido mejorar el orden de eficiencia cuadrático de la solución más inmediata a este problema hasta un orden $n \log{n}$, lo cual es un gran avance respecto al coste computacional.
 
