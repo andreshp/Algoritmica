@@ -17,6 +17,7 @@ LEYENDA1="Algoritmo Lineal, O(n)"
 LEYENDA2="Divide y Vencerás, O(log n)"
 FICHERO_DATOS1="./data/resultTrivial.txt"
 FICHERO_DATOS2="./data/resultDivide.txt"
+FICHERO_DATOS3="./data/resultDivide2.txt"
 
 gnuplot<<FIN
 # Ajustes
@@ -53,7 +54,7 @@ FIN
 gnuplot<<FIN
 # Ajustes
 g(x) = a_g*log(x)
-fit g(x) "$FICHERO_DATOS2" via a_g
+fit g(x) "$FICHERO_DATOS3" via a_g
 
 title_2(a) = sprintf('h(x) = %.10f *log(x)', a)
 
@@ -75,5 +76,5 @@ set ylabel "$YLABEL"
 
 set autoscale
 
-plot "$FICHERO_DATOS2" title '$LEYENDA2' with points ls 2, g(x) title title_2(a_g) ls 2
+plot "$FICHERO_DATOS3" title '$LEYENDA2' with points ls 2, g(x) title title_2(a_g) ls 2
 FIN
