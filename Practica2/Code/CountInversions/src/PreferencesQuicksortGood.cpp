@@ -27,7 +27,7 @@ int v_aux[MAX];
 /**
    @brief Make a quicksort algorithm and counts the number of inversions.
 j
-   @param T: That is the vector that will be ordered and where we cont the
+   @param T: That is the vector that will be ordered and where we count the
             number of inversions.
    @param num_elem: Number of elements of the vector. num_elem > 0.
 
