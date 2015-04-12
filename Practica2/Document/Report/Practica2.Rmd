@@ -386,12 +386,12 @@ De esta forma, gracias a la estrategia divide y vencerás hemos conseguido mejor
 La eficiencia híbrida que se obtiene se ve representada en la siguiente gráfica:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/CountInversions/Imagenes/nlogn_ajuste.png}}$
-$\centerline{\textbf{Imagen 1}. Gráfico y ajuste del algorítmo MergeSort modificado.}$
+$\centerline{\textbf{Imagen 2}. Gráfico y ajuste del algorítmo MergeSort modificado.}$
 
 En la siguiente gráfica se pone de manifiesto la relación de todos estos algoritmos mostrados, y la superioridad del Mergesort:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/CountInversions/Imagenes/ordenacion.png}}$
-$\centerline{\textbf{Imagen 1}. Gráficos que comparan la eficiencia de los algorítmos expuestos hasta ahora.}$
+$\centerline{\textbf{Imagen 3}. Gráficos que comparan la eficiencia de los algorítmos expuestos hasta ahora.}$
 
 $\pagebreak$
 
