@@ -396,6 +396,8 @@ $\centerline{\textbf{Imagen 3}. Gráficos que comparan la eficiencia de los algo
 $\pagebreak$
 
 
-## Notas
+## Nota
 
-Se puede plantear otro problema distinto, pero parecido a la hora de ver el quicksort como alternativa. Lo que nos hacía al algoritmo de orden cuadrático era la inserción de un elemento en el vector. Sin embargo, si en vez de un vector consideramos una lista y en vez de acceder a las componentes con un entero que nos da la posición, utilizamos iteradores de listas, a la hora de insertar y conservar el orden, con cambiar cuatro punteros de lugar en tiempo $O(1)$, el algoritmo podría dejar de tener el orden cuadrático para ser n logarítmico de nuevo. Aun así, el problema se plantea en un vector, por lo que no se da tal solución.
+Hemos desarrollado un algoritmo basado en Quicksort que si es $\theta(n \log n)$ en media. El problema que teníamos era el algoritmo de particionamiento para el pivote, al tener que preservar el orden de los demás elementos era preciso hacer inserciones en lugar de intercambios. Pero si decidimos hacer un particionamiento con un vector auxiliar (ya no es in-place) podemos copiar en tal vector los elementos menores que el pivote y posteriormente los mayores manteniendo el orden. Volvemos a copiar en el vector original los elemtnos con el pivote en su posición. Este particionamiento preserva el orden en $\theta(n)$. Sin embargo, es más lento que el Mergesort pues se recorre el subvector 3 veces durante la partición.
+
+Se explicará más detalladamente en la presentación.
