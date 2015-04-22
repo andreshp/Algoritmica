@@ -28,7 +28,7 @@ $\centerline{\includegraphics[width=10cm]{./Images/github-octocat.png}}$
 
 ## Definición de vector unimodal
 
-Un vector $v$ de números con $n$ componentes, todas distintas, se dice unimofal si existe un índice $p$ (que no es ni el primero ni el último) tal que:
+Un vector $v$ de números con $n$ componentes, todas distintas, se dice unimodal si existe un índice $p$ (que no es ni el primero ni el último) tal que:
 
 - A la izquierda de $p$ los números están ordenados de forma creciente.
 - A la derecha de $p$ están ordenados de forma decreciente.

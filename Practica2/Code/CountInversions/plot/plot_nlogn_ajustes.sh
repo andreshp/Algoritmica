@@ -13,7 +13,9 @@ TITULO="Comparación de diferentes algoritmos O(n log n) con ajuste"
 XLABEL="Longitud del Vector"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Mergesort"
+LEYENDA1="Quicksort"
 FICHERO_DATOS1="./Datos/tiempo_Preferences_1.dat"
+FICHERO_DATOS1="./Datos/tiempo_PreferencesGood_1.dat"
 
 gnuplot<<FIN
 # Ajustes

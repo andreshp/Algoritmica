@@ -1,0 +1,42 @@
+---
+title: "Algorítmica - Practica 3: Algoritmos Voraces"
+author: "A. Herrera, A. Moya, I. Sevillano, J.L. Suarez"
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+output:
+  pdf_document:
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+    fig_caption: yes
+    includes:
+        in_header:
+            mystyles.sty
+---
+
+$\pagebreak$
+
+# Organización de la práctica
+
+La práctica 2 trata sobre el desarrollo de algoritmos siguiendo el paradigma divide y vencerás. El problema que nuestro grupo debe resolver es el 6. Hemos desarrollado además varios algoritmos para el problema opcional que se exponen en su correspondiente apartado.
+
+Para cada problema se sigue la siguiente estructura:
+
+- Enunciado del problema
+- Resolución teórica del problema (con una subsección por algoritmo)
+- Análisis empírico. Análisis de la eficiencia híbrida
+
+En este último apartado se proporcionan gráficas con los resultados de los algoritmos y un análisis de la eficiencia híbrida para los mismos.
+
+Los algoritmos se han ejecutado sobre un ordenador con las siguientes características:
+
+- **Marca:** Toshiba 
+- **RAM:** 8 GB 
+- **Procesador:** Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+
+El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se puede encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica1/Code).
+
+$\pagebreak$
+
+# Problema 6
+
+## Enunciado del problema
