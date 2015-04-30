@@ -19,9 +19,9 @@ $\pagebreak$
 
 La práctica 3 trata sobre el desarrollo de algoritmos greedy que consigan la solución óptima de los problemas propuestos o actúen como heurística sobre los mismos. Uno de los problemas a estudiar es el viajante de comercio, ampliamente conocido en el ámbito de la inteligencia artificial y teoría de algoritmos. Es un problema NP completo pero que será abordable gracias al uso de algoritmos greedy polinomiales que no proporcionarán la solución óptima pero sí una lo suficientemente buena para nuestros objetivos. 
 
-Nuestro grupo debe resolver el problema 4 y el viajale de comerntcio. Hemos abordado también el problema opcional (número 5) optentiendo el algoritmo greedy óptimo.
+Nuestro grupo debe resolver el problema 4 y el viajante de comercio. Hemos abordado también el problema opcional (número 5) optentiendo el algoritmo greedy óptimo.
 
-Para cada problema se sigue la siguiente estructursa:
+Para cada problema se sigue la siguiente estructura:
 
 - Enunciado del problema
 - Resolución teórica del problema (con una subsección por algoritmo)
@@ -35,7 +35,7 @@ Los algoritmos se han ejecutado sobre un ordenador con las siguientes caracterí
 - **RAM:** 8 GB 
 - **Procesador:** Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
 
-El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se puede encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica3).
+El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se pueden encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica3).
 
 $\pagebreak$
 
@@ -49,7 +49,7 @@ $$ \forall (x, y) \in E : x \in U \text{ o } y \in U $$
 
 Un conjunto de nodos es un recubrimiento minimal de $G$ si es un recubrimiento con el menor número posible de nodos.
 
-- Diseñar un algoritmo greedy para intentar obtener un recubrimiento minimal de $G$. Demostrar que el algortmo es correcto, o dar un contraejemplo.
+- Diseñar un algoritmo greedy para intentar obtener un recubrimiento minimal de $G$. Demostrar que el algoritmo es correcto, o dar un contraejemplo.
 - Diseñar un algoritmo greedy que obtenga un recubrimiento minimal para el caso particular de grafos que sean árboles.
 -  Opcionalmente, realizar un estudio experimental de las diferencias entre los dos algoritmos anteriores cuando ambos se aplican a árboles.
 
@@ -57,12 +57,16 @@ Un conjunto de nodos es un recubrimiento minimal de $G$ si es un recubrimiento c
 
 ### Solución para un grafo arbitrario.
 
-En primer lugar, nótese que si tomamos $U = G$ tenemos un recubrimiento. Este será el peor recubrimiento porsible pues utiliza todos los nodos del grafo. Queremos obtener un mejor recubrimiento. Para ello, construyamos uno desde 0:
+En primer lugar, nótese que si tomamos $U = G$ tenemos un recubrimiento. Este será el peor recubrimiento posible pues utiliza todos los nodos del grafo. Queremos obtener un mejor recubrimiento. Para ello, construyamos uno desde 0:
+
+$\centerline{\textbf{Algoritmo 1.} Un primer intento de algoritmo aleatorio.}$
 
 1. $U = \emptyset$
 2. Para cada arista $(x,y) \in E$ tomamos como nodo $x$ o $y$ aleatoriamente y lo añadimos a $U$
 
-Este algoritmo voraz aleatorio obtiene un recubrimiento del grafo pues para cada arista hay efectivamente un nodo en $U$ sobre el que esta incide. El tiempo de ejecución es lineal sobre el número de aristas, $\left| E \right|$. Sin embargo, es claro que las soluciones obtenidas serán manifiestamente mejorables. Podemos mantener este tipo de construcción pero librarnos parcialmente de la aleatoriedad en la elección voraz del algoritmo:
+Este algoritmo voraz aleatorio obtiene un recubrimiento del grafo pues para cada arista hay efectivamente un nodo en $U$ sobre el que esta incide. El tiempo de ejecución es lineal sobre el número de aristas, $\theta(\left| E \right|)$. Sin embargo, es claro que las soluciones obtenidas serán manifiestamente mejorables. Podemos mantener este tipo de construcción pero librarnos parcialmente de la aleatoriedad introduciendo una elección voraz al algoritmo:
+
+$\centerline{\textbf{Algoritmo 2.} Mejora del Algoritmo 1 realizando una elección voraz.}$
 
 1. $U = \emptyset$
 2. Para cada arista $(x,y) \in E$ tomamos un nodo $v$ y lo añadimos a $U$ donde $v$ es:
@@ -74,5 +78,26 @@ En efecto, si algún nodo sobre el que incide la arista ya está en $U$ no tenem
 
 Sin embargo, este algoritmo lineal y aleatorio no es óptimo. Para obtener un algoritmo voraz óptimo necesitamos construir la solución desde otra perspectiva.
 
-#### Solución óptima
+En lugar de añadir un nodo por arista elegido bajo cierto criterio voraz busquemos otra forma de construir la solución. Consideramos para cada nodo su grado. El grado de un nodo es el número de aristas que inciden en él. Es fácil ver que en la solución óptima debería estar el nodo con mayor grado ya que así no tenemos que preocuparnos de añadir un nodo para las aristas que inciden sobre él. Podemos abstraer este criterio como una función objetivo para nuestro algoritmo greedy, en cada iteración añadimos a $U$ el nodo con mayor grado hasta que toda arista incida sobre algún nodo de $U$. Sin embargo, puede darse el caso de que estemos introduciendo un nodo innecesario pues las aristas que inciden en él ya inciden sobre algún otro nodo de $U$. Decidimos ante esta situación realizar la siguiente operación: cada vez que un nodo se añade a $U$ se elimina el nodo de $V$ y se eliminan de $E$ las aristas que inciden sobre él. Posteriormente recalculamos el grado de cada nodo para este nuevo grafo. Nuestro algoritmo quedaría de la siguiente forma:
 
+$\centerline{\textbf{Algoritmo 3.} Algoritmo óptimo.}$
+
+~~~python
+U = []
+while not E.isEmpty:
+    v = V.nodeMaximumDegree()
+    U.add(v)
+    for edge in U:
+        U.delete(edge) if edge[0] == v or edge[1] == v
+~~~
+
+Veamos que efectivamente este algoritmo obtiene la solución óptima.
+
+# Problema 4
+
+## Enunciado del problema
+
+Un electricista necesita hacer $n$ reparaciones urgentes, y sabe de antemano el tiempo que le va a llevar cada una de ellas: en la tarea i-ésima tardará $t_i$ minutos. Como en su empresa le pagan dependiendo de la satisfacción del cliente y esta es inversamente proporcional al tiempo que tardan en atenderles, necesita decidir el orden en el que atenderá los avisos para minimizar el tiempo medio de atención de los clientes (desde el inicio hasta que su reparación es efectuada).
+
+- Diseñar un algoritmo greedy para resolver esta tarea. Demostrar que el algoritmo obtiene la solución óptima. 
+- Modificar el algoritmo anterior para el caso de una empresa en la que se disponga de los servicios de más de un electricista.
