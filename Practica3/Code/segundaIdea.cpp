@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char const *argv[]){
 
     if(argc != 3){
-        cout << "Formato: ./primeraIdea <numero de nodos> <probabilidad de ser arista sobre 100>\n";
+        cout << "Formato: ./segundaIdea <numero de nodos> <probabilidad de ser arista sobre 100>\n";
         return -1;
     }
     struct timeval tv1, tv2;        // gettimeofday() secs-usecs
