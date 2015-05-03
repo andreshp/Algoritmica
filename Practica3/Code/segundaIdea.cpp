@@ -25,12 +25,21 @@ int main(int argc, char const *argv[]){
 
     gettimeofday(&tv1,NULL);
 
-    for(int i = 0; i < aristas.size(); i++){
-        if(rand()/100 < 50){
-            recubrimiento.insert(aristas[i].first);
+    for(set<pair<int,int> >::iterator i = aristas.begin(); i != aristas.end(); ++i){
+        if(recubrimiento.find((*i).first) == recubrimiento.end() ){
+            recubrimiento.insert((*i).first);
+
+        }
+        else if( recubrimiento.find((*i).second) != recubrimiento.end()){
+            recubrimiento.insert((*i).second);
         }
         else{
-            recubrimiento.insert(aristas[i].second);
+            if(rand()%100 < 50){
+                recubrimiento.insert((*i).second);
+            }
+            else{
+                recubrimiento.insert((*i).first);
+            }
         }
     }
 
@@ -41,7 +50,7 @@ int main(int argc, char const *argv[]){
 
     #ifdef PRUEBA
     cout << "Aristas:"<<endl;
-    for(vector<pair<int, int> >::iterator iter = aristas.begin(); iter != aristas.end(); ++iter){
+    for(set<pair<int, int> >::iterator iter = aristas.begin(); iter != aristas.end(); ++iter){
         cout << "(" << (*iter).first<<","<< (*iter).second << ") ";
     }
     cout << endl;
