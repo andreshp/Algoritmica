@@ -189,3 +189,47 @@ Un electricista necesita hacer $n$ reparaciones urgentes, y sabe de antemano el 
 
 - Diseñar un algoritmo greedy para resolver esta tarea. Demostrar que el algoritmo obtiene la solución óptima. 
 - Modificar el algoritmo anterior para el caso de una empresa en la que se disponga de los servicios de más de un electricista.
+
+## Solución teórica
+
+Dados $\{t_i : i=1,\ldots,n\}$, buscamos una permutación $x = (i_1, \ldots, i_n)$ de los $n$ primeros números naturales que minimice
+$$ f(x) = \frac{1}{n} \sum_{k=1}^n T_k \text{ donde } T_k = \sum_{j=1}^k t_{i_j} $$
+
+$T_k$ es el tiempo de espera del cliente $i_k$. Se explican a continuación las soluciones para uno o más electricistas.
+
+### Algoritmo greedy óptimo para un único electricista
+
+Desarrollemos un algoritmo greedy para el problema. En cada momento, el electricista elige un trabajo de los que le quedan pendientes y lo realiza. Parece lógico elegir aquel que más corto va a ser, pues si elegimos uno de mayor duración mucha gente tendrá que esperar a su finalización, aumentando el tiempo medio de espera. Así pues, proponemos el algoritmo 1.
+
+$\centerline{\textbf{Algoritmo 1.} Algoritmo greedy para un electricista.}$
+
+~~~python
+# t es el vector con los tiempos de los trabajos
+sol = []
+for i in range(0, n):
+    siguiente_trabajo = t.index(t.min())
+    sol.append(siguiente_trabajo)
+~~~
+
+O, equivalentemente,
+
+1. Ordenar los tiempos $\{t_i : i=1,\ldots,n\}$ de menor a mayor.
+2. Tomar como solución la permutación que los ordena $(i_1, \ldots, i_n)$. Esto es equivalente a tomar como solución $(1, \ldots, n)$ para los tiempos ordenados.
+
+Este algoritmo tan sencillo de eficiencia $\theta(n \log n)$, es efectivamente el óptimo para el problema.
+
+**Proposición 1.**  
+El algoritmo 1 minimiza el tiempo medio de espera.
+
+***Demostración.*** Ordenamos el vector con los tiempos de menor a mayor. La solución dada por el algoritmo 1 para el vector de tiempos ordenado es $x = (1, \ldots, n)$. Veamos que cualquier otra permutación $x = (i_1, \ldots, i_n)$ tiene mayor o igual tiempo medio de espera. Tomamos el primer índice $j$ tal que $t_{i_j} > t_{i_{j+1}}$. Si este índice no exíste, entonces el tiempo medio de $x'$ es el mismo de $x$. En caso de que exista, transponemos $i_j$ con $i_{j+1}$. Esta nueva permutación $x''$ tiene menor tiempo medio de espera que $x'$:
+
+$$ f(x') - f(x'') = \frac{1}{n} (t_{i_j} - t_{i_{j+1}}) > 0 $$
+
+Tomamos la nueva permutación como $x'$. Podemos repetir el proceso hasta que no exista $j$. Por la transitividad del orden, la primera permutación $x'$ tiene mayor tiempo medio de espera que la final, cuyo tiempo medio de espera es el de $x$.
+$$ \rightline{$\blacksquare$} $$
+
+Nótese que la prueba es básicamente un algoritmo de ordenación burbuja.
+
+### Algoritmo greedy óptimo para varios electricistas
+
+Mantenemos la idea anterior para este caso. Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
