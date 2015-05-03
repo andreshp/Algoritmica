@@ -93,7 +93,7 @@ while not E.isEmpty:
 
 Veamos que efectivamente este algoritmo obtiene la solución óptima.
 
-# Problema 4
+# Problema 5
 
 ## Enunciado del problema
 
