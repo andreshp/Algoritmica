@@ -51,7 +51,7 @@ Un conjunto de nodos es un recubrimiento minimal de $G$ si es un recubrimiento c
 
 - Diseñar un algoritmo greedy para intentar obtener un recubrimiento minimal de $G$. Demostrar que el algoritmo es correcto, o dar un contraejemplo.
 - Diseñar un algoritmo greedy que obtenga un recubrimiento minimal para el caso particular de grafos que sean árboles.
--  Opcionalmente, realizar un estudio experimental de las diferencias entre los dos algoritmos anteriores cuando ambos se aplican a árboles..
+-  Opcionalmente, realizar un estudio experimental de las diferencias entre los dos algoritmos anteriores cuando ambos se aplican a árboles.
 
 ## Solución teórica
 
