@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 // Author: A.Herrera, A. Moya, I. Sevillano, J.L. Suárez
 // Date: 10, April, 2015
-// Algoritmica - Práctica 3 - Algoritmos Greedy - Problema 4 - Algoritmo greedy con preferencia
-//                                                             de grado de nodo
+// Algoritmica - Práctica 3 - Algoritmos Greedy - Problema 4 - 
+// Algoritmo greedy con preferencia de grado de nodo
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -17,7 +17,6 @@
 
 using namespace std;
 
-
 //Cuenta el grado del nodo actual
 int grado_nodo(int nodo, int num_nodos, bool ** grafo){
     int contador = 0;
@@ -30,21 +29,18 @@ int grado_nodo(int nodo, int num_nodos, bool ** grafo){
 }
 
 // Elimina un nodo del grafo, quitando las respectivas aristas
-
 void elimina_nodo(int nodo, int num_nodos, bool ** grafo, set<pair<int,int> > & aristas){
     for(int i = 0; i < num_nodos; i++){
         grafo[nodo][i] = false;
         grafo[i][nodo] = false;
         set<pair<int, int > >::iterator iter;
-        if((iter = aristas.find(pair<int,int>(nodo,i)) ) != aristas.end() ){
+        if((iter = aristas.find(pair<int,int>(nodo,i)) ) != aristas.end()){
             aristas.erase(iter);
         }
         if((iter = aristas.find(pair<int,int>(i,nodo)) ) != aristas.end() ){
             aristas.erase(iter);
         }
-        
     }
-    
 }
 
 int main(int argc, char const *argv[]){
@@ -78,13 +74,10 @@ int main(int argc, char const *argv[]){
 
     int indice = (*temporal.begin()).first;
     
-    int maximo =grado_nodo((*temporal.begin()).first,num_nodos,grafo);
+    int maximo = grado_nodo((*temporal.begin()).first,num_nodos,grafo);
     int temp = maximo;
     do{
-        
-
-        int i;
-        for(i = 0; i < num_nodos; i++){
+        for(int i = 0; i < num_nodos; i++){
             temp = grado_nodo(i,num_nodos,grafo);
             if(temp > maximo){
                 indice = i;
