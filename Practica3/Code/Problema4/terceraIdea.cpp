@@ -1,3 +1,4 @@
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // Author: A.Herrera, A. Moya, I. Sevillano, J.L. Suárez
 // Date: 10, April, 2015
@@ -29,18 +30,21 @@ int grado_nodo(int nodo, int num_nodos, bool ** grafo){
 }
 
 // Elimina un nodo del grafo, quitando las respectivas aristas
-void elimina_nodo(int nodo, int num_nodos, bool ** grafo, set<pair<int,int> > & aristas){
+void elimina_nodo(int nodo, int num_nodos, bool ** grafo, set<pair<int,int> > & aristas,vector<int> &grados){
     for(int i = 0; i < num_nodos; i++){
         grafo[nodo][i] = false;
         grafo[i][nodo] = false;
         set<pair<int, int > >::iterator iter;
         if((iter = aristas.find(pair<int,int>(nodo,i)) ) != aristas.end()){
             aristas.erase(iter);
+            grados[i]--;
         }
         if((iter = aristas.find(pair<int,int>(i,nodo)) ) != aristas.end() ){
             aristas.erase(iter);
+            grados[i]--;
         }
     }
+    grados[nodo] = 0;
 }
 
 int main(int argc, char const *argv[]){
@@ -65,6 +69,8 @@ int main(int argc, char const *argv[]){
 
     set<int> recubrimiento;
 
+    vector<int> grados_nodos;
+
     set<pair<int,int> > temporal = aristas;
 
     
@@ -73,22 +79,24 @@ int main(int argc, char const *argv[]){
     gettimeofday(&tv1,NULL);
 
     int indice = (*temporal.begin()).first;
+    for( int i = 0; i < num_nodos; i++){
+        grados_nodos.push_back(grado_nodo(i,num_nodos,grafo));
+    }
     
-    int maximo = grado_nodo((*temporal.begin()).first,num_nodos,grafo);
+    int maximo = grados_nodos[(*temporal.begin()).first];
     int temp = maximo;
     do{
         for(int i = 0; i < num_nodos; i++){
-            temp = grado_nodo(i,num_nodos,grafo);
+            temp = grados_nodos[i];
             if(temp > maximo){
                 indice = i;
                 maximo = temp;
             }
         }
         recubrimiento.insert(indice);
-        elimina_nodo(indice,num_nodos,grafo,temporal);
+        elimina_nodo(indice,num_nodos,grafo,temporal,grados_nodos);
         if(!temporal.empty()){
             maximo = grado_nodo((*temporal.begin()).first,num_nodos,grafo);
-            cout << "Maximo:" << maximo << endl; 
             indice = (*temporal.begin()).first;
         }
         else{
