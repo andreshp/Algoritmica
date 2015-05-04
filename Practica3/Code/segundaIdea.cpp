@@ -1,7 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 // Author: A.Herrera, A. Moya, I. Sevillano, J.L. Suárez
 // Date: 10, April, 2015
-// Algoritmica - Práctica 3 - Algoritmos Greedy - Problema 4 - Algoritmo greedy aleatorio
+// Algoritmica - Práctica 3 - Algoritmos Greedy - Problema 4 - Algoritmo greedy con preferencia de nodo
+//                                                             de cada arista
 //////////////////////////////////////////////////////////////////////////////////////////
 
 #include "grafoaleatorio.cpp"
@@ -32,7 +33,7 @@ int main(int argc, char const *argv[]){
     int probabilidad = atoi(argv[2]); // Probabilidad de que se añada una arista durante la creación del grafo
 
     // Creación del grafo aleatorio
-    vector <pair<int,int> > aristas;
+    set <pair<int,int> > aristas;
     bool ** grafo = grafoAleatorio(num_nodos, aristas, probabilidad);
 
     set<int> recubrimiento;
@@ -40,7 +41,7 @@ int main(int argc, char const *argv[]){
     // Ejecución del algoritmo
     gettimeofday(&tv1,NULL);
 
-    for(vector<pair<int,int> >::iterator i = aristas.begin(); i != aristas.end(); ++i){
+    for(set<pair<int,int> >::iterator i = aristas.begin(); i != aristas.end(); ++i){
         if(recubrimiento.find((*i).first) == recubrimiento.end() && 
             recubrimiento.find((*i).second) == recubrimiento.end()){
             if(rand()%100 < 50){
@@ -59,7 +60,7 @@ int main(int argc, char const *argv[]){
 
     #ifdef PRUEBA
         cout << "Aristas:"<<endl;
-        for(vector<pair<int, int> >::iterator iter = aristas.begin(); iter != aristas.end(); ++iter){
+        for(set<pair<int, int> >::iterator iter = aristas.begin(); iter != aristas.end(); ++iter){
             cout << "(" << (*iter).first<<","<< (*iter).second << ") ";
         }
         cout << endl;

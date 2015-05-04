@@ -13,7 +13,7 @@
 using namespace std;
 
 
-bool** grafoAleatorio(int num_nodos, vector<pair<int,int> > &aristas, int probabilidad){
+bool** grafoAleatorio(int num_nodos, set<pair<int,int> > &aristas, int probabilidad){
     srand(time(NULL));
     aristas.clear();
     bool ** grafo = new bool*[num_nodos];
@@ -25,7 +25,7 @@ bool** grafoAleatorio(int num_nodos, vector<pair<int,int> > &aristas, int probab
             if( rand() % 100 < probabilidad && i != j){
                 grafo[i][j] = true;
                 grafo[j][i] = true;
-                aristas.push_back(pair<int,int>(i,j));
+                aristas.insert(pair<int,int>(i,j));
             }
             else{
                 grafo[i][j] = false;

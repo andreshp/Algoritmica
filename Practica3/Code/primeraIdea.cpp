@@ -32,19 +32,19 @@ int main(int argc, char const *argv[]){
     int probabilidad = atoi(argv[2]); // Probabilidad de que se añada una arista durante la creación del grafo
 
     // Creación del grafo aleatorio
-    vector <pair<int,int> > aristas;
+    set <pair<int,int> > aristas;
     bool ** grafo = grafoAleatorio(num_nodos, aristas, probabilidad);
 
     set<int> recubrimiento;
 
     // Ejecución del algoritmo
     gettimeofday(&tv1,NULL);
-    for(int i = 0; i < aristas.size(); i++){
+    for(set<pair<int,int> >::iterator i = aristas.begin(); i != aristas.end(); ++i){
         if(rand() % 100 < 50){
-            recubrimiento.insert(aristas[i].first);
+            recubrimiento.insert((*i).first);
         }
         else{
-            recubrimiento.insert(aristas[i].second);
+            recubrimiento.insert((*i).second);
         }
     }
     gettimeofday(&tv2,NULL);
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]){
 
     #ifdef PRUEBA
         cout << "Aristas:"<<endl;
-        for(vector<pair<int, int> >::iterator iter = aristas.begin(); iter != aristas.end(); ++iter){
+        for(set<pair<int, int> >::iterator iter = aristas.begin(); iter != aristas.end(); ++iter){
             cout << "(" << (*iter).first<<","<< (*iter).second << ") ";
         }
         cout << endl;
@@ -63,7 +63,7 @@ int main(int argc, char const *argv[]){
         }
         cout << endl;
     
-        cout << "Tiempo:" << tv_usecs << endl;
+        cout << "Tiempo:" << tv_usecs << endl ;
     #else
         cout << tv_usecs << endl;
     #endif
