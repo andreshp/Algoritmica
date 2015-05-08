@@ -13,9 +13,8 @@
 using namespace std;
 
 
-bool** grafoAleatorio(int num_nodos, set<pair<int,int> > &aristas, int probabilidad){
+bool** grafoAleatorio(int num_nodos, int probabilidad){
     srand(time(NULL));
-    aristas.clear();
     bool ** grafo = new bool*[num_nodos];
     for(int i = 0; i < num_nodos; i++){
         grafo[i] = new bool[num_nodos];
@@ -25,7 +24,6 @@ bool** grafoAleatorio(int num_nodos, set<pair<int,int> > &aristas, int probabili
             if( rand() % 100 < probabilidad && i != j){
                 grafo[i][j] = true;
                 grafo[j][i] = true;
-                aristas.insert(pair<int,int>(i,j));
             }
             else{
                 grafo[i][j] = false;
@@ -41,4 +39,34 @@ void liberaGrafo(int dimension, bool ** matriz){
         delete [] matriz[i];
     }
     delete [] matriz;
+}
+
+int main(int argc, char const *argv[])
+{
+    if ( argc < 2){
+        cout  << "Forma e llamar al programa: ./grafoaleatorio <numero de nodos> <probabilidad arista>" <<endl;
+        return -1;
+    }
+    int num_nodos = atoi(argv[1]);
+    int probabilidad = atoi(argv[2]);
+
+    bool ** grafo = grafoAleatorio(num_nodos,probabilidad);
+
+    cout << num_nodos << endl;
+
+    for(int i = 0; i < num_nodos; i++){
+        for(int j = 0; j < num_nodos; j++){
+            if(grafo[i][j]){
+                cout << 1 << " ";
+            }
+            else{
+                cout << 0 << " ";
+            }
+        }
+        cout << endl;
+    }
+    liberaGrafo(num_nodos,grafo);
+
+
+    return 0;
 }

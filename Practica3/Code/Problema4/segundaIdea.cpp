@@ -5,13 +5,45 @@
 //                                                             de cada arista
 //////////////////////////////////////////////////////////////////////////////////////////
 
-#include "grafoaleatorio.cpp"
+
 #include <sys/time.h>
 #include <utility>
 #include <vector>
 #include <set>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+using namespace std;
 
 #define PRUEBA
+
+int leeGrafo(ifstream &is,bool ** & grafo, set<pair<int, int> > &aristas){
+    char* dim;
+    int dimension;
+    is >> dimension;
+    grafo = new bool*[dimension];
+    for(int i = 0; i < dimension; i++){
+        grafo[i] = new bool[dimension];
+    }
+    for( int i = 0; i < dimension; i++){
+        for(int j = i; j < dimension; j++){
+            is >> grafo[i][j];
+            grafo[j][i] = grafo[i][j];
+            if(grafo[i][j]){
+                aristas.insert(pair<int,int>(i,j));
+            }
+        }
+    }
+
+    return dimension;
+}
+void liberaGrafo(bool** grafo,int dimension){
+    for( int i = 0; i < dimension;i++){
+        delete[] grafo[i];
+    }
+    delete[] grafo;
+}
 
 
 using namespace std;
@@ -19,22 +51,24 @@ using namespace std;
 int main(int argc, char const *argv[]){
 
     // Se comprueban los argumentos
-    if(argc != 3){
-        cout << "Formato: ./primeraIdea <numero de nodos> <probabilidad de ser arista sobre 100>\n";
+    // Se comprueban los argumentos
+    if(argc < 2){
+        cout << "Formato: ./primeraIdea <archivo del grafo>\n";
         return -1;
     }
+    const char* nombre = argv[1];
+    ifstream is(nombre);
+    if(!is){
+        cout << "Error de lectura de fichero" << endl;
+        return -1;
+    }
+    bool ** grafo;
+    set <pair<int,int> > aristas;
+    int num_nodos = leeGrafo(is,grafo,aristas);
 
     // Variables para calcular el tiempo
     struct timeval tv1, tv2;        // gettimeofday() secs-usecs
     double tv_usecs; 
-
-    // Se leen los parámetros
-    int num_nodos = atoi(argv[1]);    // Nodos del grafo
-    int probabilidad = atoi(argv[2]); // Probabilidad de que se añada una arista durante la creación del grafo
-
-    // Creación del grafo aleatorio
-    set <pair<int,int> > aristas;
-    bool ** grafo = grafoAleatorio(num_nodos, aristas, probabilidad);
 
     set<int> recubrimiento;
 
