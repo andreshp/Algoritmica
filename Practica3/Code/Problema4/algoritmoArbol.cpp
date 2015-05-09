@@ -57,10 +57,34 @@ GeneralTree<int> formatoGeneralTree(ifstream &is){
 
 }
 
-set<GeneralTree<int>::Node > hayaPadresHojas(GeneralTree<int> arbol){
-    for(GeneralTree<int>::Iterator iter = arbol.begin(); iter != arbol.end(); ++iter){
-        
+set<GeneralTree<int>::Node > algoritmoOptimo(GeneralTree<int>::Node nodo){
+    set<GeneralTree<int>::Node > recubrimiento;
+    GeneralTree<int>::Node nodoaux = nodo;
+    if(nodoaux->leftc != NULL){
+        set<GeneralTree<int>::Node > recubrimiento2 = algoritmoOptimo(nodoaux->leftc);
+        recubrimiento.insert(recubrimiento2.begin(),recubrimiento2.end());
+        nodoaux = nodoaux->leftc;
     }
+    while(nodoaux->rightb != NULL){
+        set<GeneralTree<int>::Node > recubrimiento2 = algoritmoOptimo(nodoaux->rightb);
+        recubrimiento.insert(recubrimiento2.begin(),recubrimiento2.end());
+        nodoaux = nodoaux->rightb;
+    }
+    nodoaux = nodo->leftc;
+    while(nodoaux != NULL){
+        if(recubrimiento.find(nodoaux) == recubrimiento.end()){
+            recubrimiento.insert(nodo);
+            nodoaux = NULL;
+        }
+        else{
+            nodoaux = nodoaux->rightb;
+        }
+
+    }
+    return recubrimiento;
+
+
+
 }
 int main(int argc, char const *argv[])
 {
@@ -80,23 +104,14 @@ int main(int argc, char const *argv[])
     is.close();
 
     GeneralTree<int> arbolaux = arbol;
-    set<int> recubrimiento;
+    set<GeneralTree<int>::Node > recubrimiento;
 
     /*__________________________________Algoritmo_____________________________________________*/
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+    recubrimiento = algoritmoOptimo(arbol.getRoot());
 
 
 
@@ -111,8 +126,8 @@ int main(int argc, char const *argv[])
     cout <<"Arbol:\n" << arbol << endl;
 
     cout << "Recubrimiento:\n"  << endl;
-    for(set<int>::iterator iter = recubrimiento.begin(); iter != recubrimiento.end(); ++iter){
-        cout << " " << *iter;
+    for(set<GeneralTree<int>::Node>::iterator iter = recubrimiento.begin(); iter != recubrimiento.end(); ++iter){
+        cout << " " << arbol.key(*iter);
     }
     cout << endl;
 
