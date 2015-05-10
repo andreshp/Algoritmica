@@ -19,7 +19,7 @@ $\pagebreak$
 
 La práctica 3 trata sobre el desarrollo de algoritmos greedy que consigan la solución óptima de los problemas propuestos o actúen como heurística sobre los mismos. Uno de los problemas a estudiar es el viajante de comercio, ampliamente conocido en el ámbito de la inteligencia artificial y teoría de algoritmos. Es un problema NP completo pero que será abordable gracias al uso de algoritmos greedy polinomiales que no proporcionarán la solución óptima pero sí una lo suficientemente buena para nuestros objetivos. 
 
-Nuestro grupo debe resolver el problema 4 y el viajante de comercio. Hemos abordado también el problema opcional (número 5) optentiendo el algoritmo greedy óptimo.
+Nuestro grupo debe resolver el problema 4 y el viajante de comercio. Hemos abordado también el problema opcional (número 5) obteniendo el algoritmo greedy óptimo.
 
 Para cada problema se sigue la siguiente estructura:
 
@@ -233,3 +233,145 @@ Nótese que la prueba es básicamente un algoritmo de ordenación burbuja.
 ### Algoritmo greedy óptimo para varios electricistas
 
 Mantenemos la idea anterior para este caso. Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
+
+# Problema del TSP
+
+## Enunciado del problema
+
+- Implementar un programa que proporcione soluciones para el problema del viajante del comercio empleando las heurísticas del vecino más cercano y la mejor inserción, así como otra adicional propuesta por el propio equipo. El programa debe proporcionar el recorrido obtenido y la longitud de dicho recorrido.
+- Realizar un estudio comparativo de las tres estrategias empleando un conjunto de datos de prueba.
+
+## Heurística del Vecino más Cercano
+
+Comenzaremos con la estrategia del vecino más cercano. Para ello, identificaremos el algoritmo de resolución como un algoritmo greedy. Para darle este enfoque debemos identificar primero las características que lo definen:
+
+- **El conjunto de candidatos.** Claramente, este conjunto es el que forman todas las ciudades de nuestro problema a resolver.
+- **Candidatos usados.** Este  conjunto lo constituyen las ciudades con las que vamos construyendo nuestra solución parcial, es decir, las ciudades ya visitadas.
+
+- **La función solución.** Para los problemas del viajante de comercio, la función solución simplemente tiene que verificar si el número de ciudades visitadas coincide con el total de ciudades que componen el problema.
+
+- **La función de selección.** Al elegir la heurística del vecino más cercano, la función de selección se convierte en aquella que, para cada ciudad $C$, se devuelve aquella ciudad $S$ del conjunto de candidatos no usados $E$, tal que $dist(S,C) = \min{\{dist(P,C) : P \in E\}}$.
+
+- **La función objetivo.** Esta función es, como para cualquier problema del viajante de comercio, la longitud de la solución, que es la que tratamos de optimizar.
+
+De esta forma, una vez captada la esencia greedy de nuestra heurística, podemos plantear de forma sencilla el pseudocódigo para nuestro algoritmo:
+
+~~~ruby
+def TSPVecinoMasCercano
+  solucion = []
+  solucion.push(conjuntoCiudades[0])  #Comenzamos añadiendo una ciudad inicial sobre la
+                                      # que se empiezan a buscar los vecinos
+                                      # (puede ser cualquiera)
+  
+  candidatos = conjuntoCiudades
+  candidatos.erase(cojuntoCiudades[0]) 
+  
+  while solucion.numeroCiudades < totalCiudades # (función solución)
+  
+    # Vamos buscando el vecino más cercano a la última ciudad insertada,
+    # con nuestra función de selección previamente indicada.
+    C = candidatos.vecinoMasCercano(solucion.get(solucion.numCiudades-1))
+    solucion.push(C)
+    candidatos.erase(C)
+  end
+  return solucion
+end
+~~~
+
+## Heurística de la mejor inserción
+
+Continuamos con la estrategia de la mejor inserción. De nuevo vamos a tratar de darle un enfoque greedy, identificando sus distintas propiedades, como se hizo anteriormente. Tenemos  que el conjunto de candidatos, los candidatos usados, la función solución y la función objetivo coinciden con el caso anterior, y lo harán igualmente con cualquier algoritmo que trate de resolver el problema del viajante de comercio. Nos queda por identificar la función de selección, que es la que caracteriza a la heurística para resolver el problema del viajante de comercio.
+
+**Función de selección.** La función de selección en este caso será aquella que, dada una solución parcial $\{S_i\},_{i=1,...,n}$, obtiene una nueva ciudad en el conjunto de candidatos no usados, $C \in E$, y una permutación $\pi_j$ que inserta C en una posición $j$ de $\{S_i\}$ (es decir, considerando $C:=S_{n+1}, \pi_j:\{1,...,n+1\}\rightarrow\{1,...,n+1\}$, dada por $\pi_j(k)=k,  \forall k < j, \pi_j(n+1)=j$, y $\pi_j(k)=k+1 \forall j < k < n+1)$), de forma que $\{S_{\pi_j(i)}\}_{i=1,...,n+1}$ minimiza la distancia de la solución parcial, esto es, la función objetivo. Esta función puede resultar extraña a primera vista, pero la idea del algoritmo es intuitiva. Se resume en it construyendo a partir de cada recorrido parcial de forma inductiva, un nuevo recorrido añadiendo una ciudad válida que minimice el recorrido al ser insertada en una posición adecuada.
+
+Una vez comprendida nuestra nueva heurística, ya podemos desarrollar un pseudocódigo para nuestro algoritmo. Solo falta definir un patrón de comienzo. Lo hacemos esto de forma sencilla. Empezamos por una ciudad $i$, y sobre ella iremos realizando inserciones. Podemos incluso posteriormente realizar este proceso comenzando por cada una de las ciudades, y quedarnos con el mejor resultado obtenido.
+
+~~~ruby
+def TSPMejorInsercion
+  solucion = []
+  solucion.push(conjuntoCiudades[i])  # Comenzamos añadiendo una ciudad inicial sobre la
+                                      # que se buscarán las mejores inserciones.
+  
+  candidatos = conjuntoCiudades
+  candidatos.erase(cojuntoCiudades[i]) 
+  
+  while solucion.numeroCiudades < totalCiudades # (función solución)
+  
+    # Buscamos la ciudad y la posición en la que insertarla según la heurística de la
+    # mejor inserción. Esta es nuestra función de selección.
+    [C,posicion] = candidatos.mejorInsercion(solucion)
+    solucion.insert(C,posicion)
+    candidatos.erase(C)
+  end
+  return solucion
+end
+~~~
+
+## Heurística propuesta: Optimización de la Colonia de Hormigas
+
+Finalmente, propondremos una nueva heurística greedy para resolver el problema del viajante de comercio, a la que añadiremos un cierto grado de aleatoriedad. Para ello nos basaremos en estrategias que ha proporcionado la propia naturaleza en determinadas situaciones para resolver problemas equivalentes. Nos centraremos concretamente en la actuación de las hormigas.
+
+Muchas veces hemos tenido la oportunidad de observar a las hormigas saliendo en grupo para buscar alimentos. Una gran cantidad de estos pequeños insectos, juntos, unos detrás de otros, formando un camino que se aprecia claramente a simple vista. Lo que seguramente no hemos apreciado nunca es que las hormigas, además de formar estas rutas, son capaces de transformarlas con el tiempo en un camino mínimo entre su lugar de salida y su objetivo. Maravillosamente, las hormigas conocen desde tiempos inmemoriables secretos del TSP que tantos quebraderos de cabeza han podido causar a las personas en los últimos tiempos. ¿Cómo pueden estos minúsculos seres realizar esta impresionante hazaña? Lo veremos a continuación.
+
+Resulta que las hormigas son ciegas. Para desplazarse, se guían a traves del olfato, concretamente, a través de las feromonas que van soltando, tanto ellas como otras hormigas. Cada vez que una hormiga sale de viaje, va dejando un rastro de feromonas que luego sigue para volver a su hormiguero. Debemos tener en cuenta también que los rastros de feromonas no son eternos; se van evaporando con el paso del tiempo. Además, los rastros de feromonas no son un camino a seguir por fuerza; una hormiga despistada puede crear una nueva ruta a su antojo, abriendo posibilidades a nuevas rutas. Ahora bien, si dos hormigas realizan recorridos distintos entre un mismo origen y destino, ¿qué puede ocurrir?
+
+Supongamos, en la situación anterior, que tenemos dos hormigas $A$ y $B$, y que la ruta que ha encontrado $A$ es más corta que la de $B$. Esto quiere decir que $A$ irá y volverá en menos tiempo, dejando un rastro de feromonas a la ida y reforzándolo a la vuelta, por lo que la probabilidad futuras hormigas sigan su mismo camino aumentará. Por el contrario, $B$ tardará más tiempo en ir y volver, por lo que habrá más evaporación de feromonas y su rastro tendrá menos intensidad; cada vez será seguido por menos hormigas y terminará por desaparecer. Esta situación se repetirá cada vez que una hormiga trate de buscar un nuevo camino pasando del rastro de feromonas. Si el camino es mejor que los anteriores, acabará por atraer a más hormigas y se convertirá en un camino dominante. En cambio, si el camino no es bueno, su ruta acabará por desaparecer. Es, de esta forma, como loas hormigas siempre consiguen hallar una ruta que seguir entre su origen y su destino, y no solo una ruta cualquiera, si no una buena ruta, en términos de distancias. De esta maravilla de la naturaleza extraeremos nuestra nueva heurística para el problema del viajante de comercio.
+
+Una vez planteada nuestra idea, veamos que realmente se trata de un algoritmo voraz. Como en los demás algoritmos para el problema del viajante de comercio, es calro cuáles son los candidatos, la función solución y la función objetivo. En cuanto a a la función de selección, no tenemos una función propiamente dicha, ya que puede tomar valores distintos para una misma entrada, es decir, tiene cierto grado de aleatoriedad. Esta función de selección se corresponde con la forma en la que eligen las hormigas el camino a seguir (a qué ciudad se mueven desde el punto en el que están), y está basado en ciertas leyes probabilísticas basadas en la cantidad de feromonas que se encuentren en cada camino entre dos ciudades. El concepto de *mapa de feromonas* también es necesario implementarlo. Esto se puede hacer de forma sencilla sin más que tomar una matriz isomorfa a la matriz de distancias entre ciudades, que represente a un  grafo ponderado con la cantidad de feromonas. Por último, al igual que las hormigas requieren de muchos paseos para obtener un camino óptimo, será necesario dejar iterar el algoritmo que queremos plantear cierto número de veces para que las soluciones vayan mejorando.
+
+Un pseudocódigo para nuestra nueva heurística, sin entrar en detalle en las leyes de probabilidad por las que puede regirse el algoritmo, es el siguiente:
+
+~~~ruby
+def TSPAntsColonyOptimization(numIteraciones)
+  solucion = []
+  
+  while i < numIteraciones
+    # Creamos una colonia de hormigas (de tamaño a elegir) y las soltamos en
+    # una ciudad al azar.
+    # Las hormigas forman una estructura que se mueve a la vez sobre el mapa de ciudades
+    # y el mapa isomorofo de feromonas y funcionará como un agente que proporciona
+    # diversas funcionalidades:
+    # - Memoria de recorrido: almacenan su ruta y permiten recuperar las soluciones que
+    #   obtienen.
+    # - Movimiento probabilístico: son capaces de determinar la ciudad a la que van a
+    #   avanzar teniendo en cuenta probabilidades dadas por la cantidad de feromonas que
+    #   encuentran en cada ruta.
+    # - Actualización de feromonas: con cada movimiento, las hormigas actualizan el mapa 
+    #   de feromonas con su aportación.
+    
+    for hormiga in coloniaHormigas
+      hormiga.iniciaRuta(rand)
+    end
+    
+    # Hacemos que las hormigas hagan un camino completo para obtener así una solución.
+    for i in 1..numeroCiudades
+      for hormiga in coloniaHormigas
+        C = hormiga.determinarSiguienteCiudad() #Función de selección basada en probabilidades.
+        hormiga.avanza(C) #La hormiga avanza en su recorrido y añade feromonas.
+      end
+    end
+    
+    # Una vez las hormigas han obtenido la solución, nos vamos quedando con la mejor.
+    for hormiga in coloniaHormigas
+      solucionHormiga = hormiga.getSolucion
+      if solucion == [] or solucionHormiga.coste() < solucion.coste()
+        solucion = solucionHormiga
+      end
+    end
+    # Repetimos el proceso el número de iteraciones que se pide en el argumento. Las 
+    # feromonas se irán modificando y dando lugar cada vez a soluciones mejores.
+  end
+end
+~~~
+
+El algoritmo que obtenemos es más pesado que los vistos anteriormente. Requiere mayor coste y es menos eficiente, pues requiere de iteraciones, y en cada iteración muchos recorridos por ciudades, mientras que los otros son directos y por tanto los recorridos que tienen que hacer los hacen solo una vez. Aun así, supera con creces la eficiencia del algoritmo de fuerza bruta, que es factorial. Además, se tiene la ventaja de que, mientras que los greedy anteriores obtienen siempre la misma solución, este algoritmo obtiene conforme aumentan las iteraciones mejores soluciones, mejora dada por el grado de aleatoriedad al que está sometido. De todas formas es posible mejorarlo introduciendo el concepto de mejora local de una solución.
+
+Una búsqueda local de una solución es un nuevo tipo de heurística que parte de una solución existente, que se puede construir mediante una heurística sencilla, tomar una solución aleatoria, etc., y obtiene una nueva solución basada en la anterior y que la mejora todo lo posible según las restricciones de la heurística de mejora. Este tipo de mejoras se reduce, básicamente, a tomar una vecindad del conjunto de ciudades, y dentro de esta vecindad, intercambiar los recorridos para que la solución quede optimizada dentro de la vecindad. De esta forma vamos obteniendo óptimos locales, si bien la solución global puede no ser la óptima para el problema, aunque sí muy buena.
+
+La idea de la búsqueda local se puede aplicar a las hormigas de tal forma que, tras obtener una solución por parte de cada hormiga, estas soluciones pueden ser mejoradas localmente, y si aplicamos el cambio de feromonas sobre las soluciones mejoradas obtenemos una convergencia mucho más rápida y soluciones muy buenas. Al combinar las búsquedas locales con el algoritmo de optimización de las hormigas, obtenemos un algoritmo que sigue siendo relativamente pesado en comparación con los de vecino más cercano y mejor inserción, pero abordable en tiempo polinómico. La velocidad de mejora de las soluciones se muestra en la siguiente gráfica, con la implementación del algoritmo en C++, que se puede consultar en el siguiente [enlace](https://github.com/andreshp/TSPSolver/tree/master/TSPSolver):
+
+$\centerline{\includegraphics[width=10cm]{./Images/ACOiterations.png}}$
+
+## Comparación de las heurísticas
+
+Finalmente, mostraremos los recorridos que se obtienen con las diferentes heurísticas explicadas para algunos recorridos con los que testearemos el problema del viajante del comercio. En muchos casos apreciaremos a simple vista qué caminos son mejores, lo que nos dará una idea de la eficacia de los distintos algoritmos:
