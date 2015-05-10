@@ -16,7 +16,7 @@
 #include <cstdlib>
 using namespace std;
 
-#define PRUEBA
+//#define PRUEBA
 
 int leeGrafo(ifstream &is,bool ** & grafo, set<pair<int, int> > &aristas){
     char* dim;
@@ -109,9 +109,9 @@ int main(int argc, char const *argv[]){
     #else
         cout << tv_usecs << endl;
 
-    liberaGrafo(num_nodos,grafo);
-
     #endif
+
+    liberaGrafo(num_nodos,grafo);
 
 
 

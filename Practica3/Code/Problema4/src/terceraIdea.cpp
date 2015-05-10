@@ -16,7 +16,7 @@
 #include <fstream>
 #include <string>
 
-#define PRUEBA
+//#define PRUEBA
 
 
 using namespace std;
@@ -155,7 +155,7 @@ int main(int argc, char const *argv[]){
 
     cout << "Tiempo:" << tv_usecs << endl;
     #else
-    cout << aristas.size() <<" "<<tv_usecs << endl;
+    cout <<tv_usecs << endl;
 
     #endif
     liberaGrafo(grafo, num_nodos);

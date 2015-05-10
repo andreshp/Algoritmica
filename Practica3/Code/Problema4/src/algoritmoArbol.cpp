@@ -106,6 +106,13 @@ int main(int argc, char const *argv[])
     GeneralTree<int> arbolaux = arbol;
     set<GeneralTree<int>::Node > recubrimiento;
 
+    // Variables para calcular el tiempo
+    struct timeval tv1, tv2;        // gettimeofday() secs-usecs
+    double tv_usecs; 
+
+     // Ejecución del algoritmo
+    gettimeofday(&tv1,NULL);
+
     /*__________________________________Algoritmo_____________________________________________*/
 
 
@@ -116,13 +123,16 @@ int main(int argc, char const *argv[])
 
 
     /*_________________________________________________________________________________________*/
+    gettimeofday(&tv2,NULL);
+
+
+    tv_usecs= ((tv2.tv_sec -tv1.tv_sec )*1E6 + (tv2.tv_usec-tv1.tv_usec)) / 1000000.0;
 
 
 
 
 
-
-
+    #ifdef PRUEBA
     cout <<"Arbol:\n" << arbol << endl;
 
     cout << "Recubrimiento:\n"  << endl;
@@ -130,6 +140,10 @@ int main(int argc, char const *argv[])
         cout << " " << arbol.key(*iter);
     }
     cout << endl;
+    #else
+
+    cout << tv_usecs << endl;
+    #endif
 
 
     return 0;
