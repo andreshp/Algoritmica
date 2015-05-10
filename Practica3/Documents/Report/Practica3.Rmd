@@ -105,7 +105,7 @@ U = []
 while not E.isEmpty:
     v = V.nodeMaximumDegree()
     U.add(v)
-    for edge in U:
+    for edge in E:
         E.delete(edge) if edge[0] == v or edge[1] == v
     V.delete(v)
 ~~~
@@ -129,27 +129,29 @@ $\centerline{\textbf{Algoritmo 4.} Algoritmo óptimo para árboles.}$
 ~~~python
 # T es el árbol sobre el que se ejecuta el algoritmo.
 # Se asume que se ha tomado una raíz para T.
+# hojasUltimoNivel() calcula las hojas del árbol
+# que se encuentran en el último nivel de este.
 U = []
 while not T.isEmpty:
-    hojas = T.hojas()
-    for hoja in hojas:
+    hojas_ultimo_nivel = T.hojasUltimoNivel()
+    for hoja in hojas_ultimo_nivel:
         U.append(hoja.parent)
         T.delete([hoja, parent])
 ~~~
 
-Su funcionamiento es el siguiente, en cada iteración se calculan las hojas del árbol y se añaden los padres al futuro recubrimiento, siguiendo la filosofía de la proposición 1. Posteriormente se eliminan las hojas, sus padres y las aristas que inciden en estos de T y se repite el proceso.
+Su funcionamiento es el siguiente, se recorre el árbol por niveles de abajo hacia arriba. En cada iteración se calculan las hojas del árbol en el nivel correspondiente y se añaden los padres al futuro recubrimiento, siguiendo la filosofía de la proposición 1. Posteriormente se eliminan las hojas, sus padres y las aristas que inciden en estos de T y se repite el proceso.
 
 **Proposición 2.**  
 El algoritmo 4 calcula el recubrimiento minimal del árbol.
 
 ***Demostración.*** En primer lugar, es fácil darse cuenta que tras la última iteración, $U$ es un recubrimiento de $T$. Veamos que es minimal. Basta ver que existe un recubrimiento minimal de $T$ que contiene a $U$. Este hecho se prueba por inducción sobre las iteraciones del algoritmo. Denotamos $T_i$ al grafo al inicio de cada iteración.
 
-- Para la iteración 1, basta tomar como recubrimiento minimal de $T$ el dado por la proposición 1. Además, $T_2$ resultado de eliminar a $T_1$ las hojas y sus padres es un árbol.
+- Para la iteración 1, basta tomar como recubrimiento minimal de $T$ el dado por la proposición 1. Además, $T_2$ resultado de eliminar a $T_1$ las hojas en el último nivel y sus padres es un árbol.
 
-- Supongamos el resultado cierto para la iteración $i-1$. Esto es, $T_i$ es un árbol y existe W, recubrimiento minimal de $T$ que contiene a $U$. Veamos que tras realizar la iteración sigue existiendo tal recubrimiento. $U$ contiene ahora a los padres de las hojas de $T_i$. Se tiene que $W - U$ es un recubrimiento minimal de $T_i$ por reducción al absurdo. Si no lo fuese, tomamos $W_i$ recubriento minimal de $T_i$ dado por la proposición 1. $W' = W_i \cup U$ es un recubrimiento de $T$ con menos nodos que $W$, contradicción. Por tanto, $W - U$ tiene el mismo número de nodos que $W_i$. Esto implica que $W' = W_i \cup U$ tiene el mismo número de nodos que $W_1$, luego es un recubrimiento minimal de $T$ que contiene a $U$ como se quería. Además, si tomamos $T_{i+1}$ resultado de quitar las hojas y los padres de estas a $T_i$ sigue siendo un árbol.
+- Supongamos el resultado cierto para la iteración $i-1$. Esto es, $T_i$ es un árbol y existe W, recubrimiento minimal de $T$ que contiene a $U$. Veamos que tras realizar la iteración sigue existiendo tal recubrimiento. $U$ contiene ahora a los padres de las hojas del último nivel de $T_i$. Se tiene que $W - U$ es un recubrimiento minimal de $T_i$ por reducción al absurdo. Si no lo fuese, tomamos $W_i$ recubriento minimal de $T_i$ dado por la proposición 1. $W' = W_i \cup U$ es un recubrimiento de $T$ con menos nodos que $W$, contradicción. Por tanto, $W - U$ tiene el mismo número de nodos que $W_i$. Esto implica que $W' = W_i \cup U$ tiene el mismo número de nodos que $W$, luego es un recubrimiento minimal de $T$ que contiene a $U$ como se quería. Además, si tomamos $T_{i+1}$ resultado de quitar las hojas del último nivel y los padres de estas a $T_i$ sigue siendo un árbol.
 $$ \rightline{$\blacksquare$} $$
 
-El algoritmo es en esencia greedy pues en cada iteración realizamos una elección de elementos del recubrimiento $U$ bajo nuestro propio criterio, que resulta dar el recubrimiento óptimo. Una mejor implementación del algoritmo se puede lograr usando el recorrido en post-orden del árbol como se hace en el algoritmo 5.
+El algoritmo es en esencia greedy pues en cada iteración realizamos una elección de elementos del recubrimiento $U$ bajo nuestro propio criterio (padre de una hoja del último nivel), que resulta dar el recubrimiento óptimo. Una mejor implementación del algoritmo se puede lograr usando el recorrido en post-orden del árbol como se hace en el algoritmo 5.
 
 $\centerline{\textbf{Algoritmo 5.} Algoritmo óptimo para árboles con recorrido en post-orden.}$
 
@@ -173,7 +175,7 @@ def algoritmoOptimo(v):
 **Proposición 3.**  
 El algoritmo 5 obtiene el mismo recubrimiento que el algoritmo 4. 
 
-***Demostración.*** Este hecho se puede probar por inducción sobre la altura del árbol. 
+***Demostración.*** Este hecho se puede probar por inducción sobre los niveles del árbol. 
 
 - El caso base es cuando $v$ es una hoja, que no tiene hijos y por ello no se añade a $U$. Además, su padre sí se añade posteriormente como pasa en el algoritmo 4. 
 - Si $v$ tiene hijos, supongamos como hìpótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo 4. Se toma $U$ como la unión de tales resultados. Si todos los hijos de $v$ están en $U$, el algoritmo 4 no escogería a $v$ pues sería una hoja en determinada iteración. En caso contrario, un hijo  de $v$ sería una hoja en alguna iteración al no estar nunca en $U$ y $v$ se añade a $U$. En cualquier caso, se obtiene el mismo resultado que el algoritmo 5.
