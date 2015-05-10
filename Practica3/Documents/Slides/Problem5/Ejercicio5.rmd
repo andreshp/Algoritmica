@@ -26,52 +26,51 @@ $\centerline{\includegraphics[width=7cm]{./Images/github-octocat.png}}$
 
 ## Resumen del enunciado
 
-Un electricista necesita hacer $n$ reparaciones urgentes, y sabe de antemano el tiempo que le va a llevar cada una de ellas: en la tarea i-ésima tardará $t_i$ minutos.
+Un **electricista** necesita hacer **n reparaciones urgentes**, y sabe de antemano el tiempo que le va a llevar cada una de ellas: en la tarea i-ésima tardará $t_i$ minutos.
 
-Como en su empresa le pagan dependiendo de la satisfacción del cliente y esta es inversamente proporcional al tiempo que tardan en atenderles, necesita decidir el orden en el que atenderá los avisos para minimizar el tiempo medio de atención de los clientes (desde el inicio hasta que su reparación es efectuada).
+Como en su empresa le pagan dependiendo de la satisfacción del cliente y esta es inversamente proporcional al tiempo que tardan en atenderles, necesita **decidir el orden** en el que atenderá las reparaciones para **minimizar el tiempo medio de espera** de los clientes (desde el inicio hasta que su reparación es efectuada).
 
 # Explicación del problema
 
 ## Ejemplo:
 
-Si tenemos 4 personas, Andrés, Juanlu, Iván y Antonio, y el tiempo que se les tarda en atender es de 1, 4, 2, 4 segundos respectivamente, si los cogemos en este primer orden escogido el tiempo medio de espera es: $$(1+5+7+11)/4 = 6 $$
+Supongamos que tenemos 4 personas, Andrés, Antonio, Iván y Juanlu, y que el tiempo que se tarda en atender sus reparaciones es de 1, 4, 2, 4 segundos respectivamente.
+
+Si el electricista los atiende por orden alfabético, los tiempos de espera son:
+
+- Andrés: 1
+- Antonio: 1+4 = 5
+- Iván: 1+4+2 = 7
+- Juanlu: 1+4+2+4 = 11
+
+El tiempo medio de espera es: $\frac{1+5+7+11}{4} = 6$
 
 # Explicación del problema
 
-## Tareas
+Desarrollamos:
 
-- Un algoritmo greedy que realice esta tarea, reduciendo lo máximo posible el tiempo medio de espera de los clientes.
+- Un algoritmo voraz que obtiene el óptimo en $\theta(n\log n)$.
 
-- Modificar este algoritmo para el caso de una empresa que cuenta con más de un electricista.
+- Una modificación del algoritmo para cuando hay varios electricistas trabajando.
 
-## Solución teórica
 
-Dados $\{t_i : i=1,\ldots,n\}$, buscamos una permutación $x = (i_1, \ldots, i_n)$ de los $n$ primeros números naturales que minimice
+# Explicación del problema
+
+Dados los tiempos de las tareas $\{t_i : i=1,\ldots,n\}$, buscamos una permutación $x = (i_1, \ldots, i_n)$ de los $n$ primeros números naturales que minimice
 $$ f(x) = \frac{1}{n} \sum_{k=1}^n T_k \text{ donde } T_k = \sum_{j=1}^k t_{i_j} $$
 
-$T_k$ es el tiempo de espera del cliente $i_k$. Se explican a continuación las soluciones para uno o más electricistas.
+$T_k$ es el tiempo de espera del cliente $i_k$.
 
-# Solución teórica
+# Algoritmo voraz óptimo
 
-## Algoritmo óptimo para un único electricista:
+En cada momento, el electricista elige un trabajo de los que le quedan pendientes y lo realiza.
 
-En cada momento, el electricista elige un trabajo de los que le quedan pendientes y lo realiza. Parece lógico elegir aquel que más corto va a ser, pues si elegimos uno
-de mayor duración mucha gente tendrá que esperar a su finalización.
+- **Estrategia voraz:** Elegir el más corto (pues si elegimos uno
+de mayor duración mucha gente tendrá que esperar a su finalización).
 
-Se propone el siguiente algoritmo:
+# Algoritmo voraz óptimo
 
-# Solución teórica
-
-## Algoritmo óptimo para un único electricista
-
-1. Ordenar los tiempos $\{t_i : i=1,\ldots,n\}$ de menor a mayor.
-2. Tomar como solución la permutación que los ordena $(i_1, \ldots, i_n)$. Esto es equivalente a tomar como solución $(1, \ldots, n)$ para los tiempos ordenados.
-
-Este algoritmo tan sencillo de eficiencia $\theta(n \log n)$, es efectivamente el óptimo para el problema.
-
-#Solución teórica
-
-## Pseudocódigo
+En cada iteración se elige el más corto no realizado:
 
 ~~~python
 # t es el vector con los tiempos de los trabajos
@@ -79,30 +78,64 @@ sol = []
 for i in range(0, n):
     siguiente_trabajo = t.index(t.min())
     sol.append(siguiente_trabajo)
+    t[siguiente_trabajo] = math.inf
 ~~~
 
-#Solución teórica
+# Algoritmo voraz óptimo
 
-## Demostración es el algoritmo óptimo
+Una mejor implementación es la siguiente:
 
-Podemos observar que si escogemos antes un cliente al que el electricista tarda más en atender, el tiempo medio de espera aumentará, mientras que si cambiamos el orden de atención de modo que se atienda antes al que menos tarde en atender, se reduce el tiempo medio de espera. Veámoslo con un ejemplo:
+1. Ordenar los tiempos $\{t_i : i=1,\ldots,n\}$ de menor a mayor.
+2. Tomar como solución la permutación que los ordena $(i_1, \ldots, i_n)$. Esto es equivalente a tomar como solución $(1, \ldots, n)$ para los tiempos ordenados.
 
-# Solución teórica
+Hemos conseguido una eficiencia $\theta(n \log n)$.
 
-## Ejemplo de que es el algoritmo óptimo:
+# Algoritmo voraz óptimo
 
-$permutación tiempos clientes$: $(1,3,2,5,4)$
-$Tiempo medio de espera$: $$(1+4+6+11+15)/4 = 9.25$$
-Cambiamos el orden: $nueva permutación$: $(1,2,3,5,4)$
-$Tiempo medio de espera$: $$(1+3+6+11+15)/4 = 9$$
-Y si lo volvemos a cambiar: $nueva permutacion$: $(1,2,3,4,5)$
-$Tiempo medio de espera$: $$(1+3+6+10+15)/4 = 8.75 $$
+## Proposición. El algoritmo voraz es óptimo.
 
-# Solución teórica
+***Demostración.*** Ordenamos el vector con los tiempos de menor a mayor. La solución dada por el algoritmo para el vector de tiempos ordenado es $x=(1, \ldots, n)$. Veamos que cualquier otra permutación $x'  = (i_1, \ldots, i_n)$ tiene mayor o igual tiempo medio de espera. 
 
-## Algoritmo óptimo para más de un electricista
+1. Sea $j$ tal que $t_{i_j} > t_{i_{j+1}}$. 
+  - Si este índice no exíste, entonces el tiempo medio de $x'$ es el mismo de $x$. 
+  - En caso de que exista, transponemos $i_j$ con $i_{j+1}$. 
 
-Mantenemos la idea anterior para este caso. Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
+# Algoritmo voraz óptimo
+
+## Proposición. El algoritmo voraz es óptimo.
+
+Esta nueva permutación $x''$ tiene menor tiempo medio de espera que $x'$:
+
+$$ f(x') - f(x'') = \frac{1}{n} (t_{i_j} - t_{i_{j+1}}) > 0 $$
+
+2. Remetimos el proceso hasta que no exista $j$. 
+
+Por la transitividad del orden, la primera permutación $x'$ tiene mayor tiempo medio de espera que la final, cuyo tiempo medio de espera es el de $x$.
+
+
+
+# Algoritmo voraz óptimo
+
+## Ejemplo (revisitado)
+
+Supongamos que tenemos 4 personas, Andrés, Antonio, Iván y Juanlu, y que el tiempo que se tarda en atender sus reparaciones es de 1, 4, 2, 4 segundos respectivamente.
+
+Si el electricista los atiende usando el algoritmo voraz, el orden de atención es: Andrés, Iván, Antonio, Juanlu. Los tiempos de espera son:
+
+- Andrés: 1
+- Iván: 1+2 = 3
+- Antonio: 1+2+4 = 7
+- Juanlu: 1+2+4+4 = 11
+
+El tiempo medio de espera es: $\frac{1+3+7+11}{4} = 5.5$
+
+# Algoritmo óptimo para más de un electricista
+
+- Mantenemos la idea anterior. 
+
+- Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. 
+
+- El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
 
 # Fin de la presentación
 
