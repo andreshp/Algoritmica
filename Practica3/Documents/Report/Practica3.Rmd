@@ -183,6 +183,8 @@ $$ \rightline{$\blacksquare$} $$
 
 La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en post-orden, esto es, lineal sobre el número de nodos. Nótese que al aplicarlo sobre el árbol de la Imagen 1 se obtendría el resultado dado en la Imagen 2.
 
+$\pagebreak$
+
 # Problema 5
 
 ## Enunciado del problema
@@ -235,6 +237,8 @@ Nótese que la prueba es básicamente un algoritmo de ordenación burbuja.
 ### Algoritmo greedy óptimo para varios electricistas
 
 Mantenemos la idea anterior para este caso. Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
+
+$\pagebreak$
 
 # Problema del TSP
 
