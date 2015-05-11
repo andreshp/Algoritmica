@@ -1,6 +1,5 @@
 ###############################################################
-# Algoritmica, Practica 1
-# Medir el tiempo del algoritmo de un algoritmo de ordenación.
+# Algoritmica, Practica 3.
 ###############################################################
 
 # Script de bash que obtiene los datos para el algoritmo 
@@ -8,21 +7,14 @@
 
 # Variables:
 
-PROGRAMA1=primeraIdea
-SALIDA1=./Datos/resultados4.txt
-PROGRAMA2=segundaIdea
-SALIDA2=./Datos/resultados5.txt
-PROGRAMA3=terceraIdea
-SALIDA3=./Datos/resultados6.txt
-
+PROGRAMA=algoritmoArbol
+SALIDA=./Datos/resultadosArbol1.txt
 PARAMETRO=./Datos
 MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
 
 # Se genera el ejecutable con el algoritmo de ordenación:
-g++ -O$2 -o $PROGRAMA1 ./src/$PROGRAMA1.cpp
-g++ -O$2 -o $PROGRAMA2 ./src/$PROGRAMA2.cpp
-g++ -O$2 -o $PROGRAMA3 ./src/$PROGRAMA3.cpp
+g++ -O$2 -o $PROGRAMA ./src/$PROGRAMA.cpp
 
 echo "$MENSAJE_INICIO"
 
@@ -30,13 +22,13 @@ echo "$MENSAJE_INICIO"
 INICIO_NOD=100
 FIN_NOD=1000
 INCREMENTO_NOD=10
-INICIO_PROB=5
+A=arbol
 #FIN_PROB=21
 #INCREMENTO_PROB=10
 
 
 i=$INICIO_NOD
-j=$INICIO_PROB
+j=`echo "puts $i**0.3" | ruby`
 
 #while [ $j -le $FIN_PROB ]
 #do
@@ -46,23 +38,16 @@ j=$INICIO_PROB
    # i=$INICIO_NOD
 while [ $i -le $FIN_NOD ]
     do
-        echo $SALIDA1
-        printf "$i " >> $SALIDA1
-        echo "`./$PROGRAMA1 $PARAMETRO/$i$j.txt`" >> $SALIDA1
-        echo $SALIDA2
-        printf "$i " >> $SALIDA2
-        echo "`./$PROGRAMA2 $PARAMETRO/$i$j.txt`" >> $SALIDA2
-        echo $SALIDA3
-        printf "$i " >> $SALIDA3
-        echo "`./$PROGRAMA3 $PARAMETRO/$i$j.txt`" >> $SALIDA3
+        echo $SALIDA
+        printf "$i " >> $SALIDA
+        echo "`./$PROGRAMA $PARAMETRO/$A$i.txt`" >> $SALIDA
         i=$((i+$INCREMENTO_NOD))
+        j=`echo "puts $i**0.3" | ruby`
     done
     #j=$((j+$INCREMENTO_PROB))
 #done
 
 # Se elimina el ejecutable:
-rm $PROGRAMA1
-rm $PROGRAMA2
-rm $PROGRAMA3
+rm $PROGRAMA
 
 echo "$MENSAJE_FINAL"
