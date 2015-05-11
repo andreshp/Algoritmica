@@ -351,11 +351,15 @@ En primer lugar, un algoritmo bioinspirado es aquel que se basa en la naturaleza
 
 Muchas veces hemos tenido la oportunidad de observar a las hormigas saliendo en grupo para buscar alimentos. Una gran cantidad de estos pequeños insectos, juntos, unos detrás de otros, formando un camino que se aprecia claramente a simple vista. Lo que seguramente no hemos apreciado nunca es que las hormigas, además de formar estas rutas, son capaces de transformarlas con el tiempo en un camino mínimo entre su lugar de salida y su objetivo. Maravillosamente, las hormigas conocen desde tiempos inmemoriables secretos del TSP que tantos quebraderos de cabeza han podido causar a las personas en los últimos tiempos. ¿Cómo pueden estos minúsculos seres realizar esta impresionante hazaña? Lo veremos a continuación.
 
+
 Resulta que las hormigas son ciegas. Para desplazarse, se guían a traves del olfato, concretamente, a través de las feromonas que van soltando, tanto ellas como otras hormigas. Cada vez que una hormiga sale de viaje, va dejando un rastro de feromonas que luego sigue para volver a su hormiguero. Debemos tener en cuenta también que los rastros de feromonas no son eternos; se van evaporando con el paso del tiempo. Además, los rastros de feromonas no son un camino a seguir por fuerza; una hormiga despistada puede crear una nueva ruta a su antojo, abriendo posibilidades a nuevas rutas. Ahora bien, si dos hormigas realizan recorridos distintos entre un mismo origen y destino, ¿qué puede ocurrir?
+
 
 Supongamos, en la situación anterior, que tenemos dos hormigas $A$ y $B$, y que la ruta que ha encontrado $A$ es más corta que la de $B$. Esto quiere decir que $A$ irá y volverá en menos tiempo, dejando un rastro de feromonas a la ida y reforzándolo a la vuelta, por lo que la probabilidad futuras hormigas sigan su mismo camino aumentará. Por el contrario, $B$ tardará más tiempo en ir y volver, por lo que habrá más evaporación de feromonas y su rastro tendrá menos intensidad; cada vez será seguido por menos hormigas y terminará por desaparecer. Esta situación se repetirá cada vez que una hormiga trate de buscar un nuevo camino pasando del rastro de feromonas. Si el camino es mejor que los anteriores, acabará por atraer a más hormigas y se convertirá en un camino dominante. En cambio, si el camino no es bueno, su ruta acabará por desaparecer. Es, de esta forma, como las hormigas siempre consiguen hallar una ruta que seguir entre su origen y su destino, y no solo una ruta cualquiera, si no una buena ruta, en términos de distancias. De esta maravilla de la naturaleza extraeremos nuestra nueva heurística para el problema del viajante de comercio.
 
+
 Una vez planteada nuestra idea, veamos que realmente se trata de un algoritmo voraz. Como en los demás algoritmos para el problema del viajante de comercio, es claro cuáles son los candidatos, la función solución y la función objetivo. La función de selección se corresponde con la forma en la que eligen las hormigas el camino a seguir (a qué ciudad se mueven desde el punto en el que están), y está basado en ciertas leyes probabilísticas que se deducen de la cantidad de feromonas que haya en el camino entre cada dos ciudades.
+
 
 No tenemos una función de selección propiamente dicha, ya que puede tomar valores distintos para una misma entrada, es decir, tiene cierto grado de aleatoriedad. Estamos ante un algoritmo voraz aleatorizado. Se pueden encontrar otros algoritmos voraces aleatorizados en la literatura especializada, como los utilizados para el funcionamiento del algoritmo [GRASP](http://en.wikipedia.org/wiki/Greedy_randomized_adaptive_search_procedure). Además, esta fución de selección aleatoria evoluciona con el tiempo juto con la distribución de feromonas en el grafo. Dicha distribución de feromonas se representa mediante el concepto de *mapa de feromonas*. Su implementación se realiza tomando una matriz isomorfa a la matriz de distancias entre ciudades, que represente al  grafo ponderado con la cantidad de feromonas.
 
@@ -416,4 +420,23 @@ $\centerline{\includegraphics[width=10cm]{./Images/ACOiterations.png}}$
 
 ## Comparación de las heurísticas
 
-Finalmente, mostraremos los recorridos que se obtienen con las diferentes heurísticas explicadas para algunos recorridos con los que testearemos el problema del viajante del comercio. En muchos casos apreciaremos a simple vista qué caminos son mejores, lo que nos dará una idea de la eficacia de los distintos algoritmos:
+Finalmente, mostraremos los recorridos que se obtienen con las diferentes heurísticas explicadas para algún recorrido con el que testearemos el problema del viajante del comercio. En muchos casos apreciaremos a simple vista qué caminos son mejores, lo que nos dará una idea de la eficacia de los distintos algoritmos:
+
+### Recorrido obtenido por el Vecino Más Cercano
+
+$\centerline{\includegraphics[width=10cm]{./Images/VecinoMasCercano-eil101.png}}$
+
+Cabe destacar sobre este algoritmo que el recorrido obtenido es un recorrido con sentido, es decir, no se trata de ningún camino inabordable respecto al coste, y se aprecia a simple vista su buena disposición. También podemos observar el principal defecto de este algoritmo, y es que, tras ir escogiendo siempre la ciudad más cercana a la última visitada, llegamos a situaciones en las que quedan las ciudades muy distanciadas y no queda más remedio que elegir añadir un arco al camino que no nos es favorable. De ahí los arcos de la imagen que resultan intuitivamente demasiado largos, lo que da a entender que sus respectivas ciudades podrían haberse enlazado de otra forma más eficaz a la hora de obtener la solución.
+
+### Recorrido obtenido por la Mejor Inserción
+
+$\centerline{\includegraphics[width=10cm]{./Images/Insercion-eil101.png}}$
+
+Intuitivamente, en este recorrido se puede apreciar una mejora considerable respecto al anterior. Al ir buscando la mejor inserción nos quitamos el problema que teníamos en el algoritmo anterior: ya no vemos esos arcos de mal gusto que intervenían en la imagen previa. Un inconveniente aquí es el de que el recorrido parcial que se va obteniendo es invariante salvo la inserción que se haga con cada ciudad, es decir, la secuencia de ciudades, aunque no es inmutable, marca la tendencia del algoritmo limitando su mejoría.
+
+### Recorido obtenido por la Optimización de las Hormigas
+
+$\centerline{\includegraphics[width=10cm]{./Images/ACO-eil101.png}}$
+
+Aquí la imagen lo dice todo. Pocas palabras se pueden añadir. Una mera observación basta para ver que el recorrido obtenido es extraordinariamente bueno. De hecho, las hormigas han logrado en este caso la solución óptima para este problema concreto. La imagen corrobora su eficacia.
+
