@@ -1,6 +1,6 @@
 #include "GeneralTree.h"
 #include <set>
-
+#include <sys/time.h>
 #include <iostream>
 #include <fstream>
 
@@ -12,12 +12,15 @@ void matrizAGrafo(bool ** grafo, int dimension, GeneralTree<int> &arbol, General
     do{
         i++;
     }while(grafo[numnodo][i] == 0 && i < dimension);
-    if(grafo[numnodo][i] != 0){
-        GeneralTree<int> arbolaux(i);
-        arbol.insertLeftChild(nodoaux,arbolaux);
-        nodoaux = nodoaux->leftc;
-        matrizAGrafo(grafo,dimension,arbol,nodoaux,i);
-        i++;
+
+    if( i < dimension){
+        if(grafo[numnodo][i] != 0){
+            GeneralTree<int> arbolaux(i);
+            arbol.insertLeftChild(nodoaux,arbolaux);
+            nodoaux = nodoaux->leftc;
+            matrizAGrafo(grafo,dimension,arbol,nodoaux,i);
+            i++;
+        }
     }
     
     

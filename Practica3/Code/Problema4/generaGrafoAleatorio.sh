@@ -1,23 +1,7 @@
 ###############################################################
-# Algoritmica, Practica 1
-# Medir el tiempo del algoritmo de un algoritmo de ordenación.
+# Algoritmica, Practica 3
+# generar grafos
 ###############################################################
-
-# Script de bash que obtiene los datos para el algoritmo 
-# de ordenación dado como parámetro.
-
-# Variables:
-# Variables:
-INICIO_NOD=100
-FIN_NOD=2500
-INCREMENTO_NOD=100
-INICIO_PROB=1
-FIN_PROB=21
-INCREMENTO_PROB=10
-
-
-i=$INICIO_NOD
-j=$INICIO_PROB
 
 PROGRAMA=grafoaleatorio
 SALIDA=./Datos
@@ -31,10 +15,10 @@ echo "$MENSAJE_INICIO"
 
 # Variables:
 INICIO_NOD=100
-FIN_NOD=2500
-INCREMENTO_NOD=100
-INICIO_PROB=1
-FIN_PROB=21
+FIN_NOD=1000
+INCREMENTO_NOD=10
+INICIO_PROB=5
+FIN_PROB=25
 INCREMENTO_PROB=10
 
 

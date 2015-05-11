@@ -8,8 +8,8 @@
 
 # Variables:
 
-PROGRAMA=terceraIdea
-SALIDA=./Datos/resultados3.txt
+PROGRAMA=primeraIdea
+SALIDA=./Datos/resultados1.txt
 PARAMETRO=./Datos
 MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
@@ -21,9 +21,9 @@ echo "$MENSAJE_INICIO"
 
 # Variables:
 INICIO_NOD=100
-FIN_NOD=2500
-INCREMENTO_NOD=100
-INICIO_PROB=11
+FIN_NOD=1000
+INCREMENTO_NOD=10
+INICIO_PROB=5
 #FIN_PROB=21
 #INCREMENTO_PROB=10
 
