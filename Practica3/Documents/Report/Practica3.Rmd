@@ -78,7 +78,7 @@ $\centerline{\textbf{Algoritmo 1.} Un primer intento de algoritmo aleatorio.}$
 
 Este algoritmo aleatorio obtiene un recubrimiento del grafo pues para cada arista hay efectivamente un nodo en $U$ sobre el que esta incide. El tiempo de ejecución es lineal sobre el número de aristas, $\theta(\left| E \right|)$. Sin embargo, es claro que normalmente las soluciones obtenidas serán manifiestamente mejorables. Podemos mantener este tipo de construcción pero librarnos parcialmente de la aleatoriedad introduciendo una estrategia greedy al algoritmo:
 
-$\centerline{\textbf{Algoritmo 2.} Mejora del Algoritmo 1 siguiendo una estrategi voraz.}$
+$\centerline{\textbf{Algoritmo 2.} Mejora del Algoritmo 1 siguiendo una estrategia voraz.}$
 
 1. $U = \emptyset$
 2. Para cada arista $(x,y) \in E$ tomamos un nodo $v$ y lo añadimos a $U$ donde $v$ es:
