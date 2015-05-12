@@ -1,69 +1,74 @@
+#!/bin/bash
+
 ###############################################################
-# Algoritmica, Practica 1
-# Medir el tiempo del algoritmo de un algoritmo de ordenación.
+# Algoritmica, Practica 3
+# Ejecución de los algoritmos voraces del ejercicio 4
 ###############################################################
 
 # Script de bash que obtiene los datos para el algoritmo 
 # de ordenación dado como parámetro.
 
-# Variables:
+#----------------- VARIABLES -----------------#
 
-PROGRAMA1=primeraIdea
-SALIDA1=./Datos/resultados1.txt
-PROGRAMA2=segundaIdea
-SALIDA2=./Datos/resultados2.txt
-PROGRAMA3=terceraIdea
-SALIDA3=./Datos/resultados3.txt
+PROGRAMA1=AlgoritmoAleatorio
+PROGRAMA2=AlgoritmoVorazAleatorizado
+PROGRAMA3=AlgoritmoVorazNodos
+PROGRAMA4=AlgoritmoOptimoArbol
 
-PARAMETRO=./Datos
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
-MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
+INICIO_NODOS=100
+FIN_NODOS=1000
+INCREMENTO_NODOS=10
 
-# Se genera el ejecutable con el algoritmo de ordenación:
-g++ -O$2 -o $PROGRAMA1 ./src/$PROGRAMA1.cpp
-g++ -O$2 -o $PROGRAMA2 ./src/$PROGRAMA2.cpp
-g++ -O$2 -o $PROGRAMA3 ./src/$PROGRAMA3.cpp
+#----------------- PARAMETROS -----------------#
 
-echo "$MENSAJE_INICIO"
+# Se comprueban los parametros, asignando el directorio para
+# grafos correspondiente
+if [[ $# == 1 && $1 == '-a' ]]; then
+    DIR=./Datos/Arboles
+    PROGRAMAS=($PROGRAMA1 $PROGRAMA2 $PROGRAMA3 $PROGRAMA4)
+else
+    DIR=./Datos/Grafos
+    PROGRAMAS=($PROGRAMA1 $PROGRAMA2 $PROGRAMA3)
+fi
 
-# Variables:
-INICIO_NOD=100
-FIN_NOD=1000
-INCREMENTO_NOD=10
-INICIO_PROB=5
-A=arbol
-#FIN_PROB=21
-#INCREMENTO_PROB=10
+mkdir -p $DIR/Resultados
+
+#----------------- COMPILACIÓN -----------------#
+
+# Se generan los ejecutables para los algoritmos:
+g++ -O2 -o $PROGRAMA1 ./src/$PROGRAMA1.cpp
+g++ -O2 -o $PROGRAMA2 ./src/$PROGRAMA2.cpp
+g++ -O2 -o $PROGRAMA3 ./src/$PROGRAMA3.cpp
+g++ -O2 -o $PROGRAMA4 ./src/$PROGRAMA4.cpp
 
 
-i=$INICIO_NOD
-j=$INICIO_PROB
+#----------------- EJECUCIÓN -----------------#
 
-#while [ $j -le $FIN_PROB ]
-#do
- #   echo $FIN_PROB
-  #  printf "" >> $SALIDA
-   # printf "Ejecución prob = $j\n" >> $SALIDA
-   # i=$INICIO_NOD
-while [ $i -le $FIN_NOD ]
+# Se comprueba que existe el directorio con los datos.
+# En caso afirmativo se inicia la ejecución.
+if [[ -d $DIR ]]; then
+    echo "Iniciando la ejecución..."
+else
+    echo "No existe el directorio con los datos (./Datos). Ejecutar 'genera*.sh'."
+    exit
+fi
+
+for PROGRAMA in ${PROGRAMAS[*]}; do
+    echo "Ejecutando el programa $PROGRAMA..."
+    printf "" > $DIR/Resultados/$PROGRAMA.txt
+    i=$INICIO_NODOS
+    while [ $i -le $FIN_NODOS ]
     do
-        echo $SALIDA1
-        printf "$i " >> $SALIDA1
-        echo "`./$PROGRAMA1 $PARAMETRO/$A$i.txt`" >> $SALIDA1
-        echo $SALIDA2
-        printf "$i " >> $SALIDA2
-        echo "`./$PROGRAMA2 $PARAMETRO/$A$i.txt`" >> $SALIDA2
-        echo $SALIDA3
-        printf "$i " >> $SALIDA3
-        echo "`./$PROGRAMA3 $PARAMETRO/$A$i.txt`" >> $SALIDA3
-        i=$((i+$INCREMENTO_NOD))
+        echo "  Ejecución para $i nodos..."
+        echo "$i `./$PROGRAMA $DIR/Instancias/$i.txt`" >> $DIR/Resultados/$PROGRAMA.txt
+        i=$((i+$INCREMENTO_NODOS))
     done
-    #j=$((j+$INCREMENTO_PROB))
-#done
+done
 
 # Se elimina el ejecutable:
 rm $PROGRAMA1
 rm $PROGRAMA2
 rm $PROGRAMA3
+rm $PROGRAMA4
 
-echo "$MENSAJE_FINAL"
+echo "Fin de la ejecución. Se han creado ficheros con los resultados."

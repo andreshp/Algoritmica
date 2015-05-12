@@ -1,48 +1,45 @@
+#!/bin/bash
+
 ###############################################################
 # Algoritmica, Practica 3
-# generar grafos
+# Script para generar grafos aleatorios
 ###############################################################
 
-PROGRAMA=grafoaleatorio
-SALIDA=./Datos
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
-MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
+#----------------- VARIABLES -----------------#
 
-# Se genera el ejecutable con el algoritmo de ordenación:
+# Programa y directorio de salida
+PROGRAMA=grafoaleatorio
+SALIDA=./Datos/Grafos/Instancias
+
+# Número de nodos
+INICIO_NODOS=100
+FIN_NODOS=1000
+INCREMENTO_NODOS=10
+
+# El índice de densidad del árbol indica el porcentaje de parejas
+# de nodos entre los cuales hay una arista.
+INDICE_DENSIDAD=5
+
+# Creación del directorio de salida en caso de que no exista
+mkdir -p $SALIDA
+
+#----------------- COMPILACIÓN -----------------#
+
+# Se genera el ejecutable para crear grafos:
 g++ -O$2 -o $PROGRAMA ./src/$PROGRAMA.cpp
 
-echo "$MENSAJE_INICIO"
+#----------------- EJECUCIÓN -----------------#
 
-# Variables:
-INICIO_NOD=100
-FIN_NOD=1000
-INCREMENTO_NOD=10
-INICIO_PROB=5
-FIN_PROB=25
-INCREMENTO_PROB=10
+echo "Se inicia la creación de grafos..."
 
-
-i=$INICIO_NOD
-j=$INICIO_PROB
-
-while [ $j -le $FIN_PROB ]
+i=$INICIO_NODOS
+while [ $i -le $FIN_NODOS ]
 do
-    echo $FIN_PROB
-    printf "" > $SALIDA/$i$j.txt
-    echo Ejecución prob = $j
-    i=$INICIO_NOD
-    while [ $i -le $FIN_NOD ]
-        do
-            printf "" > $SALIDA/$i$j.txt
-            echo $SALIDA/$i$j.txt
-            echo Ejecución tam = $i
-            echo "`./$PROGRAMA $i $j`" > $SALIDA/$i$j.txt
-            i=$((i+$INCREMENTO_NOD))
-        done
-    j=$((j+$INCREMENTO_PROB))
+    printf "" > $SALIDA/$i.txt
+    echo "Creando un grafo con $i nodos..."
+    echo "`./$PROGRAMA $i $INDICE_DENSIDAD`" > $SALIDA/$i.txt
+    i=$((i+$INCREMENTO_NODOS))
 done
 
 # Se elimina el ejecutable:
 rm $PROGRAMA
-
-echo "$MENSAJE_FINAL"

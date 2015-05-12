@@ -103,18 +103,20 @@ $\centerline{\textbf{Algoritmo 3.} Algoritmo greedy basado en grados.}$
 # G = (V,E) es el grafo sobre el que se ejecuta el algoritmo
 U = []
 while not E.isEmpty:
-    v = V.nodeMaximumDegree()
+    v = V.nodoMaximoGrado()
     U.add(v)
-    for edge in E:
+    for edge in v.aristasIncidentes():
         E.delete(edge) if edge[0] == v or edge[1] == v
     V.delete(v)
 ~~~
 
-Sin embargo, este algoritmo no es óptimo. Un ejemplo de este hecho puede ser la Imagen 3. El recubrimiento mostrado es precisamente el recubrimiento dado por este algoritmo.
+Este algoritmo es más lento que los anteriores. Nuestra implementación tiene eficiencia $\theta(\vert V \vert ^2)$. Para conseguir esto actualizan los grados de los nodos vecinos a $v$ en cada iteración de forma de que solo se calculan todos los grados una vez. Sin embargo, si se utiliza un heap se puede obtener una eficiencia $\theta(\vert E \vert \log \vert V \vert)$, siendo mejor para grafos menos densos. 
+
+Este algoritmo no es óptimo. Un ejemplo de este hecho puede ser la Imagen 3. El recubrimiento mostrado es precisamente el recubrimiento dado por este algoritmo.
 
 ### Solución para un árbol
 
-Hemos visto que todos los algoritmos anteriores podrían fallar incluso en un árbol. Sin embargo, estos algoritmos genéricos para grafos no aprovechaban este hecho. En un árbol se pueden deducir fácilmente propiedades sobre su recubrimiento minimal.
+Hemos visto que todos los algoritmos anteriores podrían fallar incluso en un árbol. Sin embargo, estos algoritmos genéricos para grafos no aprovechaban la estructura subyacente. En un árbol se pueden deducir fácilmente propiedades sobre su recubrimiento minimal, que den lugar a un algoritmo específico.
 
 **Proposición 1.**  
 Sea $T=(V,E)$ un árbol. Entonces, existe un recubrimiento minimal del mismo en el cual no contiene a ninguna hoja del árbol pero sí a todo padre de una hoja.
@@ -144,7 +146,7 @@ Su funcionamiento es el siguiente, se recorre el árbol por niveles de abajo hac
 **Proposición 2.**  
 El algoritmo 4 calcula el recubrimiento minimal del árbol.
 
-***Demostración.*** En primer lugar, es fácil darse cuenta que tras la última iteración, $U$ es un recubrimiento de $T$. Veamos que es minimal. Basta ver que existe un recubrimiento minimal de $T$ que contiene a $U$. Este hecho se prueba por inducción sobre las iteraciones del algoritmo. Denotamos $T_i$ al grafo al inicio de cada iteración.
+***Demostración.*** En primer lugar, es fácil darse cuenta que tras la última iteración, $U$ es un recubrimiento de $T$. Veamos que es minimal. Basta ver que existe un recubrimiento minimal de $T$ que contiene a $U$. Este hecho se prueba por inducción sobre las iteraciones del algoritmo. Denotamos $T_i$ al árbol al inicio de cada iteración.
 
 - Para la iteración 1, basta tomar como recubrimiento minimal de $T$ el dado por la proposición 1. Además, $T_2$ resultado de eliminar a $T_1$ las hojas en el último nivel y sus padres es un árbol.
 
@@ -184,29 +186,35 @@ $$ \rightline{$\blacksquare$} $$
 La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en post-orden, esto es, lineal sobre el número de nodos. Nótese que al aplicarlo sobre el árbol de la Imagen 1 se obtendría el resultado dado en la Imagen 2.
 
 
-##Resultados obtenidos experimentalmente.
+## Resultados empíricos
 
-Para probar cada uno de los algoritmos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo (o árbol) hemos implementado dos generadores tanto de árbol como de grafos aleatorios. En el primero usamos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algoritmos. En el segundo usamos el número de hijos máximo, que influye de la misma manera. No incluiremos el estudio del cambio en tiempo de ejecución con respecto a estos parámetros, aunque sí lo notaremos como anécdota.
+Para probar cada uno de los algoritmos experimentalmente y que todos ellos se ejecutasen sobre el mismo grafo (o árbol) hemos implementado dos generadores tanto de árbol como de grafos aleatorios. En el primero usamos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algoritmos. En el segundo usamos el número de hijos máximo, que influye de la misma manera. No incluiremos el estudio de la evolución de los algoritmos respecto a estos parámetros por la densidad que tendría el mismo. Sin embargo, conviene resaltar que para grafos aleatorios cuanto menor sea la densidad de estos mejores son los algoritmos (hay menos aristas que recubrir). En el caso de los árboles, los algoritmos son mejores cuanto más hijos por nodo haya, pues el grado de los nodos será mayor.
 
-###Eficiencia en número de nodos en grafos.
+### Grafos arbitrarios
 
-Los tres algoritmos utilizados para grafos dan resultados bastante parecidos, aunque siempre ha de tenerse en cuenta que conforme se mejora la idea, se eliminan nodos de el recubrimiento. Así queda la gráfica:
+Los tres algoritmos desarrollados para grafos arbitrarios obtienen los resultados dados en la Imagen 4. En esta se muestra el tamaño de los recubrimientos obtenidos para cada algoritmo en función del número de nodos del grafo. Debe notarse que el algoritmo aleatorio obtiene resultados cercanos a tomar todos los nodos del grafo cuando este es lo suficientemente grande. Es un algoritmo bastante malo. El algoritmo voraz aleatorizado obtiene resultados un poco mejores, pero tampoco excesivamente destacables. Tiene como ventaja su eficiencia lineal que permitiría repetir el algoritmo tantas veces como queramos, pudiendo emular al algoritmo de optimización GRASP si se desarrollase una búsqueda local. Por último, el algoritmo voraz basado en grados es el que mejor resultados obtiene, creciendo su diferencia con los anteriores para grafos grandes. Esto es lógico pues su función de selección parece ser más óptima.
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_nodos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/GrafoArbitrarioRecubrimiento.png}}$
+$\centerline{\textbf{Imagen 4}. Tamaño de los recubrimientos sobre grafos aleatorios.}$
 
-Sin embargo, si nos fijamos en la gráfica de tiempos, vemos que el comportamiento del tercer algorítmo es bastante más costoso, $O(n^2)$ , por lo que nos planteamos si merece la pena conseguir un recubrimiento insignificantemente mejor por un tiempo cuadrático:
+La Imagen 5 proporciona los tiempos para las ejecuciones anteriores. Vemos que el comportamiento del tercer algoritmo es bastante más costoso, $\theta(n^2)$, por lo que nos planteamos si merece la pena conseguir un recubrimiento insignificantemente mejor por un tiempo cuadrático. La respuesta es que depende de para qué usemos el algoritmo voraz. En combinación con otras heurísticas probablemente sea mejor el algoritmo voraz aleatorizado pues el campo de soluciones producido es mucho más amplio y la eficiencia lineal, permitiendo que el peso de la mejora lo lleven las otras heurísticas. Para ejecuciones aisladas es mejor el algoritmo voraz por grados.
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_tiempos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/GrafoArbitrarioTiempo.png}}$
+$\centerline{\textbf{Imagen 5}. Tiempos obtenidos sobre grafos aleatorios.}$
 
-###Eficiencia en número de nodos en aroles. ###
+### Árboles
 
-Los resultados de ejecutar los algoritmos anteriores y el algoritmo creado para el caso de que el grafo sea un arbol. Los resultados son notablemente mejores en cuanto al recubriemiento minimal que se obtiene en este último:
+En esta sección se incluye el algoritmo óptimo desarrollado para árboles. Los algoritmos previos se aplican también a este caso específico y, como veremos, obtendrán mejores resultados que antes. 
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_nodos.png}}$
+La Imagen 6 muestra el tamaño de los recubrimiento obtenidos por los cuatro algoritmos sobre árboles. Si se compara con la Imagen 4 se puede deducir que los algoritmos voraces se comportan mucho mejor sobre árboles ya que su densidad es mucho menor. Si comparamos su rendimiento con el algoritmo óptimo este espejismo se desvanece, los resultados de los algoritmos voraces están lejos del óptimo del problema.
 
-Además de ser notablemente mejor en cuanto a número de nodos, el tiempo, como ya demostramos, tiene un coste en tiempo com parable a los algoritmos primero y segundo para grafos, que son lineales:
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolRecubrimiento.png}}$
+$\centerline{\textbf{Imagen 6}. Tamaño de los recubrimientos sobre árboles aleatorios.}$
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_tiempos.png}}$
+Además de ser notablemente mejor en cuanto a número de nodos, el algoritmo óptimo, como ya demostramos, tiene un coste en tiempo comparable a los algoritmos aleatorio y voraz aleatorizado, que son lineales. Es un algoritmo francamente impresionable.
+
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolTiempo.png}}$
+$\centerline{\textbf{Imagen 7}. Tiempos obtenidos sobre árboles aleatorios.}$
 
 $\pagebreak$
 
@@ -263,6 +271,9 @@ Nótese que la prueba es básicamente un algoritmo de ordenación burbuja.
 ### Algoritmo greedy óptimo para varios electricistas
 
 Mantenemos la idea anterior para este caso. Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
+
+$\centerline{\includegraphics[width=10cm]{./Images/SchedulingNMachines.png}}$
+$\centerline{\textbf{Imagen 1}. Distribución de los trabajos entre los operarios.}$
 
 $\pagebreak$
 

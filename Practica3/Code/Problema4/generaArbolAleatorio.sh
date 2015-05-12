@@ -1,36 +1,42 @@
+#!/bin/bash
+
 ###############################################################
 # Algoritmica, Practica 3
-# generar grafos
+# Script para generar árboles aleatorios
 ###############################################################
 
-PROGRAMA=arbolaleatorio
-SALIDA=./Datos
-MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
-MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados.\n"
+#----------------- VARIABLES -----------------#
 
-# Se genera el ejecutable con el algoritmo de ordenación:
+# Programa y directorio de salida
+PROGRAMA=arbolaleatorio
+SALIDA=./Datos/Arboles/Instancias
+
+# Número de nodos
+INICIO_NODOS=100
+FIN_NODOS=1000
+INCREMENTO_NODOS=10
+
+# Creación del directorio de salida en caso de que no exista
+mkdir -p $SALIDA
+
+#----------------- COMPILACIÓN -----------------#
+
+# Se genera el ejecutable para crear árboles:
 g++ -O$2 -o $PROGRAMA ./src/$PROGRAMA.cpp
 
-echo "$MENSAJE_INICIO"
+#----------------- EJECUCIÓN -----------------#
 
-# Variables:
-INICIO_NOD=100
-FIN_NOD=1000
-INCREMENTO_NOD=10
-A=arbol
-i=$INICIO_NOD
-j=`echo "puts $i**0.3" | ruby`
-while [ $i -le $FIN_NOD ]
-    do
-        printf "" > $SALIDA/$A$i.txt
-        echo $SALIDA/$A$i.txt
-        echo Ejecución tam = $i
-        echo "`./$PROGRAMA $i $j`" > $SALIDA/$A$i.txt
-        i=$((i+$INCREMENTO_NOD))
-        j=`echo "puts $i**0.3" | ruby`
-    done
+echo "Se inicia la creación de árboles..."
+
+i=$INICIO_NODOS
+while [ $i -le $FIN_NODOS ]
+do
+    MAX_HIJOS=`echo "puts $i**0.3" | ruby` # NUM_NODOS ^ 0.3
+    printf "" > $SALIDA/$i.txt
+    echo "Creando un grafo con $i nodos..."
+    echo "`./$PROGRAMA $i $MAX_HIJOS`" > $SALIDA/$i.txt
+    i=$((i+$INCREMENTO_NODOS))
+done
 
 # Se elimina el ejecutable:
 rm $PROGRAMA
-
-echo "$MENSAJE_FINAL"
