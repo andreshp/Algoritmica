@@ -41,12 +41,12 @@ void liberaGrafo(int dimension, bool ** matriz){
     delete [] matriz;
 }
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     if ( argc < 2){
         cout  << "Forma e llamar al programa: ./grafoaleatorio <numero de nodos> <probabilidad arista>" <<endl;
         return -1;
     }
+
     int num_nodos = atoi(argv[1]);
     int probabilidad = atoi(argv[2]);
 
@@ -66,7 +66,6 @@ int main(int argc, char const *argv[])
         cout << endl;
     }
     liberaGrafo(num_nodos,grafo);
-
 
     return 0;
 }

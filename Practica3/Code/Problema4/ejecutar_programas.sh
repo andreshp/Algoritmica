@@ -9,11 +9,11 @@
 # Variables:
 
 PROGRAMA1=primeraIdea
-SALIDA1=./Datos/resultados4.txt
+SALIDA1=./Datos/resultados1.txt
 PROGRAMA2=segundaIdea
-SALIDA2=./Datos/resultados5.txt
+SALIDA2=./Datos/resultados2.txt
 PROGRAMA3=terceraIdea
-SALIDA3=./Datos/resultados6.txt
+SALIDA3=./Datos/resultados3.txt
 
 PARAMETRO=./Datos
 MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
@@ -31,6 +31,7 @@ INICIO_NOD=100
 FIN_NOD=1000
 INCREMENTO_NOD=10
 INICIO_PROB=5
+A=arbol
 #FIN_PROB=21
 #INCREMENTO_PROB=10
 
@@ -48,13 +49,13 @@ while [ $i -le $FIN_NOD ]
     do
         echo $SALIDA1
         printf "$i " >> $SALIDA1
-        echo "`./$PROGRAMA1 $PARAMETRO/$i$j.txt`" >> $SALIDA1
+        echo "`./$PROGRAMA1 $PARAMETRO/$A$i.txt`" >> $SALIDA1
         echo $SALIDA2
         printf "$i " >> $SALIDA2
-        echo "`./$PROGRAMA2 $PARAMETRO/$i$j.txt`" >> $SALIDA2
+        echo "`./$PROGRAMA2 $PARAMETRO/$A$i.txt`" >> $SALIDA2
         echo $SALIDA3
         printf "$i " >> $SALIDA3
-        echo "`./$PROGRAMA3 $PARAMETRO/$i$j.txt`" >> $SALIDA3
+        echo "`./$PROGRAMA3 $PARAMETRO/$A$i.txt`" >> $SALIDA3
         i=$((i+$INCREMENTO_NOD))
     done
     #j=$((j+$INCREMENTO_PROB))

@@ -283,9 +283,35 @@ Veamos que el nuevo algoritmo tiene el mismo comportamiento sobre $v$ que el alg
 
 # Análisis empírico
 
-## Comparaciones
+## Eficiencia en número de nodos en grafos
 
-Compararemos ahora el resultado de llevar a cabo varias ejecuciones. Esto falta por hacer aún
+Los tres algorítmos utilizados para grafos dan resultados bastante parecidos, aunque el número de nodos del recubrimiento es menor en el algoritmo óptimo:
+
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_nodos.png}}$
+
+# Análisis empírico
+
+## Efinciencia en tiempo
+
+Sin embargo, se puede observar como en este algoritmo óptimo el coste en tiempo es mayor, es $O(n^2)$ , con lo que podemos preguntarnos si merece la pena este coste en tiempo para tan poca mejora:
+
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_tiempos.png}}$
+
+# Análisis empírico
+
+## Eficiencia en número de nodos en arboles
+
+Al comparar estos algoritmos anteriores con el algoritmo óptimo para grafos que son árboles, podemos observar la gran mejora que supone éste último:
+
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_nodos.png}}$
+
+# Análisis empírico
+
+## Eficiencia en tiempo
+
+Además de ésta mejora que acabamos de ver en cuanto a nodos del recubrimiento lineal, podemos ver como ya observamos anteriormente que el coste en tiempo es lineal, lo cual no hace más que refutar la idea de que este algoritmo es óptimo y eficiente.
+
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_tiempos.png}}$
 
 # Fin de la presentación
 
