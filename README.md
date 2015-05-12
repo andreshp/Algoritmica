@@ -10,3 +10,4 @@ Prácticas de la asignatura de Algorítmica en la UGR.
 
 - **Practica 1** : Practica con un estudio teórico y empírico de varios algoritmos.
 - **Practica 2** : Practica con algoritmos Divide y Vencerás.
+- **Practica 3** : Practica con algoritmos voraces.
