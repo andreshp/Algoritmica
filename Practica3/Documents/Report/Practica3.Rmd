@@ -186,11 +186,11 @@ La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en
 
 ##Resultados obtenidos experimentalmente.
 
-Para probar cada uno de los algoritmos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo (o árbol) hemos implementado dos generadores tanto de árbol como de grafos aleatorios. En el primero usamos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algoritmos. En el segundo usamos el número de hijos máximo, hecho que también lo hace. No incluiremos el estudio del cambio en tiempo de ejecución con respecto a estos parámetros, aunque sí lo notaremos como anécdota.
+Para probar cada uno de los algoritmos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo (o árbol) hemos implementado dos generadores tanto de árbol como de grafos aleatorios. En el primero usamos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algoritmos. En el segundo usamos el número de hijos máximo, que influye de la misma manera. No incluiremos el estudio del cambio en tiempo de ejecución con respecto a estos parámetros, aunque sí lo notaremos como anécdota.
 
 ###Eficiencia en número de nodos en grafos.
 
-Los tres algorítmos utilizados para grafos dan resultados bastante parecidos, aunque siempre ha de tenerse en cuenta que conforme se mejora la idea, se eliminan nodos de el recubrimiento. Así queda la gráfica:
+Los tres algoritmos utilizados para grafos dan resultados bastante parecidos, aunque siempre ha de tenerse en cuenta que conforme se mejora la idea, se eliminan nodos de el recubrimiento. Así queda la gráfica:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_nodos.png}}$
 
@@ -200,11 +200,11 @@ $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_
 
 ###Eficiencia en número de nodos en aroles. ###
 
-Los resultados de ejecutar los algorítmos anteriores y el algorítmo creado para el caso de que el grafo sea un arbol. Los resultados son notáblemente mejores en cuanto alrecubriemiento minimal que se obtiene en este último:
+Los resultados de ejecutar los algoritmos anteriores y el algoritmo creado para el caso de que el grafo sea un arbol. Los resultados son notablemente mejores en cuanto al recubriemiento minimal que se obtiene en este último:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_nodos.png}}$
 
-Además de ser notablemente mejor en cuanto a número de nodos, el tiempo, como ya demostramos, tiene un coste en tiempo com paráble a los algorítmos priemero y segundo para grafos, que son lineales:
+Además de ser notablemente mejor en cuanto a número de nodos, el tiempo, como ya demostramos, tiene un coste en tiempo com parable a los algoritmos primero y segundo para grafos, que son lineales:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_tiempos.png}}$
 
