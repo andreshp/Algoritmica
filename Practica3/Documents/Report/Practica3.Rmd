@@ -209,11 +209,12 @@ En esta sección se incluye el algoritmo óptimo desarrollado para árboles. Los
 La Imagen 6 muestra el tamaño de los recubrimiento obtenidos por los cuatro algoritmos sobre árboles. Si se compara con la Imagen 4 se puede deducir que los algoritmos voraces se comportan mucho mejor sobre árboles ya que su densidad es mucho menor. Si comparamos su rendimiento con el algoritmo óptimo este espejismo se desvanece, los resultados de los algoritmos voraces están lejos del óptimo del problema.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolRecubrimiento.png}}$
-$\centerline{\textbf{Imagen 6}. Tamaño de los recubrimientos sobre grafos aleatorios.}$
+$\centerline{\textbf{Imagen 6}. Tamaño de los recubrimientos sobre árboles aleatorios.}$
 
 Además de ser notablemente mejor en cuanto a número de nodos, el algoritmo óptimo, como ya demostramos, tiene un coste en tiempo comparable a los algoritmos aleatorio y voraz aleatorizado, que son lineales. Es un algoritmo francamente impresionable.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolTiempo.png}}$
+$\centerline{\textbf{Imagen 7}. Tiempos obtenidos sobre árboles aleatorios.}$
 
 $\pagebreak$
 

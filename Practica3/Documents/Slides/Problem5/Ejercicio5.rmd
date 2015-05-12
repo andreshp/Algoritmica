@@ -135,8 +135,12 @@ El tiempo medio de espera es: $\frac{1+3+7+11}{4} = 5.5$
 
 - Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. 
 
-- El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
+- El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.   
 
+# Algoritmo óptimo para más de un electricista
+
+$\centerline{\includegraphics[width=7cm]{./Images/SchedulingNMachines.png}}$
+    
 # Fin de la presentación
 
 **¡Gracias por su atención!**
