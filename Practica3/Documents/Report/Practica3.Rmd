@@ -78,7 +78,7 @@ $\centerline{\textbf{Algoritmo 1.} Un primer intento de algoritmo aleatorio.}$
 
 Este algoritmo aleatorio obtiene un recubrimiento del grafo pues para cada arista hay efectivamente un nodo en $U$ sobre el que esta incide. El tiempo de ejecución es lineal sobre el número de aristas, $\theta(\left| E \right|)$. Sin embargo, es claro que normalmente las soluciones obtenidas serán manifiestamente mejorables. Podemos mantener este tipo de construcción pero librarnos parcialmente de la aleatoriedad introduciendo una estrategia greedy al algoritmo:
 
-$\centerline{\textbf{Algoritmo 2.} Mejora del Algoritmo 1 siguiendo una estrategi voraz.}$
+$\centerline{\textbf{Algoritmo 2.} Mejora del Algoritmo 1 siguiendo una estrategia voraz.}$
 
 1. $U = \emptyset$
 2. Para cada arista $(x,y) \in E$ tomamos un nodo $v$ y lo añadimos a $U$ donde $v$ es:
@@ -178,7 +178,7 @@ El algoritmo 5 obtiene el mismo recubrimiento que el algoritmo 4.
 ***Demostración.*** Este hecho se puede probar por inducción sobre los niveles del árbol. 
 
 - El caso base es cuando $v$ es una hoja, que no tiene hijos y por ello no se añade a $U$. Además, su padre sí se añade posteriormente como pasa en el algoritmo 4. 
-- Si $v$ tiene hijos, supongamos como hìpótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo 4. Se toma $U$ como la unión de tales resultados. Si todos los hijos de $v$ están en $U$, el algoritmo 4 no escogería a $v$ pues sería una hoja en determinada iteración. En caso contrario, un hijo  de $v$ sería una hoja en alguna iteración al no estar nunca en $U$ y $v$ se añade a $U$. En cualquier caso, se obtiene el mismo resultado que el algoritmo 5.
+- Si $v$ tiene hijos, supongamos como hipótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo 4. Se toma $U$ como la unión de tales resultados. Si todos los hijos de $v$ están en $U$, el algoritmo 4 no escogería a $v$ pues sería una hoja en determinada iteración. En caso contrario, un hijo  de $v$ sería una hoja en alguna iteración al no estar nunca en $U$ y $v$ se añade a $U$. En cualquier caso, se obtiene el mismo resultado que el algoritmo 5.
 $$ \rightline{$\blacksquare$} $$
 
 La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en post-orden, esto es, lineal sobre el número de nodos. Nótese que al aplicarlo sobre el árbol de la Imagen 1 se obtendría el resultado dado en la Imagen 2.
@@ -186,11 +186,11 @@ La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en
 
 ##Resultados obtenidos experimentalmente.
 
-Para probar cada uno de los algorímos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo(o arbol) hemos implementado dos generadores tanto de arbol como de grafos aleatórios. En el primero usámos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algorítmos. En el segundo usamos el número de hijos máximo, hecho que tambien lo hace. No incluiremos el estudio de el cámbio en tiempo de ejecución con respecto a estos parámetros, aunque si lo notaremos como anécdota.
+Para probar cada uno de los algoritmos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo (o árbol) hemos implementado dos generadores tanto de árbol como de grafos aleatorios. En el primero usamos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algoritmos. En el segundo usamos el número de hijos máximo, que influye de la misma manera. No incluiremos el estudio del cambio en tiempo de ejecución con respecto a estos parámetros, aunque sí lo notaremos como anécdota.
 
 ###Eficiencia en número de nodos en grafos.
 
-Los tres algorítmos utilizados para grafos dan resultados bastante parecidos, aunque siempre ha de tenerse en cuenta que conforme se mejora la idea, se eliminan nodos de el recubrimiento. Así queda la gráfica:
+Los tres algoritmos utilizados para grafos dan resultados bastante parecidos, aunque siempre ha de tenerse en cuenta que conforme se mejora la idea, se eliminan nodos de el recubrimiento. Así queda la gráfica:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/GrafoArbitrarioRecubrimiento.png}}$
 
@@ -200,11 +200,11 @@ $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/GrafoArb
 
 ###Eficiencia en número de nodos en aroles. ###
 
-Los resultados de ejecutar los algorítmos anteriores y el algorítmo creado para el caso de que el grafo sea un arbol. Los resultados son notáblemente mejores en cuanto alrecubriemiento minimal que se obtiene en este último:
+Los resultados de ejecutar los algoritmos anteriores y el algoritmo creado para el caso de que el grafo sea un arbol. Los resultados son notablemente mejores en cuanto al recubriemiento minimal que se obtiene en este último:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolRecubrimiento.png}}$
 
-Además de ser notablemente mejor en cuanto a número de nodos, el tiempo, como ya demostramos, tiene un coste en tiempo com paráble a los algorítmos priemero y segundo para grafos, que son lineales:
+Además de ser notablemente mejor en cuanto a número de nodos, el tiempo, como ya demostramos, tiene un coste en tiempo com parable a los algoritmos primero y segundo para grafos, que son lineales:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolTiempo.png}}$
 
@@ -417,6 +417,21 @@ Una búsqueda local de una solución es un nuevo tipo de heurística que parte d
 La idea de la búsqueda local se puede aplicar a las hormigas de tal forma que, tras obtener una solución por parte de cada hormiga, estas soluciones pueden ser mejoradas localmente, y si aplicamos el cambio de feromonas sobre las soluciones mejoradas obtenemos una convergencia mucho más rápida y soluciones muy buenas. Al combinar las búsquedas locales con el algoritmo de optimización de las hormigas, obtenemos un algoritmo que sigue siendo relativamente pesado en comparación con los de vecino más cercano y mejor inserción, pero abordable en tiempo polinómico. La velocidad de mejora de las soluciones se muestra en la siguiente gráfica, con la implementación del algoritmo en C++, que se puede consultar en el siguiente [enlace](https://github.com/andreshp/TSPSolver/tree/master/TSPSolver):
 
 $\centerline{\includegraphics[width=10cm]{./Images/ACOiterations.png}}$
+
+Por último, dedicaremos los próximos párrafos a comentar ciertos detalles técnicos como la determinación de las probabilidades y el funcionamiento del mecanismo de feromonas utilizado.
+
+Comenzamos con las feromonas. Como ya se ha venido indicando, las feromonas representan una estructura equivalente a la que representa el mapa de ciudades. Esto es, entre cada dos ciudades, al igual que en el mapa común encontramos un valor representando la distancia entre ambas, para el caso de las feromonas utilizamos una representación análoga, aunque en este caso el valor que relaciona las ciudades es el que le asociamos a las feromonas. La primera pregunta que nos hacemos es cómo medimos esta cantidad.
+
+Como intentamos modelizar el comportamiento de las hormigas, buscamos un sistema de feromonas que premie a las rutas que resulten más cercanas y perjudique a los peores caminos, teniendo en cuenta que en un principio no tenemos preferencia por ninguna ruta. De esta forma, la medida de las feromonas queda de la siguiente forma: inicialmente, entre todas las ciudades depositaremos la misma cantidad de feromonas. La cantidad no es determinante, pues a la hora de las probabilidades nos interesarán solo las proporciones, pero es recomendable por simplicidad elegir como cantidad inicial la inversa de la distancia entre dos ciudades cualesquiera, para mantener una escala de medidas similiar a la que vamos a ver ahora. Lo más importante, quizás, es que debemos asegurarnos que ninguna de estas cantidades es cero, porque podríamos tener problemas en divisiones futuras. Debemos fijar un umbral para la cantidad de feromonas.
+
+Ahora, en cuanto a la modificación de feromonas, siguiendo con la idea de que buscamos premiar las rutas más cortas, que deben recibir más cantidad, nos bastará con añadir una cantidad inversamente proporcional a la distancia entre las ciudades sobre las que nos movemos. Esta elección, además de su simplicidad, nos evitará sufrir costes computacionales excesivos sobre operaciones que se van a ir realizando continuamente a lo largo del algoritmo. Formalmente, la ley que podemos seguir a la hora de añadir feromonas es $f_{i,j}=f_{i,j}+\frac{1}{dist(i,j)}$, donde $f_{i,j}$ representa la cantidad de feromonas entre las ciudades $i, j$.
+
+Concluyendo con el tema de las feromonas, lo único que nos queda es aclarar el tema de la evaporación. Lo único que debemos hacer en este caso es determinar una constante entre 0 y 1, que será nuestro parámetro de evaporación, que llamaremos $\rho$. De esta forma, la actualización de feromonas se corresponde con la fórmula $f_{i,j} = f_{i,j}(1-\rho), \forall i \ne j$, es decir, multiplicamos por la probabilidad de feromonas a mantener, teniendo en cuenta siempre que nos quedaremos con el valor umbral en caso de sobrepasarse. En la práctica, la evaporación de feromonas apenas influye en la determinación de probabilidades, y cada llamada a la función supone un coste de $O(n^2)$, por lo que el tema de la evaporación se puede omitir.
+
+Finalmente, conociendo el funcionamiento de las feromonas, el cálculo de probabilidades resulta bastante simple. Para dar un toque artificial a nuestro mecanismo de hormigas que permita hacer más eficaz el algoritmo, distinguiremos dos parámetros: la influencia de feromonas ($\alpha$) y la influencia de heurística ($\beta$). El primero se refiere claramente al peso que tendrán las feromonas al determinar la probabilidad. El segundo, permite desplazar a las hormigas según la influencia de alguna heurística sencilla, como por ejemplo, el vecino más cercano. De esta forma, tomando por un lado la cantidad de feromonas entre las ciudades con su correspondiente peso, y por otro la inversa de las distancias entre dichas ciudades con el correspondiente peso de la heurística, tenemos lo que serán los casos favorables de nuestra probabilidad. Los casos posibls la suma de estas cantidades aplicada a todos los posibles destinos. En conclusión, notando por $C$ el conjunto de ciudades, y con $i,j \in C, i \ne j$ nuestra probabilidad se determinará como:
+
+$$p_{i,j}=\frac{f_{i,j}^{\alpha}+{(\frac{1}{d_{i,j}}})^{\beta}}{\sum_{c \in C-\{i\}}{f_{i,c}^{\alpha}+{(\frac{1}{d_{i,c}})}^{\beta}}} $$
+
 
 ## Comparación de las heurísticas
 
