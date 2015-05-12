@@ -271,6 +271,9 @@ Nótese que la prueba es básicamente un algoritmo de ordenación burbuja.
 
 Mantenemos la idea anterior para este caso. Cada vez que un electricista termina un trabajo elige el siguiente por hacer que menos tiempo requiera. El orden en el que se efectuarán los trabajos es el mismo que en el apartado anterior. Cambia el tiempo medio de espera pues varios trabajos se ejecutan en paralelo.
 
+$\centerline{\includegraphics[width=10cm]{./Images/SchedulingNMachines.png}}$
+$\centerline{\textbf{Imagen 1}. Distribución de los trabajos entre los operarios.}$
+
 $\pagebreak$
 
 # Problema del TSP
