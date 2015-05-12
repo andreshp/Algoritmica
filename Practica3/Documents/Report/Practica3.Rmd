@@ -192,21 +192,21 @@ Para probar cada uno de los algorímos experimentalmente, y que todos ellos se e
 
 Los tres algorítmos utilizados para grafos dan resultados bastante parecidos, aunque siempre ha de tenerse en cuenta que conforme se mejora la idea, se eliminan nodos de el recubrimiento. Así queda la gráfica:
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_nodos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/GrafoArbitrarioRecubrimiento.png}}$
 
 Sin embargo, si nos fijamos en la gráfica de tiempos, vemos que el comportamiento del tercer algorítmo es bastante más costoso, $O(n^2)$ , por lo que nos planteamos si merece la pena conseguir un recubrimiento insignificantemente mejor por un tiempo cuadrático:
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideas_tiempos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/GrafoArbitrarioTiempo.png}}$
 
 ###Eficiencia en número de nodos en aroles. ###
 
 Los resultados de ejecutar los algorítmos anteriores y el algorítmo creado para el caso de que el grafo sea un arbol. Los resultados son notáblemente mejores en cuanto alrecubriemiento minimal que se obtiene en este último:
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_nodos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolRecubrimiento.png}}$
 
 Además de ser notablemente mejor en cuanto a número de nodos, el tiempo, como ya demostramos, tiene un coste en tiempo com paráble a los algorítmos priemero y segundo para grafos, que son lineales:
 
-$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/grafica_comp_ideasyarbol_tiempos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Problema4/Imagenes/ArbolTiempo.png}}$
 
 $\pagebreak$
 
