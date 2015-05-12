@@ -178,7 +178,7 @@ El algoritmo 5 obtiene el mismo recubrimiento que el algoritmo 4.
 ***Demostración.*** Este hecho se puede probar por inducción sobre los niveles del árbol. 
 
 - El caso base es cuando $v$ es una hoja, que no tiene hijos y por ello no se añade a $U$. Además, su padre sí se añade posteriormente como pasa en el algoritmo 4. 
-- Si $v$ tiene hijos, supongamos como hìpótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo 4. Se toma $U$ como la unión de tales resultados. Si todos los hijos de $v$ están en $U$, el algoritmo 4 no escogería a $v$ pues sería una hoja en determinada iteración. En caso contrario, un hijo  de $v$ sería una hoja en alguna iteración al no estar nunca en $U$ y $v$ se añade a $U$. En cualquier caso, se obtiene el mismo resultado que el algoritmo 5.
+- Si $v$ tiene hijos, supongamos como hipótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo 4. Se toma $U$ como la unión de tales resultados. Si todos los hijos de $v$ están en $U$, el algoritmo 4 no escogería a $v$ pues sería una hoja en determinada iteración. En caso contrario, un hijo  de $v$ sería una hoja en alguna iteración al no estar nunca en $U$ y $v$ se añade a $U$. En cualquier caso, se obtiene el mismo resultado que el algoritmo 5.
 $$ \rightline{$\blacksquare$} $$
 
 La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en post-orden, esto es, lineal sobre el número de nodos. Nótese que al aplicarlo sobre el árbol de la Imagen 1 se obtendría el resultado dado en la Imagen 2.
@@ -186,7 +186,7 @@ La implementación del algoritmo 5 tiene la misma eficiencia que un recorrido en
 
 ##Resultados obtenidos experimentalmente.
 
-Para probar cada uno de los algorímos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo(o arbol) hemos implementado dos generadores tanto de arbol como de grafos aleatórios. En el primero usámos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algorítmos. En el segundo usamos el número de hijos máximo, hecho que tambien lo hace. No incluiremos el estudio de el cámbio en tiempo de ejecución con respecto a estos parámetros, aunque si lo notaremos como anécdota.
+Para probar cada uno de los algoritmos experimentalmente, y que todos ellos se ejecutasen sobre el mismo grafo (o árbol) hemos implementado dos generadores tanto de árbol como de grafos aleatorios. En el primero usamos, además de el número de nodos para generar el grafo, el concepto de densidad de grafo para generarlos con más o menos aristas. Este hecho influye en el tiempo de ejecución de los algoritmos. En el segundo usamos el número de hijos máximo, hecho que también lo hace. No incluiremos el estudio del cambio en tiempo de ejecución con respecto a estos parámetros, aunque sí lo notaremos como anécdota.
 
 ###Eficiencia en número de nodos en grafos.
 
