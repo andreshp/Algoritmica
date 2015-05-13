@@ -44,7 +44,7 @@ Encontrar un algoritmo que calcule el recubrimiento minimal de cualquier grafo a
 
 # Explicación del problema
 
-## Oraginación de la exposición
+## Organización de la exposición
 
 - Algoritmos voraces (no óptimos) para grafos arbitrarios. 
 
@@ -162,7 +162,7 @@ $\centerline{\includegraphics[width=6cm]{./Images/tree_greedy2.png}}$
 # Algoritmos voraces para árboles
 
 - ¿Será el problema resoluble sobre árboles?
-- Los anteriores no calculan las solución óptima, hace falta una nueva idea.
+- Los anteriores no calculan la solución óptima, hace falta una nueva idea.
 
 # Algoritmos voraces para árboles
 

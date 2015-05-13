@@ -108,7 +108,7 @@ Esta nueva permutación $x''$ tiene menor tiempo medio de espera que $x'$:
 
 $$ f(x') - f(x'') = \frac{1}{n} (t_{i_j} - t_{i_{j+1}}) > 0 $$
 
-2. Remetimos el proceso hasta que no exista $j$. 
+2. Repetimos el proceso hasta que no exista $j$. 
 
 Por la transitividad del orden, la primera permutación $x'$ tiene mayor tiempo medio de espera que la final, cuyo tiempo medio de espera es el de $x$.
 

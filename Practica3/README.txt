@@ -1,0 +1,1 @@
+La memoria de la práctica se encuentra en Documents/Report/Practica3.pdf
