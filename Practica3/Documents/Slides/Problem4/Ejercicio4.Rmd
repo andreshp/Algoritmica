@@ -225,10 +225,11 @@ Este hecho se prueba por inducción sobre las iteraciones del algoritmo. Denotam
 
 Supongamos el resultado cierto para la iteración $i-1$. Esto es, existe $W$, recubrimiento minimal de $T$ que contiene a $U$.
 
-+ $U$ contiene ahora a los padres de las hojas del último nivel de $T_i$. 
 + $W - U$ es un recubrimiento minimal de $T_i$.
-+ $W_i$ recubrimiento minimal  de $T_i$ dado por la proposición 1.
++ $W_i$ recubrimiento minimal de $T_i$ dado por la proposición 1.
 + $W' = W_i \cup U$ es un recubrimiento. $\vert W' \vert = \vert W \vert \Rightarrow W'$ es minimal y $U \subset W'$.
++ Además, $W_i$ contiene a los padres de las hojas de $T_i$. Entonces, $W'$ contiene los padres de las hojas de $T_i$.
++ **Conclusión:** $W'$ contiene a $U$ tras realizar la i-ésima iteración.
 
 # Algoritmos voraces para árboles
 
@@ -268,7 +269,7 @@ El algoritmo anterior obtiene el mismo recubrimiento que el algoritmo óptimo.
 
 Si $v$ es una hoja, entonces no tiene hijos luego no se añade a $U$ como ocurre en el algoritmo óptimo.
 
-Si $v$ tiene hijos, supongamos como hìpótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo óptimo.
+Si $v$ tiene hijos, supongamos como hipótesis de inducción que para cada subárbol que cuelga de estos el resultado es el mismo que el que daría el algoritmo óptimo.
 
 + $U$ se define como la unión de los resultados sobre los subárboles. 
     
