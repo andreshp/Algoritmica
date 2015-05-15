@@ -13,7 +13,7 @@
  * y el recorrido mediante iteradores.
  */
 
-# ifndef GENERAL_TREE
+#ifndef GENERAL_TREE
 # define GENERAL_TREE
 
 # include <iostream>
@@ -792,4 +792,4 @@ class GeneralTree{
 
 # include "GeneralTree.cpp"
 
-# endif
+#endif
