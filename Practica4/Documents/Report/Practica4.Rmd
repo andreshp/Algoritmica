@@ -74,7 +74,7 @@ $\centerline{\textbf{Algoritmo 1.} Primer algoritmo de backtracking con eficienc
 # - max_tiempo : Máximo de solucion_actual
 def algoritmo1(k,tiempos, solucion_actual, max_tiempo):
   if k < len(tiempos):
-    sol = 0
+    sol = Inf
     for i in range(0,len(solucion_actual)):
       solucion_actual[i] += tiempos[k]
       sol = min(sol, algoritmo1(k+1,tiempos, solucion_actual, \
@@ -102,7 +102,7 @@ $\centerline{\textbf{Algoritmo 2.} Mejora sobre el Algoritmo 1 que evita solucio
 # - max_tiempo : Máximo de solucion_actual
 def algoritmo2(k, tiempos, solucion_actual, max_tiempo):
   if k < len(tiempos):
-    sol = 0
+    sol = Inf
     for i in range(0,len(solucion_actual)):
       # Si la máquina anterior no tiene asignado entonces no se asigna
       # trabajo a la actual (sería la misma rama que la anterior).
@@ -132,7 +132,7 @@ def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
   if k < len(tiempos):
     # Comprobamos que hay más trabajos libres que máquinas libres
     if maquinas_libres < len(tiempos)-k:
-      sol = 0
+      sol = Inf
       for i in range(0,len(solucion_actual)):
         if i == 0 or solucion_actual[i-1] > 0:
           solucion_actual[i] += tiempos[k]
@@ -173,6 +173,40 @@ $\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/Comparacio
 $\centerline{\textbf{Imagen 1}. Número de soluciones recorridas por cada algoritmo.}$
 
 Por último, utilizamos el criterio de poda habitual en backtracking: una vez se ha conseguido una solución se comprueba en cada momento si la rama actual puede conseguir una solución mejor que la mejor que has obtenido o no. En caso negativo se deja la rama sin terminar de visitar. Esta idea da lugar al Algoritmo 4.
+
+$\centerline{\textbf{Algoritmo 4.} Mejora sobre el Algoritmo 3 podando ramas no viables.}$
+
+~~~python
+# Parametros:
+# - k : índice del trabajo a asignar.
+# - tiempos : vector con los tiempos de los m trabajos.
+# - solucion_actual : vector con el tiempo de trabajo 
+#   asignado a cada máquina.
+# - max_tiempo : Máximo de solucion_actual
+# - maquinas_libres : Número de máquinas que no tienen asignado un trabajo.
+# - tiempo_maximo : Máximo tiempo permitido para una solución.
+def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres, mejor_solucion):
+  if k < len(tiempos) and max_tiempo < mejor_solucion:
+    # Comprobamos que hay más trabajos libres que máquinas libres
+    if maquinas_libres < len(tiempos)-k:
+      for i in range(0,len(solucion_actual)):
+        if i == 0 or solucion_actual[i-1] > 0:
+          solucion_actual[i] += tiempos[k]
+          mejor_solucion = min(mejor_solucion, algoritmo2(k+1,tiempos, solucion_actual, \
+              max(max_tiempo, solucion_actual[i]), maquinas_libres + \
+              0 if solucion_actual[i] != 0 else 1, mejor_solucion))
+          solucion_actual[i] -= tiempos[k]
+      return mejor_solucion
+    # Si la comprobación devuelve falso a cada máquina se le asigna un trabajo
+    else:
+      return max(max_tiempo, max(tiempos[k:]))
+  else:
+    return mejor_solucion
+~~~
+
+En este último algoritmo se pone en evidencia la potencialidad del backtracking con una búsqueda en profundidad. Si se lleva la cuenta de la mejor solución hasta el momento tenemos un genial criterio de poda que reducirá mucho el tiempo de ejecución.
+
+# Análisis Empírico
 
 [^wikipedia-scheduling]: [Scheduling Job Problem](http://en.wikipedia.org/wiki/Job_shop_scheduling)
 
