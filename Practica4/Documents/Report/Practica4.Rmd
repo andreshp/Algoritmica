@@ -91,8 +91,7 @@ Debemos observar que no nos importa cuál sea la máquina que realiza un determi
 
 Por ejemplo, si cada máquina hace un conjunto de trabajos no vacío podemos aplicar las $m!$ permutaciones posibles obteniendo soluciones que terminan en el mismo tiempo pero que son calculadas por separado en el Algoritmo 1. Tratamos de evitar de la siguiente forma. Si quedan máquinas sin una tarea por asignar no llamamos al algoritmo recursivamente para cada una de estas máquinas sino solo para la primera de ella pues los otros estados son equivalentes. Este razonamiento conduce al Algoritmo 2.
 
-$\centerline{\textbf{Algoritmo 2.} Algoritmo basado en backtracking que evita soluciones equivalentes.}$
-
+$\centerline{\textbf{Algoritmo 2.} Mejora sobre el Algoritmo 1 que evita soluciones equivalentes.}$
 
 ~~~python
 # Parametros:
@@ -117,9 +116,40 @@ def algoritmo2(k, tiempos, solucion_actual, max_tiempo):
     return max_tiempo
 ~~~
 
-Un detalle importante es que no queremos que una máquina esté sin realizar trabajo alguno ya que estaríamos perdiendo tiempo de trabajo. Cada máquina debe tener asignado al menos un trabajo. Esto nos da una condición de poda para el algoritmo anterior. Si hay $k$ máquinas libres y solo quedan por asignar $k$ trabajos, un trabajo va a cada máquina libre (recordemos que nos da igual el orden).
+Un detalle importante es que no queremos que una máquina esté sin realizar trabajo alguno ya que estaríamos perdiendo tiempo de trabajo. Cada máquina debe tener asignado al menos un trabajo. Esto nos da una condición de poda para el algoritmo anterior. Si hay $k$ máquinas libres y solo quedan por asignar $k$ trabajos, un trabajo va a cada máquina libre (recordemos que nos da igual el orden). Podemos aplicarlo obteniendo el Algoritmo 3.
 
-El razonamiento previo nos reduce a estudiar $\frac{m^n}{m!}$ posibles asignaciones de trabajos (dividimos por el número de permutaciones de las máquinas).
+$\centerline{\textbf{Algoritmo 3.} Mejora sobre el Algoritmo 2 que evita soluciones con máquinas libres.}$
+
+~~~python
+# Parametros:
+# - k : índice del trabajo a asignar.
+# - tiempos : vector con los tiempos de los m trabajos.
+# - solucion_actual : vector con el tiempo de trabajo 
+#   asignado a cada máquina.
+# - max_tiempo : Máximo de solucion_actual
+# - maquinas_libres : Número de máquinas que no tienen asignado un trabajo.
+def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
+  if k < len(tiempos):
+    # Comprobamos que hay más trabajos libres que máquinas libres
+    if maquinas_libres < len(tiempos)-k:
+      sol = 0
+      for i in range(0,len(solucion_actual)):
+        if i == 0 or solucion_actual[i-1] > 0:
+          solucion_actual[i] += tiempos[k]
+          sol = min(sol, algoritmo2(k+1,tiempos, solucion_actual, \
+              max(max_tiempo, solucion_actual[i]), maquinas_libres + \
+              0 if solucion_actual[i] != 0 else 1))
+          solucion_actual[i] -= tiempos[k]
+      return sol
+    # Si la comprobación devuelve falso a cada máquina se le asigna un trabajo
+    else:
+      return max(max_tiempo, max(tiempos[k:]))
+  else:
+    return max_tiempo
+~~~
+
+En este punto cabe preguntarse cuántas soluciones el espacio de soluciones debe recorrer el Algoritmo 3. Nótese que obvia las equivalentes o aquellas que dejan alguna máquina libre. El espacio de soluciones consta de $m^n$ elementos, todos ellos recorridos por el Algoritmo 1.
+
 
 # Referencias
 
