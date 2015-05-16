@@ -50,7 +50,7 @@ Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales.
 
 La formulación del problema recuerda al problema 5 de la práctica de algoritmos voraces. Tenemos varias máquinas que realizan trabajos que requieren un tiempo predeterminado. Este tipo de problemas suelen clasificarse como **scheduling problems**. Sin embargo, la función objetivo a optimizar es diferente. En el problema de la práctica anterior se pedía optimizar el tiempo medio de espera de los clientes mientras que en este caso debemos realizar todos los trabajos en el menor tiempo posible.
 
-El problema a resolver es NP Hard [^:wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada,
+El problema a resolver es NP Hard [^wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada,
 si $n <= m$ es fácil darse cuenta de que la solución será el máximo de los $t_i$ pues basta asignar un trabajo a cada máquinal. Podemos suponer entonces que $n > m$.
 
 Hacemos la siguiente observación, no nos importa el orden en el que una máquina realice sus trabajos asignados ya que en cualquier caso el tiempo en el que la máquina está trabajando es el mismo. Esto da lugar a la siguiente proposición:
@@ -148,10 +148,31 @@ def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
     return max_tiempo
 ~~~
 
-En este punto cabe preguntarse cuántas soluciones el espacio de soluciones debe recorrer el Algoritmo 3. Nótese que obvia las equivalentes o aquellas que dejan alguna máquina libre. El espacio de soluciones consta de $m^n$ elementos, todos ellos recorridos por el Algoritmo 1.
+En este punto cabe preguntarse cuántas soluciones el espacio de soluciones (denotémoslo $S$) debe recorrer el Algoritmo 3. Nótese que obvia las equivalentes o aquellas que dejan alguna máquina libre. El espacio de soluciones consta de $m^n$ elementos, todos ellos recorridos por el Algoritmo 1. Por tanto, para saber este número en primer lugar tenemos que restarle a $m^n$ las soluciones que dejan alguna máquina libre. Llamamos $a_m$ a este resultado. Podemos abstraer la definición para denotar $a_i$ al número de soluciones con todas las máquinas ocupadas para $i$ máquinas en lugar de $m$ con $i = 1, \ldots, m$. 
 
+En esta situación podemos observar que para $i \in \{1,\ldots,m\}$ el número de soluciones de $S$ que deja exactamente $i$ máquinas ocupadas es
 
-# Referencias
+$$  \binom{m}{i} a_i $$
 
-[^:wikipedia-scheduling]()  Scheduling Problem 
+Por tanto, se tiene que:
+
+$$ i^n = \sum_{j=1}^i \binom{i}{j} a_j \ \forall i = 1,\ldots, m $$
+
+Esta relación permite calcular $a_m$ de la siguiente forma:
+
+- $a_1 = 1$
+- $a_i = i^n - \sum_{j=1}^{i-1} \binom{i}{j} a_j \ \forall i = 1,\ldots, m$
+
+Podemos calcular $a_2$, después $a_3$ y así sucesivamente.
+
+Una vez hemos calculado $a_m$ tenemos que tener en cuenta que las soluciones equivalentes (aquellas que son una permutación de la actual) no nos interesan. Dividimos pues $a_m$ entre $m!$ para quedarnos con un único representante de las clases de equivalencia.
+
+La Imagen 1 muestra para 20 trabajos el número de soluciones que tienen que considerar los algoritmos 1 y 3 en función del número de máquinas. La diferencia es abismal. Se ha conseguido una reducción enorme del número de soluciones a comprobar. Además, la Imagen 1 prueba que el Algorimo 1 no es viable para $m > 8$ y $n = 20$. 
+
+$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/ComparacionNumSoluciones.png}}$
+$\centerline{\textbf{Imagen 1}. Número de soluciones recorridas por cada algoritmo.}$
+
+Por último, utilizamos el criterio de poda habitual en backtracking: una vez se ha conseguido una solución se comprueba en cada momento si la rama actual puede conseguir una solución mejor que la mejor que has obtenido o no. En caso negativo se deja la rama sin terminar de visitar. Esta idea da lugar al Algoritmo 4.
+
+[^wikipedia-scheduling]: [Scheduling Job Problem](http://en.wikipedia.org/wiki/Job_shop_scheduling)
 
