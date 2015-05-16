@@ -1,6 +1,11 @@
 ---
+<<<<<<< HEAD
 title: "Practica 4: BackTracking "
 author: "A.Herrera, A. Moya, I. Sevillano, J.L. Suarez"
+=======
+title: "Algorítmica - Practica 4: Backtracking"
+author: "A. Herrera, A. Moya, I. Sevillano, J.L. Suarez"
+>>>>>>> 0add6c7799e1ede053964244fe1f53f35d8789cc
 date: "`r format(Sys.time(), '%d de %B de %Y')`"
 output:
   pdf_document:
@@ -12,13 +17,23 @@ output:
         in_header:
             mystyles.sty
 ---
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0add6c7799e1ede053964244fe1f53f35d8789cc
 $\pagebreak$
 
 # Organización de la práctica
 
+<<<<<<< HEAD
 La práctica 3 trata sobre el desarrollo de algoritmos greedy que consigan la solución óptima de los problemas propuestos o actúen como heurística sobre los mismos. Uno de los problemas a estudiar es el viajante de comercio, ampliamente conocido en el ámbito de la inteligencia artificial y teoría de algoritmos. Es un problema NP completo pero que será abordable gracias al uso de algoritmos greedy polinomiales que no proporcionarán la solución óptima pero sí una lo suficientemente buena para nuestros objetivos. 
 
 Nuestro grupo debe resolver el problema 4 y el viajante de comercio. Hemos abordado también el problema opcional (número 5) obteniendo el algoritmo greedy óptimo.
+=======
+La práctica 4 trata sobre el desarrollo de algoritmos basados en backtracking que consigan la solución óptima de los problemas propuestos. Usualmente las soluciones obtenidas serán exponenciales ya que intentaremos resolver problemas NP. La poda nos permitirá conseguir en la práctica resultados aceptables.
+
+Nuestro grupo debe resolver el problema 5.
+>>>>>>> 0add6c7799e1ede053964244fe1f53f35d8789cc
 
 Para cada problema se sigue la siguiente estructura:
 
@@ -30,6 +45,7 @@ En este último apartado se proporcionan gráficas con los resultados de los alg
 
 Los algoritmos se han ejecutado sobre un ordenador con las siguientes características:
 
+<<<<<<< HEAD
 - **Marca:** Toshiba 
 - **RAM:** 8 GB 
 - **Procesador:** Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
@@ -37,3 +53,31 @@ Los algoritmos se han ejecutado sobre un ordenador con las siguientes caracterí
 El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se pueden encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica3).
 
 $\pagebreak$
+=======
+- **Marca:** Toshiba
+- **RAM:** 8 GB
+- **Procesador:** Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+
+El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se pueden encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica4).
+
+$\pagebreak$
+
+# Problema 5: Estación de ITV
+
+
+## Enunciado del problema
+
+Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales. Hay un total de $n$ vehículos que necesitan inspección. En función de sus características, cada vehículo tardará en ser inspeccionado un tiempo $t_i$, $i = 1, \ldots , n$. Se desea encontrar la manera de atender a los $n$ vehículos y acabar en el menor tiempo posible. Diseñar e implementar un algoritmo vuelta atrás que determine cómo asignar los vehículos a las líneas. Mejoradlo usando alguna técnica de poda. Realizar un estudio empírico de la eficiencia de los algoritmos.
+
+## Solución teórica
+
+La formulación del problema recuerda al problema 5 de la práctica de algoritmos voraces. Tenemos varias máquinas que realizan trabajos que requieren un tiempo predeterminado. Este tipo de problemas suelen clasificarse como **scheduling problems**. Sin embargo, la función objetivo a optimizar es diferente. En el problema de la práctica anterior se pedía optimizar el tiempo medio de espera de los clientes mientras que en este caso debemos realizar todos los trabajos en el menor tiempo posible.
+
+Es un problema NP Hard [^:wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada hacemos la siguiente observación, dada una máquina, no nos importa el orden en el que realice sus trabajos asignados.
+
+
+
+# Referencias
+
+[^:wikipedia-scheduling]
+>>>>>>> 0add6c7799e1ede053964244fe1f53f35d8789cc
