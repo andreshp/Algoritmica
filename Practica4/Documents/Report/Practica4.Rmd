@@ -17,11 +17,11 @@ $\pagebreak$
 
 # Organización de la práctica
 
-La práctica 4 trata sobre el desarrollo de algoritmos basados en backtracking que consigan la solución óptima de los problemas propuestos. Usualmente las soluciones obtenidas serán exponenciales ya que intentaremos resolver problemas NP. La poda nos permitirá conseguir en la práctica resultados aceptables.
+La práctica 4 consiste en el desarrollo de algoritmos basados en backtracking que consigan la solución óptima de los problemas propuestos. Usualmente las soluciones obtenidas serán exponenciales ya que intentaremos resolver problemas NP. La poda nos permitirá conseguir en la práctica resultados aceptables.
 
 Nuestro grupo debe resolver el problema 5.
 
-Para cada problema se sigue la siguiente estructura:
+Para cada problema resuelto se sigue la siguiente estructura:
 
 - Enunciado del problema
 - Resolución teórica del problema (con una subsección por algoritmo)
@@ -50,10 +50,22 @@ Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales.
 
 La formulación del problema recuerda al problema 5 de la práctica de algoritmos voraces. Tenemos varias máquinas que realizan trabajos que requieren un tiempo predeterminado. Este tipo de problemas suelen clasificarse como **scheduling problems**. Sin embargo, la función objetivo a optimizar es diferente. En el problema de la práctica anterior se pedía optimizar el tiempo medio de espera de los clientes mientras que en este caso debemos realizar todos los trabajos en el menor tiempo posible.
 
-Es un problema NP Hard [^:wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada hacemos la siguiente observación, dada una máquina, no nos importa el orden en el que realice sus trabajos asignados.
+El problema a resolver es NP Hard [^:wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada,
+si $n <= m$ es fácil darse cuenta de que la solución será el máximo de los $t_i$ pues basta asignar un trabajo a cada máquinal. Podemos suponer entonces que $n > m$.
 
+Hacemos la siguiente observación, no nos importa el orden en el que una máquina realice sus trabajos asignados ya que en cualquier caso el tiempo en el que la máquina está trabajando es el mismo. Esto da lugar a la siguiente proposición:
 
+**Proposición 1.**  
+El número de formas en las que se pueden asignar los trabajos a las máquinas es $m^n$.
+
+***Demostración.*** Cada posible asignación podemos verla como que a cada trabajo se le asigna una máquina, pudiendo asignar una máquina a varios trabajos. Esto es, para cada trabajo elegimos entre $m$ posibilidades disponibles. En total, $m^n$ asignaciones.
+$$ \rightline{$\blacksquare$} $$
+
+Otra cosa que debemos observar es que no nos importa cuál sea la máquina que realiza un determinado conjunto de trabajo. Por ejemplo, si tuviésemos dos máquinas, $A$ y $B$, y dos trabajos, $1$ y $2$, da igual que la máquina $A$ haga el trabajo $1$ y la máquina $B$ haga el trabajo $2$ a que $A$ realice el $2$ y $B$ el $1$. Las máquinas son igual de eficientes por lo que el tiempo en el que se habrán terminado todos los trabajos será el mismo en ambos casos.
+
+El razonamiento previo nos reduce a estudiar $\frac{m^n}{m!}$ posibles asignaciones de trabajos (dividimos por el número de permutaciones de las máquinas). Otro detalle importante es que no queremos que una máquina esté sin realizar trabajo alguno. 
 
 # Referencias
 
-[^:wikipedia-scheduling]
+[^:wikipedia-scheduling]()  Scheduling Problem 
+
