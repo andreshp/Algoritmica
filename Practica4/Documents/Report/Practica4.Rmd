@@ -1,0 +1,39 @@
+---
+title: "Practica 4: BackTracking "
+author: "A.Herrera, A. Moya, I. Sevillano, J.L. Suarez"
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+output:
+  pdf_document:
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+    fig_caption: yes
+    includes:
+        in_header:
+            mystyles.sty
+---
+$\pagebreak$
+
+# Organización de la práctica
+
+La práctica 3 trata sobre el desarrollo de algoritmos greedy que consigan la solución óptima de los problemas propuestos o actúen como heurística sobre los mismos. Uno de los problemas a estudiar es el viajante de comercio, ampliamente conocido en el ámbito de la inteligencia artificial y teoría de algoritmos. Es un problema NP completo pero que será abordable gracias al uso de algoritmos greedy polinomiales que no proporcionarán la solución óptima pero sí una lo suficientemente buena para nuestros objetivos. 
+
+Nuestro grupo debe resolver el problema 4 y el viajante de comercio. Hemos abordado también el problema opcional (número 5) obteniendo el algoritmo greedy óptimo.
+
+Para cada problema se sigue la siguiente estructura:
+
+- Enunciado del problema
+- Resolución teórica del problema (con una subsección por algoritmo)
+- Análisis empírico. Análisis de la eficiencia híbrida
+
+En este último apartado se proporcionan gráficas con los resultados de los algoritmos y un análisis de la eficiencia híbrida para los mismos.
+
+Los algoritmos se han ejecutado sobre un ordenador con las siguientes características:
+
+- **Marca:** Toshiba 
+- **RAM:** 8 GB 
+- **Procesador:** Intel(R) Core(TM) i5-3210M CPU @ 2.50GHz
+
+El código, los resultados de las ejecuciones, las gráficas y los pdf asociados se pueden encontrar en [GitHub](https://github.com/andreshp/Algoritmica/tree/master/Practica3).
+
+$\pagebreak$
