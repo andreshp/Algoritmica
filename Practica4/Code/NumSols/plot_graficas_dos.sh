@@ -5,15 +5,15 @@
 #Variables:
 OPCION=$1
 OUTPUT=./Imagenes/grafica_tiempos_dos_mejores_$OPCION.png
-TITULO="Gráfica de los tres últimos algorítmos con los tiempos de $OPCION"
+TITULO="Gráfica de los dos últimos algorítmos( $OPCION )"
 XLABEL="Número de $OPCION"
 YLABEL="Tiempo (segundos)"
 
 LEYENDA3="Tercero"
 LEYENDA4="Cuarto"
 
-FICHERO_DATOS3="./Datos/tiempo_third_algorithm.py_$OPCION.dat"
-FICHERO_DATOS4="./Datos/tiempo_fourth_algorithm.py_$OPCION.dat"
+FICHERO_DATOS3="./Datos/tiempo_third_algorithm.py_Ultimo_$OPCION.dat"
+FICHERO_DATOS4="./Datos/tiempo_fourth_algorithm.py_Ultimo_$OPCION.dat"
 
 
 gnuplot<<FIN
