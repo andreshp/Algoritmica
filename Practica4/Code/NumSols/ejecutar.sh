@@ -22,3 +22,5 @@ chmod +x obtenerDatosTrabajos.sh
 ./plot_graficas_todos.sh Trabajos 
 ./plot_graficas.sh Trabajadores
 ./plot_graficas.sh Trabajos
+./plot_graficas_dos.sh Trabajadores
+./plot_graficas_dos.sh Trabajos
