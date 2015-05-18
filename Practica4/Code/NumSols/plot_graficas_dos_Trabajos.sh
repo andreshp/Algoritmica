@@ -3,9 +3,9 @@
 
 
 #Variables:
-OPCION=$1
-OUTPUT=./Imagenes/grafica_tiempos_dos_mejores_$OPCION.png
-TITULO="Gráfica de los dos últimos algorítmos( De 10 a 22 $OPCION )"
+OPCION="Trabajos"
+OUTPUT=./Imagenes/grafica_tiempos_dos_mejores_constante_$OPCION.png
+TITULO="Gráfica de los dos últimos algorítmos con 17 trabajos"
 XLABEL="Número de $OPCION"
 YLABEL="Tiempo (segundos)"
 

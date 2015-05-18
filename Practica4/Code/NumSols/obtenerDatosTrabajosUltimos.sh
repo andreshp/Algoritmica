@@ -5,13 +5,13 @@ PROGRAMA=$1
 SALIDA=./Datos/tiempo_$1_Ultimo_Trabajos.dat
 MENSAJE_INICIO="Se inicia la ejecución del algoritmo $1:"
 MENSAJE_FINAL="Fin de la ejecución. Se ha creado un fichero con los resultados."
-NUM_TRABAJOS=22
+NUM_TRABAJOS=17
 
 echo "$MENSAJE_INICIO"
 
 # Variables:
-INICIO=10
-FIN=22
+INICIO=1
+FIN=17
 INCREMENTO=1
 
 i=$INICIO
