@@ -4,6 +4,8 @@ mkdir -p Datos
 mkdir -p Imagenes
 
 
+chmod +x plot.sh
+chmod +x execute.sh
 chmod +x plot_graficas_dos_Trabajadores.sh
 chmod +x plot_graficas_dos_Trabajos.sh
 chmod +x plot_graficas_todos_Trabajadores.sh
@@ -14,6 +16,8 @@ chmod +x obtenerDatosTrabajadores.sh
 chmod +x obtenerDatosTrabajos.sh
 chmod +x obtenerDatosTrabajadoresUltimos.sh
 chmod +x obtenerDatosTrabajosUltimos.sh
+
+./execute.sh 8
 
 
 ./obtenerDatosTrabajos.sh first_algorithm.py
