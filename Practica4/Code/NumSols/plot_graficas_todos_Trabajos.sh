@@ -6,7 +6,7 @@
 OPCION="Trabajos"
 OUTPUT=./Imagenes/grafica_tiempos_todos_constante_$OPCION.png
 TITULO="Gráfica de los diferentes algorítmos con 6 Trabajos"
-XLABEL="Número de $OPCION"
+XLABEL="Número de Trabajadores"
 YLABEL="Tiempo (segundos)"
 LEYENDA1="Primero"
 LEYENDA2="Segundo"
