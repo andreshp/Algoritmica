@@ -210,8 +210,6 @@ En este último algoritmo se pone en evidencia la potencialidad del backtracking
 
 # Análisis Empírico
 
-[^wikipedia-scheduling]: [Scheduling Job Problem](http://en.wikipedia.org/wiki/Job_shop_scheduling)
-
 ## Primeras conclusiones
 
 Para empezar mostraremos en una gráfica los tiempos que requieren todos los algorítmos para encontrar la mejor solución, tanto con respecto al número de trabajos con trabajadores constantes, como con respecto al número de trabajadores con trabajos contantes:
@@ -253,12 +251,4 @@ Esta gráfica refleja la filosofía de ambos algorítmos a la perfección. Digam
 
 
 
-
-
-
-
-
-
-# Referencias
-
-
+[^wikipedia-scheduling]: [Scheduling Job Problem](http://en.wikipedia.org/wiki/Job_shop_scheduling)
