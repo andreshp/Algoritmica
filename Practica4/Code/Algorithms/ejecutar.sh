@@ -16,6 +16,10 @@ chmod +x obtenerDatosTrabajadores.sh
 chmod +x obtenerDatosTrabajos.sh
 chmod +x obtenerDatosTrabajadoresUltimos.sh
 chmod +x obtenerDatosTrabajosUltimos.sh
+chmod +x first_algorithm.py
+chmod +x second_algorithm.py
+chmod +x third_algorithm.py
+chmod +x fourth_algorithm.py
 
 ./execute.sh 8
 
