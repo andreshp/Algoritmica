@@ -15,12 +15,14 @@ def algoritmo3(k,tiempos, solucion_actual, max_tiempo,maquinas_libres):
     # Comprobamos que hay mas trabajos libres que maquinas libres
         if maquinas_libres < len(tiempos)-k:
             sol = float("Inf")
-            for i in range(0,len(solucion_actual)):
+            for i in xrange(0,len(solucion_actual)):
                 if i == 0 or solucion_actual[i-1] > 0:
                     solucion_actual[i] += tiempos[k]
                     sol = min(sol, algoritmo3(k+1,tiempos, solucion_actual,
                         max(max_tiempo, solucion_actual[i]), maquinas_libres + 0 if solucion_actual[i] != 0 else 1))
                     solucion_actual[i] -= tiempos[k]
+                else:
+                    break
             return sol
         # Si la comprobacion devuelve falso a cada maquina se le asigna un trabajo
         else:

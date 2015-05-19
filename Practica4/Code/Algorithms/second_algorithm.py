@@ -12,11 +12,13 @@ from time import time
 def algoritmo2(k,tiempos, solucion_actual, max_tiempo):
     if k < len(tiempos):
         sol = float("Inf")
-        for i in range(len(solucion_actual)):
+        for i in xrange(0, len(solucion_actual)):
             if i == 0 or solucion_actual[i-i] > 0:
                 solucion_actual[i] += tiempos[k]
                 sol = min(sol, algoritmo2(k+1,tiempos, solucion_actual, max(max_tiempo, solucion_actual[i])))
                 solucion_actual[i] -= tiempos[k]
+            else:
+                break
         return sol
     else:
         return max_tiempo
@@ -27,7 +29,7 @@ if len(sys.argv) < 3:
 
 else:
 
-    
+
 
 
     tiempos = []

@@ -15,13 +15,15 @@ def algoritmo4(k, tiempos, solucion_actual, max_tiempo, maquinas_libres, mejor_s
   if k < len(tiempos) and max_tiempo < mejor_solucion:
     # Comprobamos que hay mas trabajos libres que maquinas libres
     if maquinas_libres < len(tiempos)-k:
-      for i in range(0,len(solucion_actual)):
+      for i in xrange(0,len(solucion_actual)):
         if i == 0 or solucion_actual[i-1] > 0:
           solucion_actual[i] += tiempos[k]
           mejor_solucion = min(mejor_solucion, algoritmo4(k+1,tiempos, solucion_actual, \
               max(max_tiempo, solucion_actual[i]), maquinas_libres + \
               0 if solucion_actual[i] != 0 else 1, mejor_solucion))
           solucion_actual[i] -= tiempos[k]
+        else:
+          break
       return mejor_solucion
     # Si la comprobacion devuelve falso a cada maquina se le asigna un trabajo
     else:
@@ -34,7 +36,7 @@ if not len(sys.argv) == 3:
 
 else:
 
-    
+
 
 
     tiempos = []

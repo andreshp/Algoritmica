@@ -91,7 +91,7 @@ Basta llamar al algoritmo de la siguiente forma: `algoritmo1(0,tiempos,[0 for i 
 
 Debemos observar que no nos importa cuál sea la máquina que realiza un determinado conjunto de trabajo. Por ejemplo, si tuviésemos dos máquinas, $A$ y $B$, y dos trabajos, $1$ y $2$, da igual que la máquina $A$ haga el trabajo $1$ y la máquina $B$ haga el trabajo $2$ a que $A$ realice el $2$ y $B$ el $1$. Las máquinas son igual de eficientes por lo que el tiempo en el que se habrán terminado todos los trabajos será el mismo en ambos casos.
 
-Por ejemplo, si cada máquina hace un conjunto de trabajos no vacío podemos aplicar las $m!$ permutaciones posibles obteniendo soluciones que terminan en el mismo tiempo pero que son calculadas por separado en el Algoritmo 1. Tratamos de evitar de la siguiente forma. Si quedan máquinas sin una tarea por asignar no llamamos al algoritmo recursivamente para cada una de estas máquinas sino solo para la primera de ella pues los otros estados son equivalentes. Este razonamiento conduce al Algoritmo 2.
+Si cada máquina hace un conjunto de trabajos no vacío podemos aplicar las $m!$ permutaciones posibles obteniendo soluciones que terminan en el mismo tiempo pero que son calculadas por separado en el Algoritmo 1. Llamamos a estas soluciones equivalentes. Tratamos de calcular una única solución por clase de equivalencia. Para ello, si quedan máquinas sin una tarea por asignar no llamamos al algoritmo recursivamente para cada una de estas máquinas sino solo para la primera de ella pues los otros estados son equivalentes. Este razonamiento conduce al Algoritmo 2.
 
 $\centerline{\textbf{Algoritmo 2.} Mejora sobre el Algoritmo 1 que evita soluciones equivalentes.}$
 
@@ -113,6 +113,8 @@ def algoritmo2(k, tiempos, solucion_actual, max_tiempo):
         sol = min(sol, algoritmo2(k+1,tiempos, solucion_actual, \
             max(max_tiempo, solucion_actual[i])))
         solucion_actual[i] -= tiempos[k]
+      else:
+        break
     return sol
   else:
     return max_tiempo
@@ -152,11 +154,11 @@ def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
 
 En este punto cabe preguntarse cuántas soluciones el espacio de soluciones (denotémoslo $S$) debe recorrer el Algoritmo 3. Nótese que obvia las equivalentes o aquellas que dejan alguna máquina libre. El espacio de soluciones consta de $m^n$ elementos, todos ellos recorridos por el Algoritmo 1. Por tanto, para saber este número en primer lugar tenemos que restarle a $m^n$ las soluciones que dejan alguna máquina libre. Llamamos $a_m$ a este resultado. Podemos abstraer la definición para denotar $a_i$ al número de soluciones con todas las máquinas ocupadas para $i$ máquinas en lugar de $m$ con $i = 1, \ldots, m$. 
 
-En esta situación podemos observar que para $i \in \{1,\ldots,m\}$ el número de soluciones de $S$ que deja exactamente $i$ máquinas ocupadas es
+En esta situación podemos observar que para $i \in \{1,\ldots,m\}$ el número de soluciones de $S$ que dejan exactamente $i$ máquinas ocupadas es
 
 $$  \binom{m}{i} a_i $$
 
-Por tanto, se tiene que:
+Por tanto, se tiene que
 
 $$ i^n = \sum_{j=1}^i \binom{i}{j} a_j \ \forall i = 1,\ldots, m $$
 
@@ -174,7 +176,7 @@ La Imagen 1 muestra para 20 trabajos el número de soluciones que tienen que con
 $\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/ComparacionNumSoluciones.png}}$
 $\centerline{\textbf{Imagen 1}. Número de soluciones recorridas por cada algoritmo.}$
 
-Por último, utilizamos el criterio de poda habitual en backtracking: una vez se ha conseguido una solución se comprueba en cada momento si la rama actual puede conseguir una solución mejor que la mejor que has obtenido o no. En caso negativo se deja la rama sin terminar de visitar. Esta idea da lugar al Algoritmo 4.
+Por último, utilizamos el criterio de poda habitual en backtracking: una vez se ha conseguido una solución se comprueba en cada momento si la rama actual puede conseguir una solución mejor que la mejor que se haya obtenido o no. En caso negativo se deja la rama sin terminar de visitar. Esta idea da lugar al Algoritmo 4.
 
 $\centerline{\textbf{Algoritmo 4.} Mejora sobre el Algoritmo 3 podando ramas no viables.}$
 
@@ -210,45 +212,47 @@ En este último algoritmo se pone en evidencia la potencialidad del backtracking
 
 # Análisis Empírico
 
-## Primeras conclusiones
+## Conclusiones iniciales
 
-Para empezar mostraremos en una gráfica los tiempos que requieren todos los algorítmos para encontrar la mejor solución, tanto con respecto al número de trabajos con trabajadores constantes, como con respecto al número de trabajadores con trabajos contantes:
+Para empezar mostraremos en una gráfica los tiempos que requieren todos los algoritmos para encontrar la mejor solución, tanto con respecto al número de trabajos con trabajadores constantes, como con respecto al número de trabajadores con trabajos contantes.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_todos_constante_Trabajadores.png}}$
+$\centerline{\textbf{Imagen 2}. Tiempos obtenidos variando el número de trabajos para 3 trabajadores.}$
 
-En este primer gráfico se ve claramente que el primer algorítmo comienza a diverger de manera factorial, como presuponíamos de la tería. El segundo parece que tambien tiene este comportamiento, pero parece que ha sido mejorado en este aspecto. Los otros dos algorítmos parecen inmutables con respecto al número de trabajos que se le encarguen.
-
+En la Imagen 2 se muestra la inferioridad del primer algoritmo al aumentar el número de trabajos. Recordemos que su eficiencia para este caso esa $3^n$. El segundo algoritmo obtiene tiempos cuatro veces mejores que el algoritmo 1. En efecto, este algoritmo evita visitar soluciones equivalentes, reduciendo las soluciones visitadas a $\frac{3^n}{3!}$ lo que explica el resultado. Los algoritmos 3 y 4 obtienen estupendos resultados, prueba de lo poderosa que puede ser la poda.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_todos_constante_Trabajos.png}}$
+$\centerline{\textbf{Imagen 3}. Tiempos obtenidos variando el número de trabajadores para 6 trabajos.}$
 
-En esta gráfica notamos que, teniendo un número de trabajos fijos, el tiempo con el que se le es asignada de la mejor forma a los trabajadores crece indefinidamente de forma exponencial. Observamos de nuevo que ocurre lo mismo para el segundo algorítmo, y otra vez ocurre lo mismo para los otros dos algorítmos, casi inmutables de nuevo.
+En la Imagen 3 se comparan los cuatro algoritmos variando esta vez el número de trabajadores. Como es lógico, a más trabajadores habrá un mayor número de decisiones posibles. En el caso del algoritmo 1 este crecimiento será polinomial de grado $n$. El algoritmo 2 remedia este hecho dividiendo la eficiencia entre $m!$, manteniendo el resultado casi constante a partir de cierto punto. Por otro lado, los algoritmos 3 y 4 devuelven directamente la solución en $O(n)$ cuando hay más trabajadores que trabajos, lo que explica el tiempo nulo obtenido. Como conclusión queda la inviabilidad del algoritmo 1 que hace cálculos innecesarios aunque la solución sea trivial (como para $m > n$).
 
-## Enfocar los tres últimos algoritmos
+## Comparación de los algoritmos 2, 3 y 4
 
-Por lo mal algorítmo que era el primero con respecto a los demás, hemos decidido hacer unas gráfica sin incluir este. 
+Nos libramos del lastre que supone comparar con el algoritmo 1 pues sus malos resultados nos impiden ver las diferencias entre los demás algoritmos.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_constante_Trabajadores.png}}$
+$\centerline{\textbf{Imagen 4}. Tiempos obtenidos variando el número de trabajos para 3 trabajadores.}$
 
-Si observamos el último quiebro de la linea amarilla, parece que comienza a crecer. Si no fuese por esto, se pueden sacar las mismas conclusiones que en la gráfica anterior.
+Cuando fijamos un $m$ el algoritmo 2 muestra plenamente su carácter exponencial (visita $\frac{m^n}{m!}$ soluciones con $m$ constante). Los algoritmos 3 y 4 alargan este hecho siendo más viables en la práctica.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_constante_Trabajos.png}}$
+$\centerline{\textbf{Imagen 5}. Tiempos obtenidos variando el número de trabajadores para 6 trabajos.}$
 
-Se obtienen, sin modificación, las mismas conclusiones que en la gráfica anterior sobre trabajos constantes. Segundo algoritmo divergente y tercer y cuarto inmutables.
+En la Imagen 5 los algoritmos 3 y 4 permanecen constantes al sobrepasar $m$ el valor de $n$ tal y como se comentó en la sección anterior. Sin embargo, el algoritmo 2 sigue empeorando pues no finaliza la rama cuando el número de trabajos libres es menor o igual al de trabajadores. Es, por tanto, un algoritmo menos estable y completo que los otros dos.
 
+## Comparación de los algoritmos 3 y 4
 
-## Dos últimos algorítmos
-
-Tras los anteriores resultados, decidimos modificar el número de trabajos y trabajadores para las pruebas, teniendo en cuenta los resultados teóricos. Así decidimos cambiar el número de trabajadores constantes con respecto al numero de trabajos a la mínima iteración y el número de trabajos constante al máximo trabajadores usados para las iteraciones. Estos son los resultados:
+Nos centramos ahora en observar las diferencias existentes entre los dos últimos algoritmos para lo cual aumentamos las exigencias en las ejecuciones.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajadores.png}}$
+$\centerline{\textbf{Imagen 6}. Tiempos obtenidos variando el número de trabajos para 10 trabajadores.}$
 
-Pese a lo buenos que parecían a priori los últimos algorítmos, vemos que ya empiezan a comportarse como lo que son, algorítmos factoriales con respecto al número de trabajos que se le asignan.
-
+Forzando las condiciones de la instancia donde se ejecutan los algoritmos observamos un comportamiento exponencial para los mismos como muestra la Imagen 6. Como era de esperar, el algoritmo 4 retrasa y disminuye este comportamiento gracias a la poda, visitando muchas menos soluciones. Es, por tanto, la versión a aplicar sobre un problema real. Sin embargo, dado su carácter exponencial no podremos resolver problemas extremadamente difíciles en los que haya multitud de trabajos a asignar.
 
 $\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
+$\centerline{\textbf{Imagen 7}. Tiempos obtenidos variando el número de trabajadores para 17 trabajos.}$
 
-Esta gráfica refleja la filosofía de ambos algorítmos a la perfección. Digamos que lo sorprendente de este problema es que aunque los algorítmos lo que trataban era de acotar por los extremos(numero de trabajadores proximos a uno o al número de trabajos) por en medio la forma de organización se nos va de las manos.
-
+La Imagen 7 mantiene fijo el número de trabajos aumentando el número de trabajadores. En los casos anteriores los algoritmos 1 y 2 seguían creciendo de forma exponencial mientras que los algoritmos 3 y 4 terminaban por ser constantes. Forzando estos dos últimos algoritmos obtenermos el comportamiento dado por la Imagen 7. Cuando $n > m$ se vuelven constantes pero antes de este hecho se comportan como un algoritmo polinomial de grado 17, notándose explícitamente en el algoritmo 3 que carece de poda.
 
 
 [^wikipedia-scheduling]: [Scheduling Job Problem](http://en.wikipedia.org/wiki/Job_shop_scheduling)

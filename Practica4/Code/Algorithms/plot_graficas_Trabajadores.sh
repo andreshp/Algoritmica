@@ -5,13 +5,13 @@
 #Variables:
 OPCION="Trabajadores"
 OUTPUT=./Imagenes/grafica_tiempos_constante_$OPCION.png
-TITULO="Gráfica de los tres últimos algorítmos con 3 trabajadores"
-XLABEL="Número de $OPCION"
+TITULO="Comportamiento de los algoritmos 2, 3 y 4 con 3 trabajadores"
+XLABEL="Número de Trabajos"
 YLABEL="Tiempo (segundos)"
 
-LEYENDA2="Segundo"
-LEYENDA3="Tercero"
-LEYENDA4="Cuarto"
+LEYENDA2="Algoritmo 2"
+LEYENDA3="Algoritmo 3"
+LEYENDA4="Algoritmo 4"
 
 FICHERO_DATOS2="./Datos/tiempo_second_algorithm.py_$OPCION.dat"
 FICHERO_DATOS3="./Datos/tiempo_third_algorithm.py_$OPCION.dat"

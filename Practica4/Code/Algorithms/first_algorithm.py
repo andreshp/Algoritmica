@@ -15,13 +15,14 @@ else:
     def algoritmo1(k,tiempos, solucion_actual, max_tiempo):
         if k < len(tiempos):
             sol = float("Inf")
-            for i in range(len(solucion_actual)):
+            for i in xrange(len(solucion_actual)):
                 solucion_actual[i] += tiempos[k]
                 sol = min(sol, algoritmo1(k+1,tiempos, solucion_actual, max(max_tiempo, solucion_actual[i])))
                 solucion_actual[i] -= tiempos[k]
             return sol
         else:
             return max_tiempo
+
     tiempos = []
     for i in range(int(sys.argv[1])):
         tiempos.append(i+1)
