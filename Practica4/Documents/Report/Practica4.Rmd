@@ -53,7 +53,7 @@ Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales.
 La formulación del problema recuerda al problema 5 de la práctica de algoritmos voraces. Tenemos varias máquinas que realizan trabajos que requieren un tiempo predeterminado. Este tipo de problemas suelen clasificarse como **scheduling problems**. Sin embargo, la función objetivo a optimizar es diferente. En el problema de la práctica anterior se pedía optimizar el tiempo medio de espera de los clientes mientras que en este caso debemos realizar todos los trabajos en el menor tiempo posible.
 
 El problema a resolver es NP Hard [^wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada,
-si $n <= m$ es fácil darse cuenta de que la solución será el máximo de los $t_i$ pues basta asignar un trabajo a cada máquinal. Podemos suponer entonces que $n > m$.
+si $n <= m$ es fácil darse cuenta de que la solución será el máximo de los $t_i$ pues basta asignar un trabajo a cada máquina. Podemos suponer entonces que $n > m$.
 
 Hacemos la siguiente observación, no nos importa el orden en el que una máquina realice sus trabajos asignados ya que en cualquier caso el tiempo en el que la máquina está trabajando es el mismo. Esto da lugar a la siguiente proposición:
 
@@ -91,7 +91,7 @@ Basta llamar al algoritmo de la siguiente forma: `algoritmo1(0,tiempos,[0 for i 
 
 Debemos observar que no nos importa cuál sea la máquina que realiza un determinado conjunto de trabajo. Por ejemplo, si tuviésemos dos máquinas, $A$ y $B$, y dos trabajos, $1$ y $2$, da igual que la máquina $A$ haga el trabajo $1$ y la máquina $B$ haga el trabajo $2$ a que $A$ realice el $2$ y $B$ el $1$. Las máquinas son igual de eficientes por lo que el tiempo en el que se habrán terminado todos los trabajos será el mismo en ambos casos.
 
-Por ejemplo, si cada máquina hace un conjunto de trabajos no vacío podemos aplicar las $m!$ permutaciones posibles obteniendo soluciones que terminan en el mismo tiempo pero que son calculadas por separado en el Algoritmo 1. Tratamos de evitar de la siguiente forma. Si quedan máquinas sin una tarea por asignar no llamamos al algoritmo recursivamente para cada una de estas máquinas sino solo para la primera de ella pues los otros estados son equivalentes. Este razonamiento conduce al Algoritmo 2.
+Por ejemplo, si cada máquina hace un conjunto de trabajos no vacío podemos aplicar las $m!$ permutaciones posibles obteniendo soluciones que terminan en el mismo tiempo pero que son calculadas por separado en el Algoritmo 1. Tratamos de evitar de la siguiente forma. Si quedan máquinas sin una tarea por asignar no llamamos al algoritmo recursivamente para cada una de estas máquinas sino solo para la primera de ellas pues los otros estados son equivalentes. Este razonamiento conduce al Algoritmo 2.
 
 $\centerline{\textbf{Algoritmo 2.} Mejora sobre el Algoritmo 1 que evita soluciones equivalentes.}$
 
@@ -130,7 +130,7 @@ $\centerline{\textbf{Algoritmo 3.} Mejora sobre el Algoritmo 2 que evita solucio
 #   asignado a cada máquina.
 # - max_tiempo : Máximo de solucion_actual
 # - maquinas_libres : Número de máquinas que no tienen asignado un trabajo.
-def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
+def algoritmo3(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
   if k < len(tiempos):
     # Comprobamos que hay más trabajos libres que máquinas libres
     if maquinas_libres < len(tiempos)-k:
@@ -214,7 +214,7 @@ En este último algoritmo se pone en evidencia la potencialidad del backtracking
 
 ## Primeras conclusiones
 
-Para empezar mostraremos en una gráfica los tiempos que requieren todos los algorítmos para encontrar la mejor solución, tanto con respecto al número de trabajos con trabajadores constantes, como con respecto al número de trabajadores con trabajos contantes:
+Para empezar mostraremos en una gráfica los tiempos que requieren todos los algoritmos para encontrar la mejor solución, tanto respecto al número de trabajos con trabajadores constantes, como respecto al número de trabajadores con trabajos contantes:
 
 $\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_todos_constante_Trabajadores.png}}$
 
@@ -244,7 +244,7 @@ Tras los anteriores resultados, decidimos modificar el número de trabajos y tra
 
 $\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajadores.png}}$
 
-Pese a lo buenos que parecían a priori los últimos algorítmos, vemos que ya empiezan a comportarse como lo que son, algorítmos factoriales con respecto al número de trabajos que se le asignan.
+Pese a lo buenos que parecían a priori los últimos algorítmos, vemos que ya empiezan a comportarse como lo que son, algoritmos factoriales con respecto al número de trabajos que se le asignan.
 
 
 $\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
