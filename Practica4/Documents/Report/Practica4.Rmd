@@ -214,12 +214,12 @@ En este último algoritmo se pone en evidencia la potencialidad del backtracking
 
 Para empezar mostraremos en una gráfica los tiempos que requieren todos los algorítmos para encontrar la mejor solución, tanto con respecto al número de trabajos con trabajadores constantes, como con respecto al número de trabajadores con trabajos contantes:
 
-$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_todos_constante_Trabajadores.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_todos_constante_Trabajadores.png}}$
 
 En este primer gráfico se ve claramente que el primer algorítmo comienza a diverger de manera factorial, como presuponíamos de la tería. El segundo parece que tambien tiene este comportamiento, pero parece que ha sido mejorado en este aspecto. Los otros dos algorítmos parecen inmutables con respecto al número de trabajos que se le encarguen.
 
 
-$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_todos_constante_Trabajos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_todos_constante_Trabajos.png}}$
 
 En esta gráfica notamos que, teniendo un número de trabajos fijos, el tiempo con el que se le es asignada de la mejor forma a los trabajadores crece indefinidamente de forma exponencial. Observamos de nuevo que ocurre lo mismo para el segundo algorítmo, y otra vez ocurre lo mismo para los otros dos algorítmos, casi inmutables de nuevo.
 
@@ -227,11 +227,11 @@ En esta gráfica notamos que, teniendo un número de trabajos fijos, el tiempo c
 
 Por lo mal algorítmo que era el primero con respecto a los demás, hemos decidido hacer unas gráfica sin incluir este. 
 
-$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_constante_Trabajadores.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_constante_Trabajadores.png}}$
 
 Si observamos el último quiebro de la linea amarilla, parece que comienza a crecer. Si no fuese por esto, se pueden sacar las mismas conclusiones que en la gráfica anterior.
 
-$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_constante_Trabajos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_constante_Trabajos.png}}$
 
 Se obtienen, sin modificación, las mismas conclusiones que en la gráfica anterior sobre trabajos constantes. Segundo algoritmo divergente y tercer y cuarto inmutables.
 
@@ -240,12 +240,12 @@ Se obtienen, sin modificación, las mismas conclusiones que en la gráfica anter
 
 Tras los anteriores resultados, decidimos modificar el número de trabajos y trabajadores para las pruebas, teniendo en cuenta los resultados teóricos. Así decidimos cambiar el número de trabajadores constantes con respecto al numero de trabajos a la mínima iteración y el número de trabajos constante al máximo trabajadores usados para las iteraciones. Estos son los resultados:
 
-$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajadores.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajadores.png}}$
 
 Pese a lo buenos que parecían a priori los últimos algorítmos, vemos que ya empiezan a comportarse como lo que son, algorítmos factoriales con respecto al número de trabajos que se le asignan.
 
 
-$\centerline{\includegraphics[width=10cm]{../../Code/NumSols/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
 
 Esta gráfica refleja la filosofía de ambos algorítmos a la perfección. Digamos que lo sorprendente de este problema es que aunque los algorítmos lo que trataban era de acotar por los extremos(numero de trabajadores proximos a uno o al número de trabajos) por en medio la forma de organización se nos va de las manos.
 
