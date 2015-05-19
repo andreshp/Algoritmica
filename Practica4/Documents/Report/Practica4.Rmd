@@ -9,8 +9,10 @@ output:
     toc: yes
     fig_caption: yes
     includes:
+        css: mydata.css
         in_header:
             mystyles.sty
+            
 ---
 
 $\pagebreak$
@@ -132,7 +134,7 @@ $\centerline{\textbf{Algoritmo 3.} Mejora sobre el Algoritmo 2 que evita solucio
 #   asignado a cada máquina.
 # - max_tiempo : Máximo de solucion_actual
 # - maquinas_libres : Número de máquinas que no tienen asignado un trabajo.
-def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
+def algoritmo3(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
   if k < len(tiempos):
     # Comprobamos que hay más trabajos libres que máquinas libres
     if maquinas_libres < len(tiempos)-k:
