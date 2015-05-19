@@ -53,7 +53,7 @@ Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales.
 La formulación del problema recuerda al problema 5 de la práctica de algoritmos voraces. Tenemos varias máquinas que realizan trabajos que requieren un tiempo predeterminado. Este tipo de problemas suelen clasificarse como **scheduling problems**. Sin embargo, la función objetivo a optimizar es diferente. En el problema de la práctica anterior se pedía optimizar el tiempo medio de espera de los clientes mientras que en este caso debemos realizar todos los trabajos en el menor tiempo posible.
 
 El problema a resolver es NP Hard [^wikipedia-scheduling]. Por tanto, queremos conseguir la mejor solución exponencial posible. Antes de nada,
-si $n <= m$ es fácil darse cuenta de que la solución será el máximo de los $t_i$ pues basta asignar un trabajo a cada máquinal. Podemos suponer entonces que $n > m$.
+si $n <= m$ es fácil darse cuenta de que la solución será el máximo de los $t_i$ pues basta asignar un trabajo a cada máquina. Podemos suponer entonces que $n > m$.
 
 Hacemos la siguiente observación, no nos importa el orden en el que una máquina realice sus trabajos asignados ya que en cualquier caso el tiempo en el que la máquina está trabajando es el mismo. Esto da lugar a la siguiente proposición:
 
@@ -65,7 +65,7 @@ $$ \rightline{$\blacksquare$} $$
 
 A raíz de esta proposición aparece un algoritmo de backtracking directo que consiste en recorrer todas las asignaciones posibles.
 
-$\centerline{\textbf{Algoritmo 1.} Primer algoritmo de backtracking con eficiencia $\theta(m^{n})$.}$
+\centerline{\textbf{Algoritmo 1.} Primer algoritmo de backtracking con eficiencia $\theta(m^{n})$.}
 
 ~~~python
 # Parametros:
