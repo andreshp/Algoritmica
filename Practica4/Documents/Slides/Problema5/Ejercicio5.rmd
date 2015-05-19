@@ -10,6 +10,7 @@ output:
     highlight: zenburn
     slide_level: 1
     includes:
+        css: mydata.css
         in_header:
             mystyles.sty
 compress: yes
@@ -53,13 +54,20 @@ Demostración:
 
 # Análisis del problema
 
-## Primer algoritmo ($\theta(m^{n})$) {.smaller .smaller .smaller}
+## Primer algoritmo ($\theta(m^{n})$)
 
 ~~~python
-def algoritmo1(k,tiempos, solucion_actual, max_tiempo):
+def algoritmo1(k,tiempos, solucion_actual,
+max_tiempo):
   if k < len(tiempos):
     sol = Inf
     for i in range(0,len(solucion_actual)):
+~~~
+# Análisis del problema
+
+## Primer algoritmo ($\theta(m^{n})$)
+
+~~~python
       solucion_actual[i] += tiempos[k]
       sol = min(sol, algoritmo1(k+1,tiempos,\
       solucion_actual, max(max_tiempo, \
@@ -84,12 +92,20 @@ def algoritmo1(k,tiempos, solucion_actual, max_tiempo):
 
 ## Segundo algoritmo
 ~~~python
-def algoritmo2(k, tiempos, solucion_actual, max_tiempo):
+def algoritmo2(k, tiempos, solucion_actual,
+max_tiempo):
   if k < len(tiempos):
     sol = Inf
     for i in range(0,len(solucion_actual)):
-      # Si la máquina anterior no tiene asignado entonces no se asigna
-      # trabajo a la actual (sería la misma rama que la anterior).
+      # Si la máquina anterior no tiene
+      # asignado entonces no se asigna
+      # trabajo a la actual (sería la
+      # misma rama que la anterior).
+~~~
+# Análisis del problema
+
+## Segundo algoritmo
+~~~python
       if i == 0 or solucion_actual[i-1] > 0:
         solucion_actual[i] += tiempos[k]
         sol = min(sol, algoritmo2(k+1,tiempos, solucion_actual, \
@@ -112,11 +128,20 @@ def algoritmo2(k, tiempos, solucion_actual, max_tiempo):
 ## Tercer algoritmo
 
 ~~~python
-def algoritmo3(k, tiempos, solucion_actual, max_tiempo, maquinas_libres):
+def algoritmo3(k, tiempos, solucion_actual, 
+ max_tiempo, maquinas_libres):
   if k < len(tiempos):
-    # Comprobamos que hay más trabajos libres que máquinas libres
+    # Comprobamos que hay más trabajos
+    # libres que máquinas libres
     if maquinas_libres < len(tiempos)-k:
       sol = Inf
+~~~      
+
+# Análisis del problema
+
+## Tercer algoritmo
+
+~~~python
       for i in range(0,len(solucion_actual)):
         if i == 0 or solucion_actual[i-1] > 0:
           solucion_actual[i] += tiempos[k]
@@ -169,46 +194,64 @@ $\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/Compara
 ## Algoritmo final
 
 ~~~python
-def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres, mejor_solucion):
-  if k < len(tiempos) and max_tiempo < mejor_solucion:
-    # Comprobamos que hay más trabajos libres que máquinas libres
-    if maquinas_libres < len(tiempos)-k:
-      for i in range(0,len(solucion_actual)):
-        if i == 0 or solucion_actual[i-1] > 0:
-          solucion_actual[i] += tiempos[k]
-          mejor_solucion = min(mejor_solucion, algoritmo2(k+1,tiempos, solucion_actual, \
-              max(max_tiempo, solucion_actual[i]), maquinas_libres + \
-              0 if solucion_actual[i] != 0 else 1, mejor_solucion))
-          solucion_actual[i] -= tiempos[k]
-      return mejor_solucion
-    # Si la comprobación devuelve falso a cada máquina se le asigna un trabajo
+def algoritmo2(k, tiempos, solucion_actual,
+ max_tiempo, maquinas_libres, mejor_solucion):
+ 
+  if k < len(tiempos) and 
+    max_tiempo < mejor_solucion:
+      # Comprobamos que hay más trabajos
+      # libres que máquinas libres
+      if maquinas_libres < len(tiempos)-k:
+~~~
+# Análisis del problema
+
+## Algoritmo final
+~~~python
+        for i in range(0,len(solucion_actual)):
+          if i == 0 or solucion_actual[i-1] > 0:
+            solucion_actual[i] += tiempos[k]
+            mejor_solucion = min(mejor_solucion,
+              algoritmo2(k+1,tiempos, solucion_actual, \
+              max(max_tiempo, solucion_actual[i]),
+              maquinas_libres + \
+              0 if solucion_actual[i] != 0 else 1,\
+              mejor_solucion))
+            solucion_actual[i] -= tiempos[k]
+        return mejor_solucion
+~~~
+# Análisis del problema
+
+## Algoritmo final
+~~~python
+      # Si la comprobación devuelve falso a cada
+      # máquina se le asigna un trabajo
+      else:
+        return max(max_tiempo, max(tiempos[k:]))
     else:
-      return max(max_tiempo, max(tiempos[k:]))
-  else:
-    return mejor_solucion
+      return mejor_solucion
 ~~~
 
 # Análisis empírico
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/grafica_tiempos_todos_constante_Trabajadores.png}}$
+$\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_todos_constante_Trabajadores.png}}$
 
 # Análisis empírico
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/grafica_tiempos_todos_constante_Trabajos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_todos_constante_Trabajos.png}}$
 
 # Análisis empírico
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/grafica_tiempos_constante_Trabajadores.png}}$
+$\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_constante_Trabajadores.png}}$
 
 # Análisis empírico
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/grafica_tiempos_constante_Trabajos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_constante_Trabajos.png}}$
 
 # Análisis empírico
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajadores.png}}$
+$\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajadores.png}}$
 
 # Análisis empírico
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
+$\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
 

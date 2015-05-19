@@ -9,8 +9,10 @@ output:
     toc: yes
     fig_caption: yes
     includes:
+        css: mydata.css
         in_header:
             mystyles.sty
+            
 ---
 
 $\pagebreak$
