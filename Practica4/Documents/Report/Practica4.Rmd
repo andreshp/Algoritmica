@@ -191,7 +191,7 @@ $\centerline{\textbf{Algoritmo 4.} Mejora sobre el Algoritmo 3 podando ramas no 
 # - max_tiempo : Máximo de solucion_actual
 # - maquinas_libres : Número de máquinas que no tienen asignado un trabajo.
 # - tiempo_maximo : Máximo tiempo permitido para una solución.
-def algoritmo2(k, tiempos, solucion_actual, max_tiempo, maquinas_libres, mejor_solucion):
+def algoritmo4(k, tiempos, solucion_actual, max_tiempo, maquinas_libres, mejor_solucion):
   if k < len(tiempos) and max_tiempo < mejor_solucion:
     # Comprobamos que hay más trabajos libres que máquinas libres
     if maquinas_libres < len(tiempos)-k:

@@ -29,9 +29,9 @@ $\centerline{\includegraphics[width=7cm]{./Images/github-octocat.png}}$
 
 Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales. Hay un total de $n$ vehículos que necesitan inspección. En función de sus características, cada vehículo tardará en ser inspeccionado un tiempo $t_i$, $i = 1, \ldots , n$. Se desea encontrar la manera de atender a los $n$ vehículos y acabar en el menor tiempo posible. Diseñar e implementar un algoritmo vuelta atrás que determine cómo asignar los vehículos a las líneas. Mejoradlo usando alguna técnica de poda. Realizar un estudio empírico de la eficiencia de los algoritmos.
 
-# Explicación del problema
+# Análisis del problema
 
-## Análisis del problema
+## Información sobre el problema
 
 - Estructura similar al **problema de los electricistas**. Conocido como **scheduling problem**.
 - Cambia la función objetivo a optimizar: tiempo medio de espera vs tiempo total de los trabajos.
@@ -39,15 +39,18 @@ Una estación de ITV consta de $m$ líneas de inspección de vehículos iguales.
 
 # Análisis del problema
 
-- Queremos conseguir la mejor solución exponencial posible.
+## Observaciones previas
+
+- Aspiramos a una buena **solución exponencial**.
 - Si $n \le m$, podemos asignar un trabajo a cada máquina. El tiempo es el máximo de los $t_i$.
 - Podemos suponer entonces $n > m$.
+- **No importa el orden** en el que una máquina realice sus trabajos asignados.
 
 # Análisis del problema
 
 ## Proposición 1: El número de formas en las que se pueden asignar los trabajos a las máquinas es $m^n$.
 
-Demostración:
+**Demostración.**
 
 - A cada trabajo se asigna una máquina, pudiendo repetirse.
 - Para cada trabajo tenemos $m$ posibilidades disponibles. Total: $m^n$.
@@ -55,6 +58,8 @@ Demostración:
 # Análisis del problema
 
 ## Primer algoritmo ($\theta(m^{n})$)
+
+- Recorrer todas las soluciones posibles con backtracking.
 
 ~~~python
 def algoritmo1(k,tiempos, solucion_actual,
@@ -83,14 +88,15 @@ max_tiempo):
 
 ## Mejorando el primer algoritmo
 
-- No nos importa cuál sea la máquina que realiza un determinado trabajo. Todas son igual de eficientes.
-- **Problema**: el algoritmo anterior calcula por separado permutaciones que dan soluciones equivalentes.
-- **Solución**: si quedan máquinas sin tareas solo llamamos al algoritmo recursivo para la primera.
+- No nos importa cuál sea la máquina que realiza un determinado conjunto de trabajos. Todas son igual de eficientes.
+- **Problema**: el algoritmo anterior calcula varias veces soluciones equivalentes, una vez por cada permutación posible para las máquinas.
+- **Solución**: si quedan máquinas sin tareas asignadas solo llamamos al algoritmo recursivo para la primera.
 
 
 # Análisis del problema
 
 ## Segundo algoritmo
+
 ~~~python
 def algoritmo2(k, tiempos, solucion_actual,
 max_tiempo):
@@ -111,6 +117,8 @@ max_tiempo):
         sol = min(sol, algoritmo2(k+1,tiempos, solucion_actual, \
             max(max_tiempo, solucion_actual[i])))
         solucion_actual[i] -= tiempos[k]
+      else:
+        break
     return sol
   else:
     return max_tiempo
@@ -158,6 +166,8 @@ def algoritmo3(k, tiempos, solucion_actual,
 
 ## Tercer algoritmo
 ~~~python
+        else:
+          break
       return sol
     # Si la comprobación devuelve falso a cada
     # máquina se le asigna un trabajo
@@ -169,7 +179,7 @@ def algoritmo3(k, tiempos, solucion_actual,
 
 # Análisis del problema
 
-## Soluciones recorridas por el tercer algoritmo
+## Cálculo teórico de las soluciones recorridas por el tercer algoritmo
 
 - $a_i :=$ número de soluciones con todas las máquinas ocupadas para $i$ máquinas con $i = 1, \ldots, m$.
 
@@ -178,10 +188,9 @@ def algoritmo3(k, tiempos, solucion_actual,
 
 # Análisis del problema
 
-## Comparación de soluciones recorridas
+## Comparación del número de soluciones recorridas
 
-$\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/ComparacionNumSoluciones.png}}$
-
+$\centerline{\includegraphics[width=7cm]{../../../Code/NumSols/Imagenes/ComparacionNumSoluciones.png}}$
 
 # Análisis del problema
 
@@ -194,7 +203,7 @@ $\centerline{\includegraphics[width=10cm]{../../../Code/NumSols/Imagenes/Compara
 ## Algoritmo final
 
 ~~~python
-def algoritmo2(k, tiempos, solucion_actual,
+def algoritmo4(k, tiempos, solucion_actual,
  max_tiempo, maquinas_libres, mejor_solucion):
  
   if k < len(tiempos) and 
@@ -217,11 +226,15 @@ def algoritmo2(k, tiempos, solucion_actual,
               0 if solucion_actual[i] != 0 else 1,\
               mejor_solucion))
             solucion_actual[i] -= tiempos[k]
+          else:
+            break
         return mejor_solucion
 ~~~
+
 # Análisis del problema
 
 ## Algoritmo final
+
 ~~~python
       # Si la comprobación devuelve falso a cada
       # máquina se le asigna un trabajo
@@ -255,3 +268,6 @@ $\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/graf
 
 $\centerline{\includegraphics[width=10cm]{../../../Code/Algorithms/Imagenes/grafica_tiempos_dos_mejores_constante_Trabajos.png}}$
 
+# Fin de la presentación
+
+**¡Gracias por su atención!**
