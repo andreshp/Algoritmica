@@ -3,10 +3,10 @@
 
 
 #Variables:
-OPCION="Trabajadores"
+OPCION="Trabajos"
 OUTPUT=./Imagenes/grafica_tiempos_constante_$OPCION.png
-TITULO="Gráfica de los tres últimos algorítmos con 3 trabajadores"
-XLABEL="Número de $OPCION"
+TITULO="Gráfica de los tres últimos algorítmos con 6 trabajos"
+XLABEL="Número de Trabajadores"
 YLABEL="Tiempo (segundos)"
 
 LEYENDA2="Segundo"

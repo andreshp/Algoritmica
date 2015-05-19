@@ -20,6 +20,7 @@ M=2
 # Se comprueban los parametros.
 if [[ $# != 1 ]]; then
     echo "Sintaxis: ./execute.sh <número de trabajos>"
+    exit
 else
     N=$1
     M_FIN=`echo $N / 2 | bc` # Se llega hasta la mitad
