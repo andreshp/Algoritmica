@@ -1,6 +1,6 @@
 ---
-title: "Algoritmos Voraces"
-subtitle: Problema 5 - Problema del electricista
+title: "Backtracking"
+subtitle: Problema 5 - Problema de la ITV
 author: "A. Herrera, A. Moya, I. Sevillano, J.L. Suarez"
 date: "`r format(Sys.time(), '%d de %B de %Y')`"
 output:
