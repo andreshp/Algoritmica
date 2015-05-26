@@ -48,15 +48,15 @@ Opcionalmente, construir también un programa que utilice vuelta atrás, pero ut
 
 ## Solución teórica
 
-En este apartado vamos a buscar soluciones teóricas al problema del viajante de comercio mediante el empleo de dos algoritmos, una que emplee la técnica $Branch and Bound$ y otro $Backtracking$.
+En este apartado vamos a buscar soluciones teóricas al problema del viajante de comercio mediante el empleo de dos algoritmos, basados en las técnicas *Branch and Bound* y *Backtracking* respectivamente.
 
-Para ambos debemos de tener en cuenta que debemos usar una función de acotación, que permita determinar qué ramas pueden ser correctas para una solución óptima y cuales no merecen la pena resolver. Así, para obtener esta acotación empleando la técnica $Branch and Bound$ debemos definir una función estimar, que permita obtener la estimación de la mejor solución con el empleo de unos u otros nodos.
+Para ambos debemos de tener en cuenta que debemos usar una función de acotación, que permita determinar qué ramas pueden ser correctas para una solución óptima y cuáles no merecen la pena resolver. Así, para obtener esta acotación empleando la técnica *Branch and Bound* debemos definir una función estimar, que permita obtener la estimación de la mejor solución con el empleo de unos u otros nodos.
 
 ### Algoritmo Branch and Bound
 
 Para el empleo de esta técnica primero tenemos que tener bien claro en qué consiste.
 
-La técnica $Branch and Bound$ es una técnica de ramificación y poda, de tal forma que se cuenta con una función que estima cuáles serán los valores obtenidos según se empleen unos nodos u otros. Estos permiten guardar en una variable la mejor solución considerada en cada momento, de tal forma que si la cota inferior de una solución parcial es superior a la solución que tenemos guardada en ese variable, podemos podar esa rama.
+La técnica *Branch and Bound* es una técnica de ramificación y poda, de tal forma que se cuenta con una función que estima cuáles serán los valores obtenidos según se empleen unos nodos u otros. Estos permiten guardar en una variable la mejor solución considerada en cada momento, de tal forma que si la cota inferior de una solución parcial es superior a la solución que tenemos guardada en ese variable, podemos podar esa rama.
 
 ¿Cómo aplicamos esta técnica en el caso del viajante del comercio?
 El primer punto destacable es la definción de la función que hemos elegido para realizar la estimación.
@@ -81,12 +81,10 @@ def estimar()
     estimacion += distancias.minimo(ciudad,noVisitadas)
   end
   
-  #Cerramos el circuito (añadimos la estimación de 
-  distancias de la penultima y primera ciudad ya visitadas)
-  estimacion += distancias.minimo  \
-            (solucion_actual.primeraVisitada,noVisitadas)
-  estimacion += distancias.minimo  \
-            (solucion_actual.ultimaVisitada,noVisitadas)
+  # Cerramos el circuito (añadimos la estimación de 
+  # distancias de la penultima y primera ciudad ya visitadas)
+  estimacion += distancias.minimo(solucion_actual.primeraVisitada,noVisitadas)
+  estimacion += distancias.minimo(solucion_actual.ultimaVisitada,noVisitadas)
   
 end
 ~~~
@@ -144,6 +142,8 @@ El empleo de esta técnica a nuestras ciudades se basa en partir del nodo raíz,
 
 Más allá del criterio de poda, el algoritmo de Backtracking es muy sencillo. Se trata de avanzar por una solución parcial mientras podamos, llegando a las distintas hojas que serán las soluciones buscadas. Cuando no podemos avanzar más, bien porque hemos llegado a una hoja o porque hemos podado la rama que seguimos, volvemos al nivel anterior y evaluamos la siguiente ciudad. Es por esto por lo que el backtracking se lleva muy bien con la recursividad y las estructuras LIFO (Último que entra primero que sale) con sus correspondientes métodos *push* y *pop*. De esta forma ya podemos escribir el pseudocódigo de nuestro algoritmo:
 
+$\centerline{\textbf{Algoritmo Backtracking.} Empleo de la técnica Backtracking.}$
+
 ~~~ruby
 #Llamada inicial: TSPBacktracking(conjunto_ciudades,solucion_raiz,TSPVecinoMasCercano)
 #candidatos: ciudades que quedan por visitar [set]
@@ -163,15 +163,13 @@ def TSPBacktracking(candidatos, sol_actual, mejor_solucion)
     
     #Si no se cumple el criterio de poda, llamamos de nuevo a la función
     if sol_actual < mejor_solucion
-      resolver(candidatos,sol_actual,mejor_solucion)
+      TSPBacktracking(candidatos,sol_actual,mejor_solucion)
     end
     
     # Vuelta atrás: devolvemos los candidatos y la solución
     # a su estado en el momento de la entrada a la función
     i = candidatos.insert(sol_actual.popCiudad())
   end
-    
-
 ~~~
 
 ## Resultados empíricos
