@@ -176,4 +176,18 @@ def TSPBacktracking(candidatos, sol_actual, mejor_solucion)
 
 ## Resultados empíricos
 
-Hasta que no esté todo correcto no se pueden hacer gráficas. Apartado por rellenar.
+A continuación vamos a poner a prueba de forma empírica ambos algoritmos. Para ello haremos un doble estudio comparativo. En primer lugar compararemos los algoritmos según el tiempo que emplean, y en segundo lugar, según los nodos que visitan en el espacio de soluciones.
+
+### Tiempos
+
+$\centerline{\includegraphics[width=10cm]{../Images/ByBandBT.png}}$
+
+Lo primero que debemos comentar es que con Branch and Bound podemos llegar a resolver el problema para 15 ciudades sin llegar a tiempos ya inabordables. Con Bracktacking, en cambio, solo podemos llegar a 14, momento en el que tiempo empieza a crecer de forma excesiva. Como podíamos esperar, el tiempo empleado por el algoritmo backtracking es mayor que el que emplea el algoritmo Branch and Bound. También debemos destacar que, a pesar de la mejora del algoritmo de ramificación y poda respecto al de vuelta atrás, apenas nos sirve para poder resolver el problema con una ciudad más. Debemos recordar que no se conoce de momento una forma de alcanzar la solución óptima a este problema en un tiempo polinomial, y que por eso, por mucho que aumentemos las podas no vamos a poder evitar que se disparen las gráficas de tiempos tarde o temprano. Para problemas de muchas ciudades, tendremos que seguir conformándonos con las soluciones que nos proporciona un buen algoritmo greedy.
+
+
+### Nodos visitados
+
+$\centerline{\includegraphics[width=10cm]{../Images/ByBandBTNodos.png}}$
+
+Podemos ver cómo el número de nodos visitados por el algoritmo Backtracking es mucho mayor que el número visitado por el Branch and Bound, lo que recalca que el algoritmo Branch and Bound es, en ese aspecto, mucho mejor que el backtracking. El criterio de poda de Branch and Bound nos permite eliminar muchísimos nodos que nos vemos obligados a visitar con Backtracking. Sin embargo, debemos tener en cuenta que la ganancia de la poda de Branch and Bound implica un mayor coste computacional, a la hora de manejar las funciones de estimación y por la necesidad de almacenar una solución por cada nodo en la cola (Backtracking puede implementarse manejando una única solución que se va modificando fácilmente en el recorrido en profundidad). A pesar de eso, como podemos apreciar en los tiempos, el aumento del coste computacional no llega a eclipsar la ganancia con las podas.
+
