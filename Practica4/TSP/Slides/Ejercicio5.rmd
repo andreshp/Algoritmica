@@ -1,6 +1,6 @@
 ---
-title: "Backtracking"
-subtitle: Problema 5 - Problema de la ITV
+title: "Backtracking y Branch and Bound"
+subtitle: "Problema del viajante de comercio"
 author: "A. Herrera, A. Moya, I. Sevillano, J.L. Suarez"
 date: "`r format(Sys.time(), '%d de %B de %Y')`"
 output:
